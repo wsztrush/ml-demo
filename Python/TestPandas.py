@@ -1,16 +1,13 @@
-from pandas import Series, DataFrame
+import pandas as pd
+import numpy as np
 
-s = Series(data=[1, 2, 3], index=['a', 'b', 'c'])
+index = pd.date_range('10/1/1999', periods=1100)
+ts = pd.Series(np.random.normal(0.5, 2, 1100), index)
+ts = ts.rolling(window=100, min_periods=100).mean().dropna()
 
-df = DataFrame(
-    data={
-        'c1': [1, 2, 3],
-        'c2': [4, 5, 6],
-        'c3': [7, 8, 9]
-    },
-    index=['a', 'b', 'c']
-)
+key = lambda x: x.year
+zscore = lambda x : (x - x.mean()) / x.std()
 
-print(df['c1']['a'])
+result = ts.groupby(key).transform(zscore)
 
-print(df[df.c2 < 6])
+print(result)
