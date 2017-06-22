@@ -1,7 +1,7 @@
 import cv2
 
 cap = cv2.VideoCapture(0)
-classifier = cv2.CascadeClassifier("/usr/local/Cellar/opencv3/3.2.0/share/OpenCV/haarcascades/haarcascade_profileface.xml")
+classifier = cv2.CascadeClassifier("/usr/local/Cellar/opencv3/3.2.0/share/OpenCV/haarcascades/haarcascade_frontalcatface.xml")
 
 while (1):
     ret, img = cap.read()
