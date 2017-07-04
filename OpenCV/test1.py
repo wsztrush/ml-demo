@@ -3,7 +3,7 @@ import cv2
 cap = cv2.VideoCapture(0)
 classifier = cv2.CascadeClassifier("/usr/local/Cellar/opencv3/3.2.0/share/OpenCV/haarcascades/haarcascade_frontalcatface.xml")
 
-while (1):
+while True:
     ret, img = cap.read()
 
     faceRects = classifier.detectMultiScale(img, 1.2, 2, cv2.CASCADE_SCALE_IMAGE, (20, 20))
