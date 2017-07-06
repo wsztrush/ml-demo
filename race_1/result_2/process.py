@@ -3,7 +3,7 @@ import numpy as np
 from obspy import read
 from matplotlib import pyplot as plt
 
-content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/XX.JMG.2008231000000.BHE")
+content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/GS.WDT.2008212160001.BHN")
 content.plot(type='dayplot')
 
 data = content[0].data
