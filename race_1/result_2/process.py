@@ -2,14 +2,17 @@ import os
 import numpy as np
 from obspy import read
 from matplotlib import pyplot as plt
+import time
 
-content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/GS.WDT.2008212160001.BHN")
+start_time = time.time()
+content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/GS.WXT.2008213000000.BHZ")
+print(time.time() - start_time)
 content.plot(type='dayplot')
 
 data = content[0].data
 
 interval = 5
-step = 1000
+step = 600
 
 x = np.arange(0, step * interval, interval)
 xx = np.arange(step * interval)
@@ -26,6 +29,6 @@ for i in np.arange(0, len(data), step * interval):
 
     if max_y > 500:
         print(i, max_y)
-        # plt.plot(xx, data[i:i + step * interval])
-        # plt.plot(x, y)
-        # plt.show()
+        plt.plot(xx, data[i:i + step * interval])
+        plt.plot(x, y)
+        plt.show()
