@@ -65,8 +65,8 @@ if __name__ == "__main__":
 
         for feature in feature_list:
             c = kmeans.predict([feature[3]])
-            left, right = feature[1] - 1000, feature[2]
-            if c != 2:
+            left, right = feature[1], feature[2]
+            if c != 4:
                 continue
 
             file_name = feature[0]

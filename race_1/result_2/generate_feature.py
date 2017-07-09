@@ -5,9 +5,11 @@ import json
 from obspy import read
 from matplotlib import pyplot as plt
 from matplotlib import animation
+import math
 
 dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
-feature_file = open("./data/feature.txt", "a")
+feature_file = open("./data/feature.txt", "w")
+feature_size = 10
 
 
 # 读取可能的范围文件
@@ -26,20 +28,25 @@ def read_range_file():
 
 # 获取比例
 def get_ratio():
-    result = np.logspace(0, 10, 10, base=1.2)
-    result = result / np.sum(result)
+    # result = np.logspace(0, 10, 10, base=1.2)
+    # result = result / np.sum(result)
+
+    result = (np.zeros(feature_size) + 1) / feature_size
     return result
+
+
+# 分割比例
+ratio = get_ratio()
 
 
 # 获取均值
 def get_original_mean(data):
-    result = np.zeros(10)
-    ratio = get_ratio()
+    result = np.zeros(feature_size + 1)
 
     index = 0
-    for i, ratio_value in enumerate(ratio):
+    for j, ratio_value in enumerate(ratio):
         next_index = int(index + ratio_value * len(data))
-        result[i] = np.mean(data[index:next_index])
+        result[j] = np.mean(data[index:next_index])
         index = next_index + 1
 
     return result
@@ -58,18 +65,25 @@ def get_vibration(data, interval):
 
 # 获取振幅的均值
 def get_vibration_mean(data):
-    result = np.zeros(11)
+    result = np.zeros(feature_size + 1)
     ratio = get_ratio()
 
     index = 0
-    for i, ratio_value in enumerate(ratio):
+    for j, ratio_value in enumerate(ratio):
         next_index = int(index + ratio_value * len(data))
-        result[i] = np.mean(get_vibration(data[index:next_index], 10))
+        result[j] = np.mean(get_vibration(data[index:next_index], 10))
         index = next_index + 1
 
-    m = np.max(result)
+    m = np.max(result) + 10
+
     result /= m
     result[10] = np.log10(m)
+
+    for i in result:
+        if math.isnan(i):
+            print(result)
+            break
+
     return result
 
 
@@ -103,11 +117,10 @@ def process(key, range_list):
 
     result = []
     for i in range_list:
-        f = [key, i[0] - int((i[1] - i[0]) * 0.2), i[1]]
+        f = [key, max(0, i[0] - int((i[1] - i[0]) * 0.2)), i[1]]
         f.append(get_vibration_mean(data[f[1]: f[2]]).tolist())
 
         result.append(f)
-
     return result
 
 
@@ -122,4 +135,4 @@ if __name__ == '__main__':
         for i in process(k, v):
             feature_file.write(json.dumps(i) + "\n")
 
-        print(k, "%4.2f" % (time.time() - start))
+            # print(k, "%4.2f" % (time.time() - start))
