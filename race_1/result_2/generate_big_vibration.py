@@ -1,6 +1,4 @@
-# 文件名|可能的位置列表
-#
-#
+# 找到震动幅度骄傲的的位置，方便以后找数据，相当于是建索引吧。
 import os
 import numpy as np
 import json

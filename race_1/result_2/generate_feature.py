@@ -1,3 +1,4 @@
+# 根据范围数据生成最终的特征数据
 import time
 import numpy as np
 import json
@@ -6,7 +7,7 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 
 dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
-feature_file = open("./data/feature.txt", "w")
+feature_file = open("./data/feature.txt", "a")
 
 
 # 读取可能的范围文件
@@ -25,8 +26,6 @@ def read_range_file():
 
 # 获取比例
 def get_ratio():
-    # result = np.zeros(10) + 1
-    # return result / np.sum(result)
     result = np.logspace(0, 10, 10, base=1.2)
     result = result / np.sum(result)
     return result
@@ -59,7 +58,7 @@ def get_vibration(data, interval):
 
 # 获取振幅的均值
 def get_vibration_mean(data):
-    result = np.zeros(10)
+    result = np.zeros(11)
     ratio = get_ratio()
 
     index = 0
@@ -68,8 +67,9 @@ def get_vibration_mean(data):
         result[i] = np.mean(get_vibration(data[index:next_index], 10))
         index = next_index + 1
 
-    result = np.log10(result)
-
+    m = np.max(result)
+    result /= m
+    result[10] = np.log10(m)
     return result
 
 
@@ -103,8 +103,8 @@ def process(key, range_list):
 
     result = []
     for i in range_list:
-        f = [key, i[0], i[1]]
-        f.append(get_vibration_mean(data[i[0] - 1000: i[1]]).tolist())
+        f = [key, i[0] - int((i[1] - i[0]) * 0.2), i[1]]
+        f.append(get_vibration_mean(data[f[1]: f[2]]).tolist())
 
         result.append(f)
 
@@ -119,5 +119,7 @@ if __name__ == '__main__':
     feature_list = []
     for k, v in range_dict.items():
         start = time.time()
-        feature_list += process(k, v)
+        for i in process(k, v):
+            feature_file.write(json.dumps(i) + "\n")
+
         print(k, "%4.2f" % (time.time() - start))

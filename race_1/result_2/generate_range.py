@@ -1,3 +1,4 @@
+# 根据震动幅度，找到每个震动幅度可能的地震波的范围
 import time
 import numpy as np
 import json
