@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 import time
 
 start_time = time.time()
-content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/XX.MXI.2008214000000.BHE")
+content = read("/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/GS.WXT.2008213000000.BHE")
 print(time.time() - start_time)
 content.plot(type='dayplot')
 

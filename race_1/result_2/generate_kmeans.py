@@ -1,6 +1,7 @@
+import json
+import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.externals import joblib
-import json
 
 dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
 
@@ -14,15 +15,20 @@ def read_feature_file():
         line = feature_file.readline()
         if not line:
             break
-        value = json.loads(line)
-        result.append(value[3])
+        result.append(json.loads(line))
 
     return result
 
 
 if __name__ == "__main__":
-    # 加载特征
-    feature_list = read_feature_file()
+    # 读取数据
+    feature_list = np.array(read_feature_file())
 
     # 加载模型
-    kmeans = joblib.load('./data/kmeans')
+
+
+    # 构造聚类
+    kmeans = KMeans(n_clusters=10, random_state=0).fit(feature_list)
+
+    # 保存模型
+    joblib.dump(kmeans, './data/kmeans')

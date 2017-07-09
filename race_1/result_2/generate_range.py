@@ -1,4 +1,3 @@
-import os
 import time
 import numpy as np
 import json
@@ -6,7 +5,7 @@ from obspy import read
 from matplotlib import pyplot as plt
 
 dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
-range_file = open("./data/range.txt", "a")
+range_file = open("./data/range.txt", "w")
 
 
 # 读取振幅文件，生成字典
@@ -118,7 +117,9 @@ def process(key, values):
     # 计算平均的震动幅度，作为阈值
     d = data[:l - l % interval].reshape(-1, interval)
     d_std = [np.std(d, axis=1)]
-    vibration_limit = min(50, max(300, np.mean(np.frompyfunc(lambda i: 0 if i > 1e6 else i, 1, 1)(d_std))))
+    vibration_limit = max(50, min(300, np.mean(np.frompyfunc(lambda i: 0 if i > 1e6 else i, 1, 1)(d_std))))
+
+    print("vibration_limit = ", "%10.0f" % vibration_limit)
 
     for value in values:
         left, right = value, value
@@ -163,6 +164,6 @@ if __name__ == '__main__':
 
     print("find record counts is " + str(record_count))
 
-    # x = "GS.WDT.2008225000000.BHE"
+    # x = "GS.WXT.2008218000000.BHN"
     # print(vibration_dict[x])
     # process(x, vibration_dict[x])
