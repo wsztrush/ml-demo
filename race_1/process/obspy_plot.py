@@ -1,3 +1,4 @@
+# 查看地震文件，单个图上面展示所有所有数据。
 from obspy import read
 import os
 

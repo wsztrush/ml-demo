@@ -66,8 +66,8 @@ if __name__ == "__main__":
         for feature in feature_list:
             c = kmeans.predict([feature[3]])
             left, right = feature[1], feature[2]
-            # 0, 2, 6, 7, 3, 4, 9, -8, -5, -1
-            if c != 9:
+            # 0, 6, 7, 3, 4, 9, 2, -8, -5, -1
+            if c != 4:
                 continue
 
             file_name = feature[0]
@@ -99,5 +99,5 @@ if __name__ == "__main__":
 
 
     # 动画展示
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=50, repeat=False)
     plt.show()

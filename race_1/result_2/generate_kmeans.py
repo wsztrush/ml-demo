@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
 
     # 构造聚类
-    kmeans = KMeans(n_clusters=10, random_state=0, algorithm="full").fit(feature_list)
+    kmeans = KMeans(n_clusters=10, random_state=0).fit(feature_list)
 
     # 保存模型
     joblib.dump(kmeans, './data/kmeans')

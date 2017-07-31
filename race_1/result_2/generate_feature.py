@@ -3,8 +3,6 @@ import time
 import numpy as np
 import json
 from obspy import read
-from matplotlib import pyplot as plt
-from matplotlib import animation
 import math
 
 dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
@@ -87,38 +85,22 @@ def get_vibration_mean(data):
     return result
 
 
+# 获取第一小段的震动幅度
+def get_first_vibration(data):
+    result = np.zeros(1)
+    ratio = 1 / 9
+
+
 # 处理文件中的范围，生成特征值
 def process(key, range_list):
     data = np.array(read(dir_path + key)[0].data)
 
-    # fig = plt.figure()
-    #
-    # ax = fig.add_subplot(111)
-    # ax.set_ylim(0, 10000)
-    # ax.set_xlim(0, 10)
-    # line, = ax.plot([], [])
-
-    # x = np.arange(10)
-    #
-    # def next_value():
-    #     for i in range_list:
-    #         left, right = i[0], i[1]
-    #         yield get_vibration_mean(data[left:right])
-    #
-    # def refresh(next_value):
-    #     line_value = next_value
-    #     line.set_data(x, line_value)
-    #     ax.set_ylim(0, np.max(line_value) * 1.5)
-    #     return line
-
-    # 动画展示
-    # ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=50, repeat=False)
-    # plt.show()
-
     result = []
     for i in range_list:
-        f = [key, max(0, i[0] - int((i[1] - i[0]) * 0.2)), i[1]]
+        left, right = max(0, i[0] - int((i[1] - i[0]) / 9)), i[1]
+        f = [key, left, right]
         f.append(get_vibration_mean(data[f[1]: f[2]]).tolist())
+        f.append()
 
         result.append(f)
     return result
