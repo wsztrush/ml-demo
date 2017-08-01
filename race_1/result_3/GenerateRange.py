@@ -10,10 +10,13 @@ from obspy import read
 import numpy as np
 import json
 import time
+import multiprocessing
 
 INTERVAL = 5
 VIBRATION_LIMIT = 600
 RESULT_FILE = open("./data/range.txt", "w")
+L = multiprocessing.Lock()
+DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
 
 
 def judge(tmp_mean, l, r, tmp_limit):
@@ -21,13 +24,13 @@ def judge(tmp_mean, l, r, tmp_limit):
     return value > tmp_limit
 
 
-def process_file(dir_path, filename):
+def process_file(filename):
+    start = time.time()
+
     # 读取文件
-    file_content = read(dir_path + filename)
+    file_content = read(DIR_PATH + filename)
     data = file_content[0].data
     date_len = len(data)
-
-    # file_content.plot(type=¡'dayplot')
 
     # 计算振幅
     tmp = data[:date_len - date_len % INTERVAL].reshape(-1, INTERVAL)
@@ -58,7 +61,7 @@ def process_file(dir_path, filename):
             result_left = max(left + INTERVAL, 0) * INTERVAL
             result_right = (right - INTERVAL) * INTERVAL
             print(result_left, result_right)
-            result.append(result_left * INTERVAL, result_right)
+            result.append((result_left, result_right))
 
         # 更新搜索坐标
         last_index = right
@@ -66,19 +69,20 @@ def process_file(dir_path, filename):
 
     # 将范围数据写入文件
     print(filename, len(result))
-    if len(result) > 0:
-        RESULT_FILE.write(filename + "|" + json.dumps(result) + "\n")
+    L.acquire()
+    RESULT_FILE.write(filename + "|" + json.dumps(result) + "\n")
+    RESULT_FILE.flush()
+    L.release()
+
+    # 打印耗时
+    print(filename, "COST %2.3f" % (time.time() - start))
 
 
 if __name__ == '__main__':
-    dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
-    filename_list = os.listdir(dir_path)
+    # 找到所有文件
+    filename_list = os.listdir(DIR_PATH)
 
-    for filename in filename_list:
-        start = time.time()
-        process_file(dir_path, filename)
-        print(filename, "%2.3f" % (time.time() - start))
-
-        # start = time.time()
-        # process_file(dir_path, "XX.PWU.2008229000000.BHE")
-        # print("%2.3f" % (time.time() - start))
+    # 创建线程池并提交任务执行。
+    params = []
+    pool = multiprocessing.Pool(processes=4)
+    pool.map(process_file, filename_list)
