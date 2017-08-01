@@ -9,10 +9,16 @@ import os
 from obspy import read
 import numpy as np
 import json
+import time
 
 INTERVAL = 5
 VIBRATION_LIMIT = 600
 RESULT_FILE = open("./data/range.txt", "w")
+
+
+def judge(tmp_mean, l, r, tmp_limit):
+    value = np.mean(tmp_mean[l:r])
+    return value > tmp_limit
 
 
 def process_file(dir_path, filename):
@@ -20,6 +26,8 @@ def process_file(dir_path, filename):
     file_content = read(dir_path + filename)
     data = file_content[0].data
     date_len = len(data)
+
+    # file_content.plot(type=¡'dayplot')
 
     # 计算振幅
     tmp = data[:date_len - date_len % INTERVAL].reshape(-1, INTERVAL)
@@ -32,36 +40,28 @@ def process_file(dir_path, filename):
     last_index = 0
     result = []
     while index < tmp_len:
+        # 计算振幅
         if tmp_mean[index] < VIBRATION_LIMIT:
             index += 1
             continue
 
-        left = right = index
-        badcase = 0
+        # 查找左、右边界
+        left, right = index - INTERVAL, index + INTERVAL
+        while left > last_index and judge(tmp_mean, left, left + INTERVAL, tmp_limit):
+            left -= INTERVAL
 
-        # 查找左边界
-        while --left > last_index and badcase < 2:
-            if tmp_mean[left] < tmp_limit:
-                badcase += 1
-            else:
-                badcase = 0
+        while right < tmp_len and judge(tmp_mean, right - INTERVAL, right, tmp_limit):
+            right += INTERVAL
 
-        # 查找右边界
-        badcase = 0
-        while ++right < tmp_len and badcase < 2:
-            if tmp_mean[right] < tmp_limit:
-                badcase += 1
-            else:
-                badcase = 0
+        # 过滤并保存结果
+        if (right - left) * INTERVAL > 1000:
+            result_left = max(left + INTERVAL, 0) * INTERVAL
+            result_right = (right - INTERVAL) * INTERVAL
+            print(result_left, result_right)
+            result.append(result_left * INTERVAL, result_right)
 
-        # 基本过滤一下，然后保存结果
-        if (right - left) * INTERVAL < 1000:
-            continue
-        else:
-            result.append((left, right))
-
-        # 准备下次搜索
-        last_index = max(right, last_index)
+        # 更新搜索坐标
+        last_index = right
         index = last_index + 1
 
     # 将范围数据写入文件
@@ -74,6 +74,11 @@ if __name__ == '__main__':
     dir_path = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
     filename_list = os.listdir(dir_path)
 
-    # for filename in filename_list:
-    #     process_file(dir_path, filename)
-    process_file(dir_path, "XX.PWU.2008229000000.BHE")
+    for filename in filename_list:
+        start = time.time()
+        process_file(dir_path, filename)
+        print(filename, "%2.3f" % (time.time() - start))
+
+        # start = time.time()
+        # process_file(dir_path, "XX.PWU.2008229000000.BHE")
+        # print("%2.3f" % (time.time() - start))
