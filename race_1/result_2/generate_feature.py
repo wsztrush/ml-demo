@@ -1,4 +1,8 @@
-# 根据范围数据生成最终的特征数据
+# 针对每个范围生成特征
+#
+# 1. 读取范围文件
+# 2. 读取
+
 import time
 import numpy as np
 import json
