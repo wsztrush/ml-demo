@@ -19,17 +19,17 @@ def process(filename, range_list):
 
     # 展示内容
     for r in range_list:
-        l, r = r[0], r[1]
+        left, right = r[0], r[1]
 
-        l = max(0, int(l - (r - l) * 0.2))
-        l = l - l % 5
+        left = max(0, int(left - (right - left) * 0.2))
+        left = left - left % 5
 
-        print(filename, l, r)
+        print(filename, left, right)
 
         plt.subplot(211)
-        plt.plot(np.arange(r - l), data[l:r])
+        plt.plot(np.arange(right - left), data[left:right])
 
-        tmp = data[l:r].reshape(-1, INTERVAL)
+        tmp = data[left:right].reshape(-1, INTERVAL)
         y = [np.std(tmp, axis=1)][0]
         x = np.arange(len(y))
 
@@ -41,14 +41,11 @@ def process(filename, range_list):
 
 if __name__ == '__main__':
     range_file = open("./data/range.txt", "r")
-    total = 0
+
     while 1:
         line = range_file.readline()
         if not line:
             break
         kv = line.split('|')
 
-        total += len(json.loads(kv[1]))
-        # process(kv[0], json.loads(kv[1]))
-
-    print(total)
+        process(kv[0], json.loads(kv[1]))
