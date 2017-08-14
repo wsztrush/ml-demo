@@ -5,7 +5,7 @@ from obspy import read
 import numpy as np
 import json
 
-DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 INTERVAL = 5
 
 

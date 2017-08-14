@@ -9,10 +9,10 @@ import numpy as np
 import json
 import multiprocessing
 
-DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 INTERVAL = 5
 L = multiprocessing.Lock()
-RESULT_FILE = open("./data/feature.txt", "a")
+RESULT_FILE = open("./data/feature.txt", "w")
 
 
 def process(line):
@@ -41,10 +41,10 @@ def process(line):
         tmp_mean = tmp_mean[:tmp_mean_len].reshape(10, -1)
 
         # 特征一：分成10等分，分别计算与最大值的比例
-        _10_mean_feature = [np.std(tmp_mean, axis=1)][0]
+        _10_mean_feature = [np.mean(tmp_mean, axis=1)][0]
         _10_mean_feature = _10_mean_feature / np.max(_10_mean_feature)
 
-        result.append(filename + "|" + json.dumps(r) + "|" + json.dumps(_10_mean_feature.tolist()))
+        result.append(filename + "|" + json.dumps((left, right)) + "|" + json.dumps(_10_mean_feature.tolist()))
 
     # 将特征写出到文件
     L.acquire()

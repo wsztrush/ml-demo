@@ -16,7 +16,7 @@ INTERVAL = 5
 VIBRATION_LIMIT = 600
 RESULT_FILE = open("./data/range.txt", "w")
 L = multiprocessing.Lock()
-DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 
 
 def judge(tmp_mean, l, r, tmp_limit):
