@@ -2,9 +2,12 @@ import os
 import numpy as np
 from obspy import read
 from matplotlib import pyplot as plt
+import tensorflow as tf
 
 dir = "/Users/tianchi.gzt/Downloads/example30/"
 files = os.listdir(dir)
+
+
 
 for file in files:
     content = read(dir + file)
@@ -29,12 +32,16 @@ for file in files:
     y1 = np.zeros(l)
 
     for i in np.arange(l):
-        y1[i] = np.std(y[i:i + interval])
+        y1[i] = np.std(y[i:i + interval])# np.max(y[i:i + interval]) - np.min(y[i:i + interval])
 
-    plt.plot(x, y1, '#FF00FF')
 
-    if p > 0:
-        plt.plot(p, 0, 'ro')
-    if s > 0:
-        plt.plot(s, 0, 'yo')
-    plt.show()
+
+
+
+    # plt.plot(x, y1, '#FF00FF')
+    #
+    # if p > 0:
+    #     plt.plot(p, 0, 'ro')
+    # if s > 0:
+    #     plt.plot(s, 0, 'yo')
+    # plt.show()

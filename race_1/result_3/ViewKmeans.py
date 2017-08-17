@@ -11,8 +11,12 @@ from obspy import read
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
-DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 INTERVAL = 5
+
+
+def get_feature_2(kv):
+    return json.loads(kv[3])[:1]
 
 
 def get_feature_list():
@@ -61,11 +65,11 @@ if __name__ == '__main__':
             infos = f.split('|')
             filename = infos[0]
             lr = json.loads(infos[1])
-            feature = json.loads(infos[2])
+            feature = get_feature_2(infos)
 
             # 使用模型预测，不正常的类型
             c = kmeans.predict([feature])
-            if c != 3:
+            if c != 1:
                 continue
 
             count += 1
@@ -99,5 +103,5 @@ if __name__ == '__main__':
         return line1, line2
 
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=50, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=500, repeat=False)
     plt.show()

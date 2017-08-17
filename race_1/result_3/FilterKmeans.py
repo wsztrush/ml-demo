@@ -3,7 +3,7 @@
 from sklearn.externals import joblib
 import json
 
-RESULT_FILE = open("./data/filter_1.txt", "a")
+RESULT_FILE = open("./data/filter_1.txt", "w")
 
 
 def get_feature_list():
@@ -35,5 +35,5 @@ if __name__ == "__main__":
 
         # 过滤掉不大正常的
         c = kmeans.predict([feature])
-        if c == 3:
+        if c== 4:
             RESULT_FILE.write(filename + infos[1] + "\n")

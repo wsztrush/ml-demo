@@ -16,6 +16,6 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     # 迭代计算
     for i in range(1000):
-        sess.run(train, {x: [1, 2, 3, 4], y: [0, -1, -2, -3]})
+        sess.run(train, {x: [0, 1, 2, 3], y: [20.76150322, 4, 25.06471634, 12.75303841]})
     # 打印参数
     print(sess.run([W, b]))  # [array([-0.9999969], dtype=float32), array([ 0.99999082], dtype=float32)]

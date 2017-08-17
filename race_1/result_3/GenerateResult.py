@@ -7,8 +7,8 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 INTERVAL = 5
-RESULT_FILE = open('./data/result.csv', 'a')
-DIR_PATH = "/Users/tianchi.gzt/Downloads/preliminary/preliminary/after/"
+RESULT_FILE = open('./data/result_1.csv', 'w')
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 
 
 def read_filter_result():
@@ -40,24 +40,24 @@ def find_p_index(data, left, right):
     limit = max(np.mean(y[:5]) * 2, 150)
     ret = 2
 
-    print("LIMIT = ", limit)
+    # print("LIMIT = ", limit)
 
     while ret < len(y):
         if np.mean(y[ret - 2:ret]) > limit:
             break
         ret += 1
 
-    print("RET = ", ret)
-
-    return (ret - 2) * INTERVAL + left
+    # print("RET = ", ret)
 
     # 图形化
-    # plt.subplot(212)
-    # plt.plot(x, y)
-    # plt.plot(ret, 0, 'ro')
-    # plt.subplot(211)
-    # plt.plot(np.arange(right - left), data[left:right])
-    # plt.show()
+    plt.subplot(212)
+    plt.plot(x, y)
+    plt.plot(ret, 0, 'ro')
+    plt.subplot(211)
+    plt.plot(np.arange(right - left), data[left:right])
+    plt.show()
+
+    return (ret - 2) * INTERVAL + left
 
 
 def find_s_index(data, left, right):
