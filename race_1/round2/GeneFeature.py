@@ -45,10 +45,33 @@ def get_all_filter():
 
 # 计算特征
 def get_feature_1(file_stds, left, right):
-    right -= (right - left) % 5
-    result = [[np.mean(file_std[left:right].reshape(5, -1), axis=1)][0] for file_std in file_stds]
-    result = [i / (np.max(i) + 1) for i in result]
-    return result
+    feature_size = 10
+
+    right -= (right - left) % feature_size
+
+    tmp = [i[left:right] for i in file_stds]
+    tmp = [np.square(i) for i in tmp]
+    tmp = tmp[0] + tmp[1] + tmp[2]
+    tmp = np.sqrt(tmp)
+    tmp = [np.mean(tmp.reshape(feature_size, -1), axis=1)][0]
+    ret = tmp[:-1] / (tmp[1:] + 1)
+
+    if np.isnan(ret).any() or not np.isfinite(ret).all():
+        print(ret)
+
+    return ret
+
+
+# 计算特征
+# def get_feature_2(file_stds, left, right):
+#     right -= (right - left) % 10
+#
+#     tmp = [i[left:right] for i in file_stds]
+#
+#     result = np.array([max(file_stds[0][i], file_stds[1][i], file_stds[2][i]) for i in np.arange(left, right)])
+#     result = result.reshape(50, -1)
+#     result = [np.mean(result, axis=1)][0]
+#     return result / np.max(result)
 
 
 # 处理单元
@@ -73,6 +96,9 @@ def process(line):
         # 计算
         left, right = r[0], r[1]
 
+        if right - left < 1000:
+            continue
+
         left = max(0, int(left - (right - left) * 0.2))
         left = left - left % INTERVAL
 
@@ -86,10 +112,16 @@ def process(line):
         result.append(
             unit + "|" +
             json.dumps((left, right)) + "|" +
-            json.dumps(feature_1[0].tolist()) + "|" +
-            json.dumps(feature_1[1].tolist()) + "|" +
-            json.dumps(feature_1[2].tolist())
+            json.dumps(feature_1.tolist())
         )
+
+        # 特征二
+        # feature_2 = get_feature_2(file_stds, int(left / INTERVAL), int(right / INTERVAL))
+        # result.append(
+        #     unit + "|" +
+        #     json.dumps((left, right)) + "|" +
+        #     json.dumps(feature_2.tolist())
+        # )
 
     L.acquire()
     for r in result:

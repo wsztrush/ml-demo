@@ -8,7 +8,7 @@ from obspy import read
 
 DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 MODEL_FILE = "./data/kmeans_1"
-FILTER_FILE = "./data/filter_1.txt"
+FILTER_FILE = "./data/filter_3.txt"
 INTERVAL = 5
 
 
@@ -23,16 +23,14 @@ def kmeans_fit():
         if not line:
             break
 
-        feature = [json.loads(i) for i in line.split('|')[2:]]
+        feature = json.loads(line.split('|')[2])
         if np.isnan(feature).any() or not np.isfinite(feature).all():
             print(line)
 
-        feature_list.append(feature[0])
-        feature_list.append(feature[1])
-        feature_list.append(feature[2])
+        feature_list.append(feature)
 
     # 训练模型。
-    kmeans = KMeans(n_clusters=5).fit(feature_list)
+    kmeans = KMeans(n_clusters=50, algorithm='full').fit(feature_list)
     print(kmeans.labels_)
     print(np.bincount(kmeans.labels_))
     tmp = kmeans.cluster_centers_
@@ -77,16 +75,19 @@ def kmeans_view():
             unit = infos[0]
             lr = json.loads(infos[1])
             left, right = lr[0], lr[1]
-            feature = [json.loads(i) for i in infos[2:]]
+            feature = json.loads(infos[2])
 
             # 预测分类
-            cs = [kmeans.predict([i])[0] for i in feature]
+            c = kmeans.predict([feature])[0]
+            print(c)
 
-            if cs[0] != 3 and cs[1] != 3 and cs[2] != 3:
+            if not c in [19]:
                 continue
 
             # 重新读取数据
             if unit != last_unit:
+                print(unit)
+                last_unit = unit
                 file_names = [DIR_PATH + unit + ".BHE", DIR_PATH + unit + ".BHN", DIR_PATH + unit + ".BHZ"]
                 file_conents = [read(i) for i in file_names]
                 file_datas = [i[0].data for i in file_conents]
@@ -106,7 +107,7 @@ def kmeans_view():
 
         return lines
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=500, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
     plt.show()
 
 
@@ -125,10 +126,10 @@ def kmeans_filter():
 
         infos = file_line.split('|')
         unit = infos[0]
-        feature = [json.loads(i) for i in infos[2:]]
+        feature = json.loads(infos[2])
 
-        cs = [kmeans.predict([i])[0] for i in feature]
-        if cs[0] == 3 and cs[1] == 3 and cs[2] == 3:
+        c = kmeans.predict([feature])[0]
+        if c in [48, 41, 37, 33, 32, 31, 28, 27, 26, 25, 24, 23, 18, 13, 12, 6, 2, 1]:
             result_file.write(unit + infos[1] + "\n")
             result_file.flush()
 
@@ -136,6 +137,6 @@ def kmeans_filter():
 
 
 if __name__ == '__main__':
-    kmeans_fit()
+    # kmeans_fit()
     # kmeans_view()
-    # kmeans_filter()
+    kmeans_filter()

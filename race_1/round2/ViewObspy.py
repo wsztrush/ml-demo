@@ -1,4 +1,3 @@
-# 查看地震文件，单个图上面展示所有所有数据。
 from obspy import read
 import os
 
@@ -29,7 +28,7 @@ def process_dir(dir):
     #     file_set.add(i[:-4])
     #
     # for i in file_set:
-    process_day_file(dir, 'XX.WCH.2008205000000')
+    process_day_file(dir, 'GS.WDT.2008203000000')
 
 
 if __name__ == '__main__':
