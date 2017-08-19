@@ -28,7 +28,7 @@ def process_dir(dir):
     #     file_set.add(i[:-4])
     #
     # for i in file_set:
-    process_day_file(dir, 'XX.HSH.2008198000000')
+    process_day_file(dir, 'SN.LUYA.2008204000000')
 
 
 if __name__ == '__main__':

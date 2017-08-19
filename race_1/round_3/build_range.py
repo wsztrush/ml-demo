@@ -44,7 +44,7 @@ def process(unit):
     if len(result) > 0:
         np.save(RANGE_PATH + unit, result)
 
-    print(unit, time.time() - start)
+    print(unit, len(result), time.time() - start)
 
 
 def main():
