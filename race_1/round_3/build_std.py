@@ -15,7 +15,7 @@ def process(unit):
     file_datas = [i[0].data for i in file_contents]
     file_stds = np.array([[np.std(data.reshape(-1, 5), axis=1)][0] for data in file_datas])
 
-    file_stds.tofile("./data/std/" + unit)
+    np.save("./data/std/" + unit, file_stds)
 
     print(unit, time.time() - start)
 
@@ -23,7 +23,10 @@ def process(unit):
 def main():
     unit_set = set()
     for filename in os.listdir(DIR_PATH):
-        unit_set.add(filename[:-4])
+        unit = filename[:-4]
+        unit_set.add(unit)
+
+    print(len(unit_set))
 
     pool = multiprocessing.Pool(processes=4)
     pool.map(process, unit_set)
