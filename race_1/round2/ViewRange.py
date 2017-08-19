@@ -51,10 +51,12 @@ def process(unit, range_list):
     # 展示内容
     for r in range_list:
         left, right = r[0], r[1]
+        left = max(0, int(left - (right - left) * 0.2))
+        left = left - left % INTERVAL
 
         # 过滤
         key = unit + json.dumps((left, right))
-        if key in filter_set:
+        if right - left < 1000 or key in filter_set:
             continue
 
         left = max(0, int(left - (right - left) * 0.2))

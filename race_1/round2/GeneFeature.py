@@ -45,16 +45,19 @@ def get_all_filter():
 
 # 计算特征
 def get_feature_1(file_stds, left, right):
-    feature_size = 10
+    feature_size = 20
 
     right -= (right - left) % feature_size
 
     tmp = [i[left:right] for i in file_stds]
     tmp = [np.square(i) for i in tmp]
-    tmp = tmp[0] + tmp[1] + tmp[2]
-    tmp = np.sqrt(tmp)
-    tmp = [np.mean(tmp.reshape(feature_size, -1), axis=1)][0]
-    ret = tmp[:-1] / (tmp[1:] + 1)
+    tmp = (tmp[0] + tmp[1] + tmp[2]) / 3
+    # tmp = np.sqrt(tmp)
+    # tmp_max = np.max(tmp)
+    # tmp = [np.max(tmp.reshape(feature_size, -1), axis=1)][0]
+    tmp = np.max(tmp)
+
+    ret = np.array([np.log(tmp + 1)])
 
     if np.isnan(ret).any() or not np.isfinite(ret).all():
         print(ret)
@@ -105,6 +108,10 @@ def process(line):
         # 过滤
         key = unit + json.dumps((left, right))
         if key in filter_set:
+            continue
+
+        file_std_max = np.max([np.max(i[int(left / INTERVAL):int(right / INTERVAL)]) for i in file_stds])
+        if file_std_max < 1000:
             continue
 
         # 特征一

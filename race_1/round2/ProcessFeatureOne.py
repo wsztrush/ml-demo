@@ -8,7 +8,7 @@ from obspy import read
 
 DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 MODEL_FILE = "./data/kmeans_1"
-FILTER_FILE = "./data/filter_3.txt"
+FILTER_FILE = "./data/filter_4.txt"
 INTERVAL = 5
 
 
@@ -30,7 +30,7 @@ def kmeans_fit():
         feature_list.append(feature)
 
     # 训练模型。
-    kmeans = KMeans(n_clusters=50, algorithm='full').fit(feature_list)
+    kmeans = KMeans(n_clusters=20, algorithm='full').fit(feature_list)
     print(kmeans.labels_)
     print(np.bincount(kmeans.labels_))
     tmp = kmeans.cluster_centers_
@@ -81,7 +81,7 @@ def kmeans_view():
             c = kmeans.predict([feature])[0]
             print(c)
 
-            if not c in [19]:
+            if not c in [0]:
                 continue
 
             # 重新读取数据
@@ -129,7 +129,7 @@ def kmeans_filter():
         feature = json.loads(infos[2])
 
         c = kmeans.predict([feature])[0]
-        if c in [48, 41, 37, 33, 32, 31, 28, 27, 26, 25, 24, 23, 18, 13, 12, 6, 2, 1]:
+        if c in [1]:
             result_file.write(unit + infos[1] + "\n")
             result_file.flush()
 
@@ -137,6 +137,6 @@ def kmeans_filter():
 
 
 if __name__ == '__main__':
-    # kmeans_fit()
+    kmeans_fit()
     # kmeans_view()
-    kmeans_filter()
+    # kmeans_filter()

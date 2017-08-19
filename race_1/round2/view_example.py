@@ -24,11 +24,11 @@ for file in files:
     plt.plot(x, y, '#0000FF')
 
     interval = 5
-    # step = int(l / interval)
+    step = int(l / interval)
 
 
-    # x1 = np.arange(5, l, interval)
-    # print(len(x1))
+    x1 = np.arange(5, l, interval)
+    print(len(x1))
     y1 = np.zeros(l)
 
     for i in np.arange(l):
@@ -38,10 +38,10 @@ for file in files:
 
 
 
-    # plt.plot(x, y1, '#FF00FF')
-    #
-    # if p > 0:
-    #     plt.plot(p, 0, 'ro')
-    # if s > 0:
-    #     plt.plot(s, 0, 'yo')
-    # plt.show()
+    plt.plot(x, y1, '#FF00FF')
+
+    if p > 0:
+        plt.plot(p, 0, 'ro')
+    if s > 0:
+        plt.plot(s, 0, 'yo')
+    plt.show()
