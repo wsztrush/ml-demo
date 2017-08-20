@@ -20,7 +20,7 @@ def process(unit):
     index = np.where(file_std_mean > 100)[0]
 
     # 找到相邻的振幅都较大的位置
-    tmp = index[1:] - index[:-1] - 1
+    tmp = index[1:] - index[:-1] - 2
     tmp = np.where(tmp > 0)[0]
 
     # 根据直观的经验做一些过滤，然后生成对应的范围文件
