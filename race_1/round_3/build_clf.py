@@ -38,7 +38,10 @@ def test():
 
                 x = get_x(file_std, left, right)
 
-                if clf.predict([x]) == 1:
+                if clf.predict([x]) == 0:
+                    if right - left > 50000:
+                        continue
+
                     yield [file_std[left:right]]
 
     # 更新展示
@@ -99,6 +102,26 @@ def train():
     joblib.dump(clf, MODEL_FILE)
 
 
+def f_count():
+    clf = joblib.load(MODEL_FILE)
+    total = 0
+    for unit in os.listdir(RANGE_PATH):
+        print(unit)
+        
+        file_std = np.load(STD_PATH + unit)[2]
+        file_range = np.load(RANGE_PATH + unit)
+
+        for lr in file_range:
+            left, right = lr[0], lr[1]
+
+            x = get_x(file_std, left, right)
+
+            if clf.predict([x]) == 1:
+                total += 1
+    print(total)
+
+
 if __name__ == '__main__':
     # train()
-    test()
+    # test()
+    f_count()
