@@ -58,33 +58,31 @@ def process(file_std, left, right, unit):
     else:
         ret += 4
 
-    # plt.subplot(311)
-    # plt.plot(np.arange(len(file_std)), file_std)
-    # plt.axvline(x=r_end, color='g')
-    # plt.axvline(x=ret, color='r')
-    #
-    # plt.subplot(312)
-    # plt.plot(np.arange(r_end), file_std[:r_end])
-    # plt.axvline(x=ret, color='r')
-    # plt.axvline(x=ret - 8, color='g')
-    # plt.axvline(x=ret + 8, color='g')
-    # plt.axhline(y=std_limit, color='orange')
-    #
-    # r_end += find_step - r_end % find_step
-    # tmp = file_std[:r_end]
-    # tmp = tmp.reshape(-1, find_step)
-    # tmp = np.mean(tmp, axis=1)
-    #
-    # plt.subplot(313)
-    # plt.plot(np.arange(len(tmp)), tmp)
-    # plt.axhline(y=std_limit, color='r')
-    #
-    # plt.show()
+    plt.subplot(311)
+    plt.plot(np.arange(len(file_std)), file_std)
+    plt.axvline(x=r_end, color='g')
+    plt.axvline(x=ret, color='r')
 
-    print(location)
+    plt.subplot(312)
+    plt.plot(np.arange(r_end), file_std[:r_end])
+    plt.axvline(x=ret, color='r')
+    plt.axvline(x=ret - 8, color='g')
+    plt.axvline(x=ret + 8, color='g')
+    plt.axhline(y=std_limit, color='orange')
 
-    RESULT_FILE.write(location + "," + format_time(starttime + (ret + left) * 5 * 0.01) + ",P\n")
-    RESULT_FILE.flush()
+    r_end += find_step - r_end % find_step
+    tmp = file_std[:r_end]
+    tmp = tmp.reshape(-1, find_step)
+    tmp = np.mean(tmp, axis=1)
+
+    plt.subplot(313)
+    plt.plot(np.arange(len(tmp)), tmp)
+    plt.axhline(y=std_limit, color='r')
+
+    plt.show()
+
+    # RESULT_FILE.write(location + "," + format_time(starttime + (ret + left) * 5 * 0.01) + ",P\n")
+    # RESULT_FILE.flush()
 
 
 def main():

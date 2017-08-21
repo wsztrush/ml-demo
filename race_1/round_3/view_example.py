@@ -7,8 +7,6 @@ import tensorflow as tf
 dir = "/Users/tianchi.gzt/Downloads/example30/"
 files = os.listdir(dir)
 
-
-
 for file in files:
     content = read(dir + file)
     print(content[0].stats)
@@ -26,17 +24,12 @@ for file in files:
     interval = 5
     step = int(l / interval)
 
-
     x1 = np.arange(5, l, interval)
     print(len(x1))
     y1 = np.zeros(l)
 
     for i in np.arange(l):
-        y1[i] = np.std(y[i:i + interval])# np.max(y[i:i + interval]) - np.min(y[i:i + interval])
-
-
-
-
+        y1[i] = np.std(y[i:i + interval])  # np.max(y[i:i + interval]) - np.min(y[i:i + interval])
 
     plt.plot(x, y1, '#FF00FF')
 

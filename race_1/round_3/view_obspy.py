@@ -21,14 +21,7 @@ def process_day_file(dir, file):
 
 # 处理目录
 def process_dir(dir):
-    # files = os.listdir(dir)
-    # file_set = set()
-
-    # for i in files:
-    #     file_set.add(i[:-4])
-    #
-    # for i in file_set:
-    process_day_file(dir, 'GS.WXT.2008206000000')
+    process_day_file(dir, 'XX.HSH.2008196000000')
 
 
 if __name__ == '__main__':

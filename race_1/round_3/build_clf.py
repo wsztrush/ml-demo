@@ -1,6 +1,8 @@
 import numpy as np
 import os
 import time
+
+from obspy import read
 from matplotlib import animation
 from sklearn import svm
 from matplotlib import pyplot as plt
@@ -11,6 +13,7 @@ STD_PATH = "./data/std/"
 RANGE_PATH = "./data/range/"
 MODEL_FILE = "./data/clf"
 MODEL_SAMPLE_FILE = "./data/clf_sample.npy"
+DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
 D_SIZE = 20
 
 
@@ -20,7 +23,7 @@ def test():
     # 构建图形
     fig = plt.figure()
 
-    axs = [fig.add_subplot(111 + i) for i in np.arange(1)]
+    axs = [fig.add_subplot(211 + i) for i in np.arange(2)]
     for ax in axs:
         ax.set_ylim(0, 10000)
         ax.set_xlim(0, 10)
@@ -33,6 +36,9 @@ def test():
             file_std = np.load(STD_PATH + unit)[2]
             file_range = np.load(RANGE_PATH + unit)
 
+            file_content = read(DIR_PATH + unit[:-4] + '.BHZ')
+            file_data = file_content[0].data
+
             for lr in file_range:
                 left, right = lr[0], lr[1]
 
@@ -40,13 +46,14 @@ def test():
 
                 if clf.predict([x]) == 0:
                     if right - left > 50000:
+                        print(unit, left, right)
                         continue
 
-                    yield [file_std[left:right]]
+                    yield file_std[left:right], file_data[left * 5: right * 5]
 
     # 更新展示
     def refresh(values):
-        for i in np.arange(1):
+        for i in np.arange(len(values)):
             lines[i].set_data(np.arange(len(values[i])), values[i])
 
             axs[i].set_ylim(np.min(values[i]), np.max(values[i]))
@@ -55,7 +62,7 @@ def test():
         return lines
 
     # 设置动画
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=500, repeat=False)
     plt.show()
 
 
@@ -107,7 +114,7 @@ def f_count():
     total = 0
     for unit in os.listdir(RANGE_PATH):
         print(unit)
-        
+
         file_std = np.load(STD_PATH + unit)[2]
         file_range = np.load(RANGE_PATH + unit)
 
@@ -116,7 +123,7 @@ def f_count():
 
             x = get_x(file_std, left, right)
 
-            if clf.predict([x]) == 1:
+            if clf.predict([x]) == 0:
                 total += 1
     print(total)
 
