@@ -1,24 +1,19 @@
 import numpy as np
 import os
 import time
+import random
 
 from obspy import read
 from matplotlib import animation
-from sklearn import svm
 from matplotlib import pyplot as plt
 from sklearn.externals import joblib
 from sklearn.ensemble import GradientBoostingClassifier
 
-STD_PATH = "./data/std/"
-RANGE_PATH = "./data/range/"
-MODEL_FILE = "./data/clf"
-MODEL_SAMPLE_FILE = "./data/clf_sample.npy"
-DIR_PATH = "/Users/tianchi.gzt/Downloads/race_1/after/"
-D_SIZE = 20
+import race_config
 
 
-def test():
-    clf = joblib.load(MODEL_FILE)
+def check():
+    clf = joblib.load(race_config.MODEL_FILE)
 
     # 构建图形
     fig = plt.figure()
@@ -32,11 +27,14 @@ def test():
 
     # 获取值
     def next_value():
-        for unit in os.listdir(RANGE_PATH):
-            file_std = np.load(STD_PATH + unit)[2]
-            file_range = np.load(RANGE_PATH + unit)
+        unit_list = os.listdir(race_config.PRE_RANGE_PATH)
+        random.shuffle(unit_list)
 
-            file_content = read(DIR_PATH + unit[:-4] + '.BHZ')
+        for unit in unit_list:
+            print('----', unit, '----')
+            file_std, file_range = get_file_std_range(unit)
+
+            file_content = read(race_config.DIR_PATH + unit[:-4] + '.BHZ')
             file_data = file_content[0].data
 
             for lr in file_range:
@@ -44,12 +42,17 @@ def test():
 
                 x = get_x(file_std, left, right)
 
-                if clf.predict([x]) == 0:
+                if clf.predict([x]) == 1:
                     if right - left > 50000:
                         print(unit, left, right)
                         continue
 
-                    yield file_std[left:right], file_data[left * 5: right * 5]
+                    a, b = file_std[left:right], file_data[left * 5: right * 5]
+
+                    if np.max(b) == 0:
+                        print(unit, left * 5, right * 5)
+
+                    yield a, b
 
     # 更新展示
     def refresh(values):
@@ -62,16 +65,16 @@ def test():
         return lines
 
     # 设置动画
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=500, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=1000, repeat=False)
     plt.show()
 
 
 def get_x(file_std, left, right):
-    right += D_SIZE - (right - left) % D_SIZE
+    right += 11 - (right - left) % 11
 
     tmp = file_std[left:right]
     tmp_max = np.max(tmp)
-    tmp = tmp.reshape(D_SIZE, -1)
+    tmp = tmp.reshape(11, -1)
     tmp = np.mean(tmp, axis=1)
 
     ret = tmp / (tmp_max + 1.0)
@@ -84,15 +87,14 @@ def get_x(file_std, left, right):
 
 
 def train():
-    sample_list = np.load(MODEL_SAMPLE_FILE)
+    sample_list = np.load(race_config.MODEL_SAMPLE_FILE)
 
     x_list = []
     y_list = []
     for sample in sample_list:
         unit = sample[0]
 
-        file_std = np.load(STD_PATH + unit)[2]
-        file_range = np.load(RANGE_PATH + unit)
+        file_std, file_range = get_file_std_range(unit)
 
         for i in np.arange(1, len(sample)):
             if sample[i] == 2:
@@ -106,29 +108,46 @@ def train():
     clf = GradientBoostingClassifier()
     clf.fit(x_list, y_list)
 
-    joblib.dump(clf, MODEL_FILE)
+    print(clf)
+
+    joblib.dump(clf, race_config.MODEL_FILE)
+
+
+def get_file_std_range(unit):
+    file_stds = np.load(race_config.STD_PATH + unit)
+    file_std = np.sqrt(np.square(file_stds[0]) + np.square(file_stds[1]))
+
+    file_range = np.load(race_config.PRE_RANGE_PATH + unit)
+
+    return file_std, file_range
 
 
 def f_count():
-    clf = joblib.load(MODEL_FILE)
+    clf = joblib.load(race_config.MODEL_FILE)
     total = 0
-    for unit in os.listdir(RANGE_PATH):
+
+    std_max_list = []
+    for unit in os.listdir(race_config.PRE_RANGE_PATH):
         print(unit)
 
-        file_std = np.load(STD_PATH + unit)[2]
-        file_range = np.load(RANGE_PATH + unit)
+        file_std, file_range = get_file_std_range(unit)
 
         for lr in file_range:
             left, right = lr[0], lr[1]
 
             x = get_x(file_std, left, right)
 
-            if clf.predict([x]) == 0:
+            if clf.predict([x]) == 1:
                 total += 1
+                std_max_list.append(np.max(file_std[left:right]))
+
+    tmp = np.argpartition(std_max_list, -20000)[-20000:]
+    print(np.array(std_max_list)[tmp])
+
     print(total)
 
 
 if __name__ == '__main__':
     # train()
-    # test()
+    # check()
     f_count()

@@ -21,7 +21,7 @@ def process_day_file(dir, file):
 
 # 处理目录
 def process_dir(dir):
-    process_day_file(dir, 'XX.HSH.2008196000000')
+    process_day_file(dir, 'XX.XCO.2008190000000')
 
 
 if __name__ == '__main__':

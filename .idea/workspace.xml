@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/round_3/data/tmp.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/round_3/race_config.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/build_clf.py" afterPath="$PROJECT_DIR$/race_1/round_3/build_clf.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/build_p_ret.py" afterPath="$PROJECT_DIR$/race_1/round_3/build_p_ret.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/build_range.py" afterPath="$PROJECT_DIR$/race_1/round_3/build_range.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/view_example.py" afterPath="$PROJECT_DIR$/race_1/round_3/view_example.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/build_sample.py" afterPath="$PROJECT_DIR$/race_1/round_3/build_sample.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/data/tmp.txt" afterPath="$PROJECT_DIR$/race_1/round_3/data/tmp.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/round_3/view_obspy.py" afterPath="$PROJECT_DIR$/race_1/round_3/view_obspy.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="view_example.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race_1/round_3/view_example.py">
+      <file leaf-file-name="build_p_ret.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/race_1/round_3/build_p_ret.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="436">
+              <caret line="80" column="23" lean-forward="false" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="23" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -35,24 +36,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_range.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/race_1/round_3/build_range.py">
+      <file leaf-file-name="build_clf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race_1/round_3/build_clf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="373">
+              <caret line="32" column="30" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="view_obspy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race_1/round_3/view_obspy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -75,6 +66,11 @@
       <find>RESULT_PATH</find>
       <find>print</find>
       <find>get_x_list</find>
+      <find>2008198000000</find>
+      <find>XX.QCH.2008198000000.npy</find>
+      <find>RANGE_PATH</find>
+      <find>XX.SPA.2008208000000.npy</find>
+      <find>GS.WDT.2008199000000.npy</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -83,7 +79,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/race_1/result_2/data/range.txt" />
         <option value="$PROJECT_DIR$/race_1/result_2/view_kmeans_result.py" />
         <option value="$PROJECT_DIR$/race_1/result_3/__init__.py" />
         <option value="$PROJECT_DIR$/race_1/result_3/RaceFilter.py" />
@@ -126,14 +121,15 @@
         <option value="$PROJECT_DIR$/race_1/round_3/data/build_svm.py" />
         <option value="$PROJECT_DIR$/race_1/round_3/build_svm.py" />
         <option value="$PROJECT_DIR$/race_1/round_3/build_clf_train.py" />
-        <option value="$PROJECT_DIR$/race_1/round_3/build_sample.py" />
         <option value="$PROJECT_DIR$/race_1/round_3/data/result.csv" />
-        <option value="$PROJECT_DIR$/race_1/round_3/build_p_ret.py" />
-        <option value="$PROJECT_DIR$/race_1/round_3/build_clf.py" />
-        <option value="$PROJECT_DIR$/race_1/round_3/data/tmp.txt" />
-        <option value="$PROJECT_DIR$/race_1/round_3/view_obspy.py" />
         <option value="$PROJECT_DIR$/race_1/round_3/view_example.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/build_sample.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/view_obspy.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/race_config.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/data/tmp.txt" />
         <option value="$PROJECT_DIR$/race_1/round_3/build_range.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/build_clf.py" />
+        <option value="$PROJECT_DIR$/race_1/round_3/build_p_ret.py" />
       </list>
     </option>
   </component>
@@ -251,7 +247,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
     <property name="configurable.Global.libraries.is.expanded" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="GO_FMT" value="false" />
@@ -262,6 +258,7 @@
       <console-settings module-name="ml-demo" is-module-sdk="true">
         <option name="myUseModuleSdk" value="true" />
         <option name="myModuleName" value="ml-demo" />
+        <option name="myAddSourceRoots" value="true" />
       </console-settings>
     </option>
   </component>
@@ -290,7 +287,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.build_range">
+  <component name="RunManager" selected="Python.build_p_ret">
     <configuration default="false" name="build_clf" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -304,6 +301,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ml-demo" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/round_3/build_clf.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="view_obspy" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/round_3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/round_3/view_obspy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -327,6 +342,21 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="Unittests in build_p_ret.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/round_3" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/race_1/round_3/build_p_ret.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
     <configuration default="false" name="build_p_ret" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -340,42 +370,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ml-demo" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/round_3/build_p_ret.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="view_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/round_3" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/round_3/view_example.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="view_obspy" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/round_3" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/round_3/view_obspy.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -467,18 +461,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.build_clf" />
-      <item index="1" class="java.lang.String" itemvalue="Python.build_range" />
-      <item index="2" class="java.lang.String" itemvalue="Python.build_p_ret" />
-      <item index="3" class="java.lang.String" itemvalue="Python.view_example" />
-      <item index="4" class="java.lang.String" itemvalue="Python.view_obspy" />
+      <item index="1" class="java.lang.String" itemvalue="Python.view_obspy" />
+      <item index="2" class="java.lang.String" itemvalue="Python.build_range" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in build_p_ret.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python.build_p_ret" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.build_range" />
-        <item index="1" class="java.lang.String" itemvalue="Python.view_example" />
-        <item index="2" class="java.lang.String" itemvalue="Python.view_obspy" />
-        <item index="3" class="java.lang.String" itemvalue="Python.build_p_ret" />
-        <item index="4" class="java.lang.String" itemvalue="Python.build_clf" />
+        <item index="0" class="java.lang.String" itemvalue="Python.build_p_ret" />
+        <item index="1" class="java.lang.String" itemvalue="Python.build_clf" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in build_p_ret.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python.build_range" />
+        <item index="4" class="java.lang.String" itemvalue="Python.view_obspy" />
       </list>
     </recent_temporary>
   </component>
@@ -741,21 +735,28 @@
       <option name="project" value="LOCAL" />
       <updated>1503239643202</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="先搞定一种情况，再搞其他的。">
+      <created>1503308792609</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1503308792609</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_test_2_py - 2017.08.14 at 22h 23m 57s.xml">
-      <configuration name="Unittests in test_2.py" configurationId="tests" />
+    <history-entry file="Unittests_in_build_clf_py - 2017.08.21 at 21h 07m 15s.xml">
+      <configuration name="Unittests in build_clf.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_2_py - 2017.08.17 at 11h 08m 44s.xml">
-      <configuration name="Unittests in test_2.py" configurationId="tests" />
+    <history-entry file="Unittests_in_build_clf_py - 2017.08.21 at 21h 08m 07s.xml">
+      <configuration name="Unittests in build_clf.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_2_py - 2017.08.17 at 11h 09m 05s.xml">
-      <configuration name="Unittests in test_2.py" configurationId="tests" />
+    <history-entry file="Unittests_in_build_clf_py - 2017.08.21 at 21h 09m 03s.xml">
+      <configuration name="Unittests in build_clf.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_test_2_py - 2017.08.17 at 11h 11m 58s.xml">
-      <configuration name="Unittests in test_2.py" configurationId="tests" />
+    <history-entry file="Unittests_in_build_p_ret_py - 2017.08.23 at 07h 31m 04s.xml">
+      <configuration name="Unittests in build_p_ret.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_2_py - 2017.08.17 at 11h 34m 12s.xml">
       <configuration name="Unittests in test_2.py" configurationId="tests" />
@@ -789,10 +790,11 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22777778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38588235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32705882" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2917647" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -805,7 +807,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32705882" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -815,11 +816,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38588235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40235293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30416667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22777778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32705882" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -854,7 +855,8 @@
     <MESSAGE value="利用GBDT做第一层分类" />
     <MESSAGE value="计算P形波开始位置。" />
     <MESSAGE value="生成结果。" />
-    <option name="LAST_COMMIT_MESSAGE" value="生成结果。" />
+    <MESSAGE value="先搞定一种情况，再搞其他的。" />
+    <option name="LAST_COMMIT_MESSAGE" value="先搞定一种情况，再搞其他的。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -862,11 +864,6 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/race_1/result_2/view_kmeans_result.py</url>
           <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/race_1/round_3/build_clf.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="172" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -879,32 +876,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="173" />
+      <option name="time" value="174" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../obspy/obspy/core/util/attribdict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TensorFlow/test_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/tensorflow/python/training/gradient_descent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TensorFlow/test_2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1059,24 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_sample.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="83" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/data/result.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="22781" column="16" lean-forward="false" selection-start-line="22781" selection-start-column="16" selection-end-line="22781" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/race_1/round2/GeneResult.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
@@ -1093,68 +1051,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_clf.py">
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/view_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="120" column="29" lean-forward="true" selection-start-line="120" selection-start-column="29" selection-end-line="120" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/data/tmp.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="4197" column="48" lean-forward="false" selection-start-line="4197" selection-start-column="48" selection-end-line="4197" selection-end-column="48" />
+        <state relative-caret-position="38">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/race_1/round_3/build_std.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="34">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/race_1/round_3/view_obspy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
+        <state relative-caret-position="160">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_sample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="62" lean-forward="false" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/race_config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/data/tmp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="5" lean-forward="false" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="2888" column="0" lean-forward="false" selection-start-line="2888" selection-start-column="0" selection-end-line="2888" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/numpy/core/_methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_range.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_clf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="32" column="30" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="32" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/round_3/data/result.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-490062">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/race_1/round_3/build_p_ret.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="79" column="39" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state relative-caret-position="436">
+          <caret line="80" column="23" lean-forward="false" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/view_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/round_3/build_range.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
