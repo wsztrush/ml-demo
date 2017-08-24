@@ -9,6 +9,8 @@ from sklearn.externals import joblib
 from matplotlib import pyplot as plt
 from obspy import read
 
+gbdt = joblib.load(race_util.GBDT_MODEL_FILE)
+
 
 def split_range(file_std, file_std_mean, left, right, std_mean_limit):
     file_std = file_std[left:right]
@@ -62,11 +64,11 @@ def process(unit):
     file_data = read(race_util.DIR_PATH + unit[:-4] + ".BHZ")
 
     # 循环切割
-    std_mean_limit = 50
+    std_mean_limit = 20
 
     result = []
     tmp = split_range(file_std, file_std_mean, 0, len(file_std), std_mean_limit)
-    while len(tmp) > 0 and std_mean_limit < 200:
+    while len(tmp) > 0 and std_mean_limit < 300:
         std_mean_limit *= 1.2
         print('std_mean_limit = ', std_mean_limit, len(tmp))
         next_tmp = []

@@ -9,6 +9,7 @@ from matplotlib import animation
 from matplotlib import pyplot as plt
 from sklearn.externals import joblib
 from sklearn.ensemble import GradientBoostingClassifier
+from sklearn import svm
 
 
 def check():
@@ -83,8 +84,8 @@ def get_feature(file_std, left, right):
     std_max += 1.0
 
     # 前后分别划分
-    sub_before = get_sub_std(file_std[left:max_index], std_max, 3)
-    sub_after = get_sub_std(file_std[max_index:right], std_max, 4)
+    sub_before = get_sub(file_std[left:max_index], std_max, 5)
+    sub_after = get_sub(file_std[max_index:right], std_max, 5)
 
     # 计算范围前面一点的值
     before_mean = -1
@@ -100,6 +101,8 @@ def get_feature(file_std, left, right):
     ret.append(np.std(sub_before) / std_max)
     ret.append(np.std(sub_after) / std_max)
     ret.append(before_mean / std_max)
+    ret.append(std_max)
+    ret.append(right - left)
 
     # 数据校验
     if np.isnan(ret).any() or np.isinf(ret).any():
@@ -112,13 +115,13 @@ def get_feature(file_std, left, right):
     return ret
 
 
-def get_sub_std(file_std, std_max, size):
+def get_sub(file_std, std_max, size):
     if len(file_std) < size * 5:
         return (np.zeros(size) - 1).tolist()
 
     tmp = file_std[:len(file_std) - (len(file_std) % size)]
     tmp = tmp.reshape(size, -1)
-    tmp = np.mean(tmp, axis=1)
+    tmp = np.max(tmp, axis=1)
 
     return (tmp / std_max).tolist()
 
@@ -137,6 +140,7 @@ def train():
 
     x_list = []
     y_list = []
+    range_list = []
     for sample in sample_list:
         unit = sample[0]
 
@@ -151,13 +155,38 @@ def train():
             x_list.append(get_feature(file_std, lr[0], lr[1]))
             y_list.append(sample[i])
 
-    gbdt = GradientBoostingClassifier(n_estimators=100, learning_rate=0.01, subsample=0.6, min_samples_leaf=3)
-    gbdt.fit(x_list, y_list)
+            range_list.append((unit, lr[0], lr[1], i - 1))
 
-    print(len(x_list))
-    print(gbdt)
+    # clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.01, subsample=0.5, min_samples_leaf=3, max_depth=2)
+    clf = svm.SVC()
+    clf.fit(x_list, y_list)
 
-    joblib.dump(gbdt, race_util.GBDT_MODEL_FILE)
+    # 校验模型分错的数据。
+    pre_y = clf.predict(x_list)
+    index = (np.where(pre_y != y_list))[0]
+    print(len(index), len(y_list), len(index) / len(y_list))
+
+    # 查看分错的图是什么样子的
+    for i in index:
+        unit, left, right, sample_index = range_list[i]
+
+        print("VIEW : ", unit, pre_y[i], y_list[i], sample_index)
+
+        file_std, file_range = get_file_std_range(unit)
+        file_data = read(race_util.DIR_PATH + unit[:-4] + ".BHZ")[0].data
+
+        new_left = max(int(left - (right - left) * 0.2), 0)
+
+        plt.subplot(2, 1, 1)
+        plt.axvline(x=left - new_left, color='r')
+        plt.plot(np.arange(right - new_left), file_std[new_left:right])
+
+        plt.subplot(2, 1, 2)
+        plt.axvline(x=int((left - new_left) * 5), color='r')
+        plt.plot(np.arange(right * 5 - new_left * 5), file_data[new_left * 5:right * 5])
+        plt.show()
+
+    joblib.dump(clf, race_util.MODEL_FILE)
 
 
 def stat():
@@ -180,6 +209,6 @@ def stat():
 
 
 if __name__ == '__main__':
-    # train()
+    train()
     # check()
-    stat()
+    # stat()
