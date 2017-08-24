@@ -10,9 +10,9 @@ from matplotlib import pyplot as plt
 from sklearn.externals import joblib
 from obspy import read
 
-if os.path.exists("./data/result.csv"):
-    os.remove("./data/result.csv")
-RESULT_FILE = open("./data/result.csv", "w")
+if os.path.exists("./data/1.csv"):
+    os.remove("./data/1.csv")
+RESULT_FILE = open("./data/1.csv", "w")
 
 
 def process(file_std, left, right, unit):
@@ -22,6 +22,9 @@ def process(file_std, left, right, unit):
     # 第一层过滤
     file_std = file_std[left:right]
     std_max = np.max(file_std)
+    tmp = np.where(file_std > std_max * 0.2)
+    if len(tmp[0]) == 0:
+        return
     r_end = np.min(np.where(file_std > std_max * 0.2))
     std_limit = max(np.mean(file_std[:int((right - left) / 11)]) * 2, std_max * 0.005)
 
@@ -39,51 +42,45 @@ def process(file_std, left, right, unit):
     else:
         ret += 4
 
-    # plt.subplot(311)
-    # plt.plot(np.arange(len(file_std)), file_std)
-    # plt.axvline(x=r_end, color='g')
-    # plt.axvline(x=ret, color='r')
-    #
-    # plt.subplot(312)
-    # plt.plot(np.arange(r_end), file_std[:r_end])
-    # plt.axvline(x=ret, color='r')
-    # plt.axvline(x=ret - 8, color='g')
-    # plt.axvline(x=ret + 8, color='g')
-    # plt.axhline(y=std_limit, color='orange')
-    #
-    # r_end += find_step - r_end % find_step
-    # tmp = file_std[:r_end]
-    # tmp = tmp.reshape(-1, find_step)
-    # tmp = np.mean(tmp, axis=1)
-    #
-    # plt.subplot(313)
-    # plt.plot(np.arange(len(tmp)), tmp)
-    # plt.axhline(y=std_limit, color='r')
-    #
-    # plt.show()
+    plt.subplot(311)
+    plt.plot(np.arange(len(file_std)), file_std)
+    plt.axvline(x=r_end, color='g')
+    plt.axvline(x=ret, color='r')
+
+    plt.subplot(312)
+    plt.plot(np.arange(r_end), file_std[:r_end])
+    plt.axvline(x=ret, color='r')
+    plt.axvline(x=ret - 8, color='g')
+    plt.axvline(x=ret + 8, color='g')
+    plt.axhline(y=std_limit, color='orange')
+
+    r_end += find_step - r_end % find_step
+    tmp = file_std[:r_end]
+    tmp = tmp.reshape(-1, find_step)
+    tmp = np.mean(tmp, axis=1)
+
+    plt.subplot(313)
+    plt.plot(np.arange(len(tmp)), tmp)
+    plt.axhline(y=std_limit, color='r')
+
+    plt.show()
 
     RESULT_FILE.write(location + "," + format_time(starttime + (ret + left) * 5 * 0.01) + ",P\n")
     RESULT_FILE.flush()
 
 
 def main():
-    clf = joblib.load(race_config.MODEL_FILE)
-
     unit_list = os.listdir(race_config.RANGE_PATH)
-    random.shuffle(unit_list)
+    # random.shuffle(unit_list)
 
     for unit in unit_list:
         file_std = np.load(race_config.STD_PATH + unit)
-        file_std = np.sqrt(np.square(file_std[0]) + np.square(file_std[1]))
+        file_std = file_std[2]
         file_range = np.load(race_config.RANGE_PATH + unit)
 
         for lr in file_range:
             left, right = lr[0], lr[1]
-
-            x = build_clf.get_x(file_std, left, right)
-
-            if clf.predict([x]) == 1:
-                process(file_std, left, right, unit)
+            process(file_std, left, right, unit)
 
 
 def format_time(t):
@@ -110,5 +107,5 @@ if __name__ == '__main__':
     p = matplotlib.rcParams
     p["figure.figsize"] = (15, 8)
 
-    main()
-    # check()
+    # main()
+    check()

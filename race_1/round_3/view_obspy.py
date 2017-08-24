@@ -8,20 +8,20 @@ def process_day_file(dir, file):
     if not (os.path.exists(files[0]) and os.path.exists(files[1]) and os.path.exists(files[2])):
         return
 
-    channel = read(files[0])
-    channel.plot(type='dayplot')
-
-    channel = read(files[1])
-    channel.plot(type='dayplot')
-
     channel = read(files[2])
     channel.plot(type='dayplot')
+    #
+    # channel = read(files[1])
+    # channel.plot(type='dayplot')
+    #
+    # channel = read(files[2])
+    # channel.plot(type='dayplot')
 
 
 
 # 处理目录
 def process_dir(dir):
-    process_day_file(dir, 'XX.XCO.2008190000000')
+    process_day_file(dir, 'XX.YZP.2008202000000')
 
 
 if __name__ == '__main__':
