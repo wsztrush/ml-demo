@@ -10,6 +10,7 @@ from matplotlib import pyplot as plt
 from sklearn.externals import joblib
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn import svm
+from sklearn.model_selection import GridSearchCV
 
 
 def check():
@@ -71,7 +72,7 @@ def get_feature(file_std, left, right):
     max_index = left
 
     # 过滤掉长尾巴
-    index = np.where(file_std[left:right] > std_max * 0.1)[0]
+    index = np.where(file_std[left:right] > std_max * 0.2)[0]
     if len(index) > 0:
         right = left + max(index)
 
@@ -84,8 +85,8 @@ def get_feature(file_std, left, right):
     std_max += 1.0
 
     # 前后分别划分
-    sub_before = get_sub(file_std[left:max_index], std_max, 5)
-    sub_after = get_sub(file_std[max_index:right], std_max, 5)
+    sub_before = get_sub(file_std[left:max_index], 5)
+    sub_after = get_sub(file_std[max_index:right], 5)
 
     # 计算范围前面一点的值
     before_mean = -1
@@ -93,37 +94,35 @@ def get_feature(file_std, left, right):
     if before_location >= 0:
         before_mean = np.mean(file_std[before_location:left])
 
-    # 组合特征
-    ret = []
-    ret += sub_before
-    ret += sub_after
-    ret.append((max_index - left) / (right - left))
-    ret.append(np.std(sub_before) / std_max)
-    ret.append(np.std(sub_after) / std_max)
-    ret.append(before_mean / std_max)
-    ret.append(std_max)
-    ret.append(right - left)
+    # 临界点的比例
+    edge_ratio = -1
+    if before_mean != -1 and sub_before[0] != -1:
+        edge_ratio = before_mean / (sub_before[0] + 1)
 
-    # 数据校验
+    # 特征生成开始
+    ret = []
+    ret += (sub_before / std_max).tolist()
+    ret += (sub_after / std_max).tolist()
+    ret += [before_mean / std_max]
+    ret += [edge_ratio]
+
+    # 捞取错误数据
     if np.isnan(ret).any() or np.isinf(ret).any():
         print(left, max_index, right)
-        print(ret)
-
-    if max_index == left:
-        print('max is left', left, right)
 
     return ret
 
 
-def get_sub(file_std, std_max, size):
+def get_sub(file_std, size):
     if len(file_std) < size * 5:
-        return (np.zeros(size) - 1).tolist()
+        return np.zeros(size) - 1
 
-    tmp = file_std[:len(file_std) - (len(file_std) % size)]
-    tmp = tmp.reshape(size, -1)
-    tmp = np.max(tmp, axis=1)
+    file_std = file_std[:len(file_std) - (len(file_std) % size)].reshape(size, -1)
+    cut_size = max(int(len(file_std[0]) * 0.1), 1)
 
-    return (tmp / std_max).tolist()
+    ret = [np.mean(np.sort(i)[cut_size:-cut_size]) for i in file_std]
+
+    return ret
 
 
 def get_file_std_range(unit):
@@ -150,6 +149,9 @@ def train():
             if sample[i] == 2:
                 continue
 
+            if sample[i] == 0 and random.uniform(0, 3) > 1:
+                continue
+
             lr = file_range[i - 1]
 
             x_list.append(get_feature(file_std, lr[0], lr[1]))
@@ -157,8 +159,15 @@ def train():
 
             range_list.append((unit, lr[0], lr[1], i - 1))
 
+    # 梯度提升决策树
     # clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.01, subsample=0.5, min_samples_leaf=3, max_depth=2)
-    clf = svm.SVC()
+    clf_search_parameters = {'max_depth': [1, 2, 3, 4], 'min_samples_leaf': [1, 2, 3, 4], 'subsample': [0.5, 0.8]}
+    clf = GridSearchCV(GradientBoostingClassifier(), clf_search_parameters)
+
+    # 支持向量机
+    # clf_search_parameters = {'kernel': ('linear', 'rbf'), 'C': [1, 0.5, 0.1]}
+    # clf = GridSearchCV(svm.SVC(), clf_search_parameters)
+
     clf.fit(x_list, y_list)
 
     # 校验模型分错的数据。
@@ -169,6 +178,9 @@ def train():
     # 查看分错的图是什么样子的
     for i in index:
         unit, left, right, sample_index = range_list[i]
+
+        if y_list[i] == 0:
+            continue
 
         print("VIEW : ", unit, pre_y[i], y_list[i], sample_index)
 

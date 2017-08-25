@@ -4,12 +4,13 @@ import time
 import multiprocessing
 import matplotlib
 import race_util
+import build_classifier
 
 from sklearn.externals import joblib
 from matplotlib import pyplot as plt
 from obspy import read
 
-gbdt = joblib.load(race_util.GBDT_MODEL_FILE)
+clf = joblib.load(race_util.MODEL_FILE)
 
 
 def split_range(file_std, file_std_mean, left, right, std_mean_limit):
@@ -53,7 +54,6 @@ def pre_process(unit):
     print(unit, len(result), time.time() - start)
 
 
-# 正式递归处理
 def process(unit):
     start = time.time()
 
@@ -61,10 +61,10 @@ def process(unit):
     file_std = np.load(race_util.STD_PATH + unit)
     file_std = np.sqrt(np.square(file_std[0]) + np.square(file_std[1]))
     file_std_mean = np.mean(file_std.reshape(-1, 5), axis=1)
-    file_data = read(race_util.DIR_PATH + unit[:-4] + ".BHZ")
+    file_data = read(race_util.DIR_PATH + unit[:-4] + ".BHZ")[0].data
 
     # 循环切割
-    std_mean_limit = 20
+    std_mean_limit = 50
 
     result = []
     tmp = split_range(file_std, file_std_mean, 0, len(file_std), std_mean_limit)
@@ -73,50 +73,58 @@ def process(unit):
         print('std_mean_limit = ', std_mean_limit, len(tmp))
         next_tmp = []
 
-        for l, r in tmp:
-            left, right = race_util.get_left_right(l, r)
+        for left, right in tmp:
+            new_left = max(int(left - (right - left) * 0.2), 0)
 
-            x = build_clf.get_x(file_std, left, right)
+            x = build_classifier.get_feature(file_std, left, right)
 
-            clf_p = 1  # (clf.predict([x]) == 1)
-            if clf_p:
-                print('HOUR = ', left * 5 * 0.01 / 60 / 60)
+            if clf.predict([x]) == 1:
+                plt.subplot(2, 1, 1)
+                plt.axvline(x=left - new_left, color='r')
+                plt.plot(np.arange(right - new_left), file_std[new_left:right])
 
-                # plt.axvline(x=int((right - left) / 11), color='yellow')
-                # plt.plot(np.arange(right - left), file_std[left:right], 'green')
-                # plt.show()
+                plt.subplot(2, 1, 2)
+                plt.axvline(x=int((left - new_left) * 5), color='r')
+                print(left, new_left, right)
+                plt.plot(np.arange(right * 5 - new_left * 5), file_data[new_left * 5:right * 5])
+                plt.show()
                 result.append((left, right))
 
-                if np.max(file_std[left:right] > 10000):
-                    next_tmp += [(int(left + (right - left) * 0.3), right)]
+                # if np.max(file_std[left:right] > 10000):
+                #     next_tmp += [(int(left + (right - left) * 0.3), right)]
             else:
-                split_ret = split_range(file_std, file_std_mean, l, r, std_mean_limit)
-                plt.axvline(x=int((right - left) / 11))
-                plt.axhline(y=std_mean_limit)
-                plt.plot(np.arange(right - left), file_std[left:right], 'red')
+                split_ret = split_range(file_std, file_std_mean, left, right, std_mean_limit)
+
+                plt.subplot(2, 1, 1)
+                plt.axvline(x=left - new_left, color='r')
+                plt.plot(np.arange(right - new_left), file_std[new_left:right], color='red')
+
+                plt.subplot(2, 1, 2)
+                plt.axvline(x=int((left - new_left) * 5), color='r')
+                plt.plot(np.arange(right * 5 - new_left * 5), file_data[new_left * 5:right * 5], color='red')
                 plt.show()
 
-                # print(l, r, len(split_ret))
+                result.append((left, right))
 
                 next_tmp += split_ret
 
         tmp = next_tmp
 
-    if len(result) > 0:
-        np.save(race_util.RANGE_PATH + unit, result)
+    # if len(result) > 0:
+    #     np.save(race_util.RANGE_PATH + unit, result)
 
     print(unit, len(result), time.time() - start)
 
 
 def main():
-    unit_set = set()
-    for unit in os.listdir(race_util.STD_PATH):
-        unit_set.add(unit)
+    # unit_set = set()
+    # for unit in os.listdir(race_util.STD_PATH):
+    #     unit_set.add(unit)
+    #
+    # pool = multiprocessing.Pool(processes=4)
+    # pool.map(pre_process, unit_set)
 
-    pool = multiprocessing.Pool(processes=4)
-    pool.map(pre_process, unit_set)
-
-    # pre_process('XX.PWU.2008211000000.npy')
+    process('XX.PWU.2008211000000.npy')
 
 
 if __name__ == '__main__':
