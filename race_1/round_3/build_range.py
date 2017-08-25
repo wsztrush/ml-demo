@@ -13,6 +13,7 @@ from obspy import read
 clf = joblib.load(race_util.MODEL_FILE)
 
 
+
 def split_range(file_std, file_std_mean, left, right, std_mean_limit):
     file_std = file_std[left:right]
     file_std_mean = file_std_mean[int(left / 5):int(right / 5)]
