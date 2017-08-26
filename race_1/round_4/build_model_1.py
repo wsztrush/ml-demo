@@ -1,3 +1,5 @@
+# 使用GBDT来判断左边的分割点是否靠谱。
+
 import numpy as np
 import os
 import time
