@@ -27,7 +27,12 @@ def get_feature(stock_value, left, right):
 
         stock_max = np.max(stock_value[left:right]) + 1.0
 
-        return [a0 / b0, a1 / b1, a2 / b2, a0 / stock_max, b0 / stock_max]
+        result = [a0 / b0, a1 / b1, a2 / b2, a0 / stock_max, b0 / stock_max]
+
+        if np.isnan(result).any() or np.isinf(result).any():
+            print(left, right)
+        else:
+            return result
 
 
 def train():
