@@ -2,153 +2,87 @@ import numpy as np
 import os
 import time
 import multiprocessing
-import matplotlib
 import race_util
-import build_rbm
-import build_model_1
 import random
 
 from obspy import read
 from matplotlib import pyplot as plt
-from sklearn.externals import joblib
-
-# 加载模型
-# model_1 = joblib.load(race_util.model_1)
-
-
-def split_range(stock_value, left, right, stock_limit):
-    b = stock_value[left:right]
-
-    # 0, 2, 4, 6, 8, 10,12
-    # 1, 1, 1, 0, 1, 1, 1
-    # -------------------
-    # 0, 1, 2, 4, 5, 6
-    #    1, 1, 2, 1, 1
-    #    0, 0, 1, 0, 0
-    # 2, 6
-    # 0, 6 | 8, 14
-    index = np.where(b > stock_limit)[0]
-    continuity_index = np.where(index[1:] - index[:-1] - race_util.stock_gap > 0)[0]
-
-    last_index = 0
-    result = []
-
-    # 遍历前面的区间
-    for i in continuity_index:
-        l, r = index[last_index] + left, index[i] + left + 1
-        if is_good_lr(stock_value, l, r):
-            result.append((l, r))
-
-        last_index = i + 1
-
-    # 处理最后一个区间
-    if last_index > 0:
-        l, r = index[last_index] + left, len(b) + left
-        if is_good_lr(stock_value, l, r):
-            result.append((l, r))
-
-    return result
-
-
-def is_left(stock_value, left, right):
-    if not is_good_lr(stock_value, left, right):
-        return False
-
-    f = build_model_1.get_feature(stock_value, left, right)
-    if f and model_1.predict([f])[0] == 1:
-        return True
-    return False
-
-
-def is_good_lr(stock_value, left, right):
-    return (right - left) * race_util.stock_step > 500 and np.max(stock_value[left:right] > 1000)
-
-
-def find_first_left(stock_value, left, right):
-    for i in np.arange(left + 1, int(right - 500 / race_util.stock_step), step=max(5, int((right - left) * 0.01))):
-        if is_left(stock_value, i, right):
-            return i
-
-
-def plt_range(stock_value, file_data, left, right, c, level):
-    before_left = race_util.get_before_left(left, right)
-
-    print('[LEVEL] ', left, right, level)
-
-    plt.subplot(2, 1, 1)
-    plt.axvline(x=left - before_left, color='r')
-    plt.bar(np.arange(right - before_left), stock_value[before_left:right])
-
-    plt.subplot(2, 1, 2)
-    plt.axvline(x=int((left - before_left) * race_util.stock_step), color='r')
-    plt.plot(np.arange(right * race_util.stock_step - before_left * race_util.stock_step), file_data[before_left * race_util.stock_step:right * race_util.stock_step], color=c)
-
-    plt.show()
 
 
 def process(unit):
-    start = time.time()
+    start_time = time.time()
 
-    # 加载数据
-    stock_value = np.load(race_util.stock_path + unit)[0]
-
-    # 分割
-    # result = split_range(stock_value, 0, len(stock_value), 100)
-
-    # 保存数据
-    # result = []
-    # for left, right in tmp:
-    #     f = build_model_1.get_feature(stock_value, left, right)
-    #     if f and model_1.predict([f])[0] == 1:
-    #         result.append((left, right))
-
-    # 展示和搜索
-    # file_data = read(race_util.origin_dir_path + unit[:-4] + ".BHZ")[0].data
+    jump_index = np.load('./data/jump/' + unit)
+    shock_value = np.load('./data/shock/' + unit)
+    shock_mean_value = np.mean(shock_value.reshape(-1, 10), axis=1)
+    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
     result = []
-    split_limit = 100
-    result = split_range(stock_value, 0, len(stock_value), split_limit)
-    # while len(tmp) > 0 and split_limit < 1000:
-    #     next_tmp = []
-    #     split_limit *= 1.5
-    #
-    #     for left, right in tmp:
-    #         if is_left(stock_value, left, right):
-    #             result.append((left, right))
-    #         else:
-    #             new_left = find_first_left(stock_value, left, right)
-    #             if new_left:
-    #                 result.append((new_left, right))
-    #
-    #     tmp = next_tmp
 
-    # 保存到文件
+    last_jump_index = 0
+    for j_index in jump_index:
+        if j_index <= last_jump_index:
+            continue
+
+        mean_index = int(j_index / 10)
+        mean_limit_value = shock_mean_value[mean_index] + 1.0
+        mean_limit_value_list = [mean_limit_value]
+
+        for i in np.arange(1, len(shock_mean_value) - mean_index):
+            if i % 10 == 0:
+                mean_limit_value *= 1.1
+            mean_limit_value_list.append(mean_limit_value)
+
+            if shock_mean_value[mean_index + i] <= mean_limit_value:
+                stop_index = j_index + i * 10
+
+                c = 'red'
+                if i > 8 and np.max(shock_value[j_index:stop_index]) > 1000:
+                    last_jump_index = stop_index
+                    result.append((j_index, stop_index))
+
+                    c = 'green'
+
+                # left, right = j_index - 100, stop_index + 100
+                # if left > 0:
+                #     plt.subplot(2, 1, 1)
+                #     plt.axvline(x=100, color='red')
+                #     plt.axvline(x=right - left - 100, color='red')
+                #     plt.plot(np.arange(right - left), shock_value[left:right], color=c)
+                #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), shock_mean_value[mean_index:mean_index + i + 1], color='yellow')
+                #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), mean_limit_value_list, color='green')
+                #
+                #     plt.subplot(2, 1, 2)
+                #     plt.plot(np.arange(right * race_util.shock_step - left * race_util.shock_step), origin_value[left * race_util.shock_step:right * race_util.shock_step])
+                #     plt.show()
+
+                break
+
     if len(result) > 0:
-        np.save(race_util.range_path + unit, result)
+        np.save('./data/range/' + unit, result)
 
-    print(unit, len(result), time.time() - start)
+    print('[COST]', unit, len(result), time.time() - start_time)
 
 
 def main():
-    unit_set = []
-    unit_list = os.listdir(race_util.stock_path)
-    random.shuffle(unit_list)
-
-    for unit in unit_list:
-        unit_set.append(unit)
-
-    print(len(unit_set))
-
     pool = multiprocessing.Pool(processes=4)
-    pool.map(process, unit_set)
+    pool.map(process, os.listdir('./data/jump/'))
 
-    # for unit in unit_set:
-    #     process(unit)
+    # process('XX.JJS.2008186000000.npy')
 
-    # process('GS.WXT.2008188000000.npy')
+
+def check():
+    total = 0
+    for unit in os.listdir('./data/range/'):
+        range_list = np.load('./data/range/' + unit)
+
+        total += len(range_list)
+
+    print(total)
 
 
 if __name__ == '__main__':
     race_util.config()
 
-    main()
+    # main()
+    check()
