@@ -11,7 +11,14 @@ sample_2_file = './data/sample_2.npy'
 
 model_1 = './data/model_1'
 
-stock_step = 10
+shock_step = 10
+
+
+def load_shock_value(unit):
+    shock_value_list = np.load(shock_path + unit)
+    shock_value = np.sqrt(np.square(shock_value_list[0]) + np.square(shock_value_list[1]) + np.square(shock_value_list[2]))
+
+    return shock_value
 
 
 def config():
@@ -33,10 +40,10 @@ def is_good_lr(stock_value, left, right):
 # 区间过滤
 # ******************************
 # 连续【stock_gap】个小于【stock_limit】的位置就当做是平静的区间，利用平静的区间对原始区间进行切换
-def split_range(stock_value, left, right, stock_limit=100, gap=3):
+def split_range(stock_value, left, right, shock_limit=100, gap=3):
     b = stock_value[left:right]
 
-    index = np.where(b > stock_limit)[0]
+    index = np.where(b > shock_limit)[0]
     continuity_index = np.where(index[1:] - index[:-1] - gap > 0)[0]
 
     last_index = 0

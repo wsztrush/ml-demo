@@ -7,20 +7,22 @@ import race_util
 
 
 def process(unit):
-    start = time.time()
     file_names = [race_util.origin_dir_path + unit + ".BHE", race_util.origin_dir_path + unit + ".BHN", race_util.origin_dir_path + unit + ".BHZ"]
     file_contents = [read(i) for i in file_names]
     file_datas = [i[0].data for i in file_contents]
 
     ret = []
     for file_data in file_datas:
-        tmp = file_data.reshape(-1, race_util.stock_step)
+        tmp = file_data.reshape(-1, race_util.shock_step)
 
         ret.append(np.max(tmp, axis=1) - np.min(tmp, axis=1))
 
-    np.save(race_util.stock_path + unit, ret)
+    if len(ret) != 3 or len(ret[0]) != 864000 or len(ret[1]) != 864000 or len(ret[2]) != 864000:
+        print(unit)
+        return
 
-    print(unit, time.time() - start)
+    ret = np.sqrt(np.square(ret[0]) + np.square(ret[1]) + np.square(ret[2]))
+    np.save(race_util.shock_path + unit, ret)
 
 
 def main():
