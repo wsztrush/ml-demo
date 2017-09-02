@@ -11,14 +11,13 @@ from sklearn.cluster import KMeans
 
 
 def build_feature(shock_value, left, right):
-    before_left = max(int(left - (right - left) / 9), 0)
-    right -= (right - before_left) % 10
+    right -= (right - left) % 10
 
-    tmp = shock_value[before_left:right]
+    tmp = shock_value[left:right]
     tmp = np.mean(tmp.reshape(10, -1), axis=1)
     tmp_max = np.max(tmp) + 1.0
 
-    return tmp / tmp_max
+    return (tmp / tmp_max)[5:]
 
 
 def train():
@@ -34,7 +33,7 @@ def train():
     print('[TOTAL]', len(x_list))  # 485671
 
     # 训练模型
-    kmeans = KMeans(n_clusters=5).fit(x_list)
+    kmeans = KMeans(n_clusters=10).fit(x_list)
 
     # 查看模型结果
     print(kmeans.labels_)
@@ -103,5 +102,5 @@ def view():
 if __name__ == '__main__':
     race_util.config()
 
-    train()
-    # view()
+    # train()
+    view()
