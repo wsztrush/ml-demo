@@ -21,6 +21,10 @@ def find_jump_point(shock_value, step):
     return set(index_1) & set(index_2) & set(index_3)
 
 
+# 处理逻辑
+# -------
+# 1. 找到某一秒钟，它的振幅的平均值，小于其后1，2，3秒的振幅平均值的shock_limit
+# 2. 保存shock_value中的偏移量（并不是真实偏移量）
 def process(unit):
     start_time = time.time()
 
@@ -33,7 +37,7 @@ def process(unit):
     ret = []
     for i in tmp:
         i *= 10
-        if np.max(shock_value[i:i + 300]) < 800:
+        if np.max(shock_value[i:i + 300]) < 500:
             continue
         ret.append(i)
 
@@ -48,6 +52,15 @@ def main():
 
     pool = multiprocessing.Pool(processes=4)
     pool.map(process, unit_list)
+
+    # 统计有多少跳跃点
+    total = 0
+    for unit in os.listdir('./data/jump/'):
+        range_list = np.load('./data/jump/' + unit)
+
+        total += len(range_list)
+
+    print('[TOTAL JUMP]', total)  # 797995
 
 
 def view():
