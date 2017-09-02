@@ -2,6 +2,7 @@ import numpy as np
 import os
 import multiprocessing
 import race_util
+import time
 
 from matplotlib import pyplot as plt
 from obspy import read
@@ -21,6 +22,8 @@ def find_jump_point(shock_value, step):
 
 
 def process(unit):
+    start_time = time.time()
+
     shock_value = np.load('./data/shock/' + unit)
 
     tmp = set()
@@ -34,10 +37,10 @@ def process(unit):
             continue
         ret.append(i)
 
-    print(unit, len(ret))
-
     if len(ret) > 0:
         np.save('./data/jump/' + unit, sorted(ret))
+
+    print('[COST]', unit, len(ret), time.time() - start_time)
 
 
 def main():
@@ -48,15 +51,14 @@ def main():
 
 
 def view():
-    # total = 0
-    # unit_list = os.listdir('./data/jump/')
-    # for unit in unit_list:
-    #     jump_point_list = np.load('./data/jump/' + unit)
-    #     print(unit, len(jump_point_list))
-    #     total += len(jump_point_list)
-    #
-    # print(total)
+    total = 0
+    unit_list = os.listdir('./data/jump/')
+    for unit in unit_list:
+        jump_point_list = np.load('./data/jump/' + unit)
+        print(unit, len(jump_point_list))
+        total += len(jump_point_list)
 
+    print(total)
 
     unit = 'XX.JJS.2008186000000.npy'
     index = np.load('./data/jump/' + unit)
@@ -103,5 +105,5 @@ def view():
 if __name__ == '__main__':
     race_util.config()
 
-    # main()
-    view()
+    main()
+    # view()

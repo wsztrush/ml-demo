@@ -183,9 +183,9 @@ def save_sample(sample_file):
 if __name__ == '__main__':
     race_util.config()
 
-    # process('XX.JMG.2008186000000.npy')
+    process('XX.JMG.2008186000000.npy')
 
-    save_sample('./data/range_sample.npy')
+    # save_sample('./data/range_sample.npy')
     # total = 0
     # unit_list = os.listdir(race_util.range_path)
     # random.shuffle(unit_list)
