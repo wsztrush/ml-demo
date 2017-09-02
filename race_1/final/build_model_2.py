@@ -11,16 +11,13 @@ from sklearn.cluster import KMeans
 
 
 def build_feature(shock_value, left, right):
-    before_left = max(int(left - (right - left) / 9), 0)
-    right -= (right - before_left) % 10
+    right -= (right - left) % 10
 
-    tmp = shock_value[before_left:right]
+    tmp = shock_value[left:right]
     tmp = np.mean(tmp.reshape(10, -1), axis=1)
     tmp_max = np.max(tmp) + 1.0
 
-    return tmp[0] / tmp_max
-
-    # return (tmp / tmp_max)[:6]
+    return tmp / tmp_max
 
 
 def train():
@@ -33,24 +30,20 @@ def train():
         for left, right in range_list:
             x_list.append(build_feature(shock_value, left, right))
 
-    tmp = np.histogram(x_list, bins=10, range=(0, 1))
+    # 训练模型
+    kmeans = KMeans(n_clusters=20).fit(x_list)
 
+    # 查看模型结果
+    print(kmeans.labels_)
+    print(np.bincount(kmeans.labels_))
+    tmp = kmeans.cluster_centers_
     print(tmp)
 
-    # # 训练模型
-    # kmeans = KMeans(n_clusters=10).fit(x_list)
-    #
-    # # 查看模型结果
-    # print(kmeans.labels_)
-    # print(np.bincount(kmeans.labels_))
-    # tmp = kmeans.cluster_centers_
-    # print(tmp)
-    #
-    # plt.plot(tmp.T)
-    # plt.show()
-    #
-    # # 保存模型
-    # joblib.dump(kmeans, './data/model_2')
+    plt.plot(tmp.T)
+    plt.show()
+
+    # 保存模型
+    joblib.dump(kmeans, './data/model_2')
 
 
 def view():
@@ -84,8 +77,8 @@ def view():
                 before_left = max(int(left - (right - left) / 9), 0)
 
                 feature = build_feature(shock_value, left, right)
-                # predict_ret = kmeans.predict([feature])[0]
-                if 0.3 < feature < 0.4:
+                predict_ret = kmeans.predict([feature])
+                if predict_ret == 19:
                     yield shock_value[before_left:right], origin_value[before_left * race_util.shock_step:right * race_util.shock_step]
 
     def refresh(value):

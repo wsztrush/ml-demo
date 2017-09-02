@@ -4,6 +4,7 @@ import time
 import multiprocessing
 import race_util
 import build_model_1
+import build_model_2
 import build_result_range
 
 from sklearn.externals import joblib
@@ -11,6 +12,7 @@ from obspy import read
 from matplotlib import pyplot as plt
 
 model_1 = joblib.load('./data/model_1')
+model_2 = joblib.load('./data/model_2')
 
 
 def process(unit):
@@ -22,7 +24,14 @@ def process(unit):
 
     result = []
     for left, right in all_range_value:
+        # 第一个模型的过滤
         if [left, right] in result_range:
+            continue
+
+        # 第二个模型的过滤
+        feature_2 = build_model_2.build_feature(shock_value, left, right)
+        predict_2 = model_2.predict([feature_2])
+        if predict_2 in [2, 15, 17]:
             continue
 
         result.append([left, right])
