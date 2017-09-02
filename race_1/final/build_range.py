@@ -4,6 +4,7 @@ import time
 import multiprocessing
 import race_util
 import build_model_1
+import build_result_range
 
 from sklearn.externals import joblib
 from obspy import read
@@ -17,16 +18,14 @@ def process(unit):
 
     shock_value = np.load('./data/shock/' + unit)
     all_range_value = np.load('./data/all_range/' + unit)
+    result_range = build_result_range.get_result_range(unit)
 
     result = []
     for left, right in all_range_value:
-        feature = [build_model_1.build_feature(shock_value, left, right)]
-        predict_ret = model_1.predict(feature)[0]
-
-        if predict_ret == 3:
+        if [left, right] in result_range:
             continue
 
-        result.append((left, right))
+        result.append([left, right])
 
     if len(result) > 0:
         np.save('./data/range/' + unit, result)
@@ -37,7 +36,8 @@ def process(unit):
 def main():
     # 生成所有可能的区间
     pool = multiprocessing.Pool(processes=4)
-    pool.map(process, os.listdir('./data/jump/'))
+    pool.map(process, os.listdir('./data/all_range/'))
+    # process('GS.WDT.2008183000000.npy')
 
     # 统计区间个数
     total = 0
