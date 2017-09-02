@@ -71,6 +71,7 @@ def view():
         random.shuffle(unit_list)
 
         for unit in unit_list:
+            print(unit)
             shock_value = np.load('./data/shock/' + unit)
             range_list = np.load('./data/all_range/' + unit)
             origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
@@ -80,7 +81,7 @@ def view():
 
                 feature = build_feature(shock_value, left, right)
                 predict_ret = kmeans.predict([feature])[0]
-                if predict_ret == 1:
+                if predict_ret == 3:
                     yield shock_value[before_left:right], origin_value[before_left * race_util.shock_step:right * race_util.shock_step]
 
     def refresh(value):
@@ -102,5 +103,5 @@ def view():
 if __name__ == '__main__':
     race_util.config()
 
-    # train()
-    view()
+    train()
+    # view()

@@ -18,7 +18,9 @@ def build_feature(shock_value, left, right):
     tmp = np.mean(tmp.reshape(10, -1), axis=1)
     tmp_max = np.max(tmp) + 1.0
 
-    return tmp / tmp_max
+    return tmp[0] / tmp_max
+
+    # return (tmp / tmp_max)[:6]
 
 
 def train():
@@ -31,22 +33,24 @@ def train():
         for left, right in range_list:
             x_list.append(build_feature(shock_value, left, right))
 
-    print('[TOTAL]', len(x_list))
+    tmp = np.histogram(x_list, bins=10, range=(0, 1))
 
-    # 训练模型
-    kmeans = KMeans(n_clusters=5).fit(x_list)
-
-    # 查看模型结果
-    print(kmeans.labels_)
-    print(np.bincount(kmeans.labels_))
-    tmp = kmeans.cluster_centers_
     print(tmp)
 
-    plt.plot(tmp.T)
-    plt.show()
-
-    # 保存模型
-    joblib.dump(kmeans, './data/model_2')
+    # # 训练模型
+    # kmeans = KMeans(n_clusters=10).fit(x_list)
+    #
+    # # 查看模型结果
+    # print(kmeans.labels_)
+    # print(np.bincount(kmeans.labels_))
+    # tmp = kmeans.cluster_centers_
+    # print(tmp)
+    #
+    # plt.plot(tmp.T)
+    # plt.show()
+    #
+    # # 保存模型
+    # joblib.dump(kmeans, './data/model_2')
 
 
 def view():
@@ -67,20 +71,21 @@ def view():
     line2, = ax2.plot([], [])
 
     def next_value():
-        unit_list = os.listdir('./data/all_range/')
+        unit_list = os.listdir('./data/range/')
         random.shuffle(unit_list)
 
         for unit in unit_list:
+            print(unit)
             shock_value = np.load('./data/shock/' + unit)
-            range_list = np.load('./data/all_range/' + unit)
+            range_list = np.load('./data/range/' + unit)
             origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
             for left, right in range_list:
                 before_left = max(int(left - (right - left) / 9), 0)
 
                 feature = build_feature(shock_value, left, right)
-                predict_ret = kmeans.predict([feature])[0]
-                if predict_ret == 1:
+                # predict_ret = kmeans.predict([feature])[0]
+                if 0.3 < feature < 0.4:
                     yield shock_value[before_left:right], origin_value[before_left * race_util.shock_step:right * race_util.shock_step]
 
     def refresh(value):
@@ -95,7 +100,7 @@ def view():
 
         return line1, line2
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=200, repeat=False)
     plt.show()
 
 

@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/final/build_model_1.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/final/build_model_2.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/final/build_range.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/final/data/tmp.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_1/final/build_kmeans.py" afterPath="$PROJECT_DIR$/race_1/final/build_all_range.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_jump.py" afterPath="$PROJECT_DIR$/race_1/final/build_jump.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_all_range.py" afterPath="$PROJECT_DIR$/race_1/final/build_all_range.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_model_1.py" afterPath="$PROJECT_DIR$/race_1/final/build_model_1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_model_2.py" afterPath="$PROJECT_DIR$/race_1/final/build_model_2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_range.py" afterPath="$PROJECT_DIR$/race_1/final/build_range.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/data/tmp.txt" afterPath="$PROJECT_DIR$/race_1/final/data/tmp.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,11 +22,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build_model_1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="build_all_range.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race_1/final/build_all_range.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="654">
+              <caret line="89" column="43" lean-forward="false" selection-start-line="89" selection-start-column="43" selection-end-line="89" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build_model_1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="35" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="1819">
+              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build_range.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -38,33 +59,11 @@
       <file leaf-file-name="build_model_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/race_1/final/build_model_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="755">
+              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_range.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-339">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_all_range.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race_1/final/build_all_range.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="18" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -72,8 +71,8 @@
       <file leaf-file-name="tmp.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/race_1/final/data/tmp.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="31" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="10" selection-end-column="31" />
+            <state relative-caret-position="385">
+              <caret line="27" column="154" lean-forward="false" selection-start-line="27" selection-start-column="154" selection-end-line="27" selection-end-column="154" />
               <folding />
             </state>
           </provider>
@@ -174,11 +173,11 @@
         <option value="$PROJECT_DIR$/race_1/final/race_util.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_shock.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_jump.py" />
-        <option value="$PROJECT_DIR$/race_1/final/build_all_range.py" />
-        <option value="$PROJECT_DIR$/race_1/final/data/tmp.txt" />
-        <option value="$PROJECT_DIR$/race_1/final/build_model_1.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_range.py" />
+        <option value="$PROJECT_DIR$/race_1/final/data/tmp.txt" />
         <option value="$PROJECT_DIR$/race_1/final/build_model_2.py" />
+        <option value="$PROJECT_DIR$/race_1/final/build_all_range.py" />
+        <option value="$PROJECT_DIR$/race_1/final/build_model_1.py" />
       </list>
     </option>
   </component>
@@ -332,25 +331,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.build_range">
-    <configuration default="false" name="build_shock" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/final" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/final/build_shock.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.build_all_range">
     <configuration default="false" name="build_jump" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -418,6 +399,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ml-demo" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/final/build_range.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="build_model_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1/final" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/final/build_model_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -508,19 +507,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.build_shock" />
-      <item index="1" class="java.lang.String" itemvalue="Python.build_jump" />
-      <item index="2" class="java.lang.String" itemvalue="Python.build_all_range" />
-      <item index="3" class="java.lang.String" itemvalue="Python.build_model_1" />
-      <item index="4" class="java.lang.String" itemvalue="Python.build_range" />
+      <item index="0" class="java.lang.String" itemvalue="Python.build_jump" />
+      <item index="1" class="java.lang.String" itemvalue="Python.build_all_range" />
+      <item index="2" class="java.lang.String" itemvalue="Python.build_model_1" />
+      <item index="3" class="java.lang.String" itemvalue="Python.build_range" />
+      <item index="4" class="java.lang.String" itemvalue="Python.build_model_2" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.build_range" />
-        <item index="1" class="java.lang.String" itemvalue="Python.build_model_1" />
-        <item index="2" class="java.lang.String" itemvalue="Python.build_all_range" />
-        <item index="3" class="java.lang.String" itemvalue="Python.build_jump" />
-        <item index="4" class="java.lang.String" itemvalue="Python.build_shock" />
+        <item index="0" class="java.lang.String" itemvalue="Python.build_all_range" />
+        <item index="1" class="java.lang.String" itemvalue="Python.build_model_2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.build_model_1" />
+        <item index="3" class="java.lang.String" itemvalue="Python.build_range" />
+        <item index="4" class="java.lang.String" itemvalue="Python.build_jump" />
       </list>
     </recent_temporary>
   </component>
@@ -537,13 +536,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497666091081</updated>
-    </task>
-    <task id="LOCAL-00003" summary="修改">
-      <created>1498051928119</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1498051928119</updated>
     </task>
     <task id="LOCAL-00004" summary="修改">
       <created>1498088066062</created>
@@ -881,7 +873,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504318046836</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="再次尝试Kmeans">
+      <created>1504324017046</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1504324017046</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -929,11 +928,11 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32588235" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28117648" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43882352" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -948,32 +947,11 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28117648" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32588235" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45294118" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6979167" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="特征数据生成OK" />
     <MESSAGE value="KMeans模型训练完成。" />
     <MESSAGE value="复赛相关修改" />
     <MESSAGE value="正式开始复赛" />
@@ -998,7 +976,8 @@
     <MESSAGE value="位置文件60万左右" />
     <MESSAGE value="16万左右个范围数据，接下来需要缩小区间大小。" />
     <MESSAGE value="不想活了。。。。CNN完全用不好啊。" />
-    <option name="LAST_COMMIT_MESSAGE" value="不想活了。。。。CNN完全用不好啊。" />
+    <MESSAGE value="再次尝试Kmeans" />
+    <option name="LAST_COMMIT_MESSAGE" value="再次尝试Kmeans" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1023,8 +1002,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/race_1/final/build_model_1.py</url>
-          <line>82</line>
+          <line>83</line>
           <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/race_1/final/build_model_2.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="204" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1037,7 +1021,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="204" />
+      <option name="time" value="205" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -1263,26 +1247,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_all_range.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="18" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/race_1/final/data/tmp.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="31" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="10" selection-end-column="31" />
+        <state relative-caret-position="385">
+          <caret line="27" column="154" lean-forward="false" selection-start-line="27" selection-start-column="154" selection-end-line="27" selection-end-column="154" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
+    <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="35" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="646">
+          <caret line="38" column="41" lean-forward="false" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1291,18 +1267,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/race_1/final/build_model_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="755">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
+    <entry file="file://$PROJECT_DIR$/race_1/final/build_all_range.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-339">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="654">
+          <caret line="89" column="43" lean-forward="false" selection-start-line="89" selection-start-column="43" selection-end-line="89" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

@@ -8,11 +8,26 @@ from obspy import read
 from matplotlib import pyplot as plt
 
 
+def get_before_ratio(shock_value, left, right):
+    before_left = max(int(left - (right - left) / 9), 0)
+    right -= (right - before_left) % 10
+
+    tmp = shock_value[before_left:right]
+    tmp = np.mean(tmp.reshape(10, -1), axis=1)
+    tmp_max = np.max(tmp) + 1.0
+
+    return tmp[0] / tmp_max
+
+
 # 处理逻辑
 # -------
 # 1. 拿到一个跳跃点，按照一秒钟的区间划分并求均值
 # 2. 设置提升速度，每10秒提升10%，如果够不到就终止
-# 3. 保存找到范围的结果（依然是shock_value的偏移量）
+# 3. 保存找到范围的结果（依然是shock_value的偏移量），并根据一些规则进行过滤
+# -------
+# a、长度
+# b、最大的震动幅度
+# c、之前是否足够平静
 def process(unit):
     start_time = time.time()
 
@@ -35,7 +50,7 @@ def process(unit):
             if shock_mean_value[mean_index + i] <= mean_limit_value:
                 stop_index = j_index + i * 10
 
-                if i > 5 and np.max(shock_value[j_index:stop_index]) > 800:
+                if i > 5 and np.max(shock_value[j_index:stop_index]) > 800 and get_before_ratio(shock_value, j_index, stop_index) < 0.3:
                     result.append((j_index, stop_index))
 
                     # left, right = j_index - 100, stop_index + 100
@@ -72,7 +87,7 @@ def main():
 
         total += len(range_list)
 
-    print('[TOTAL RANGE]', total) # 485671
+    print('[TOTAL RANGE]', total)  # 246574
 
 
 if __name__ == '__main__':

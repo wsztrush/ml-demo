@@ -12,59 +12,26 @@ from matplotlib import pyplot as plt
 model_1 = joblib.load('./data/model_1')
 
 
-# 处理逻辑
-# -------
-# 1. 拿到一个跳跃点，按照一秒钟的区间划分并求均值
-# 2. 设置提升速度，每10秒提升10%，如果够不到就终止
-# 3. 保存找到范围的结果（依然是shock_value的偏移量）
 def process(unit):
     start_time = time.time()
 
-    jump_index = np.load('./data/jump/' + unit)
     shock_value = np.load('./data/shock/' + unit)
-    shock_mean_value = np.mean(shock_value.reshape(-1, 10), axis=1)
-    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    all_range_value = np.load('./data/all_range/' + unit)
 
     result = []
-    for j_index in jump_index:
-        mean_index = int(j_index / 10)
-        mean_limit_value = shock_mean_value[mean_index] + 1.0
-        mean_limit_value_list = [mean_limit_value]
+    for left, right in all_range_value:
+        feature = [build_model_1.build_feature(shock_value, left, right)]
+        predict_ret = model_1.predict(feature)[0]
 
-        for i in np.arange(1, len(shock_mean_value) - mean_index):
-            if i % 10 == 0:
-                mean_limit_value *= 1.1
-            mean_limit_value_list.append(mean_limit_value)
+        if predict_ret == 3:
+            continue
 
-            if shock_mean_value[mean_index + i] <= mean_limit_value:
-                stop_index = j_index + i * 10
-
-                if i > 5 and np.max(shock_value[j_index:stop_index]) > 800:
-                    predict_ret = model_1.predict([build_model_1.build_feature(shock_value, j_index, stop_index)])[0]
-                    if predict_ret == 3:
-                        continue
-
-                    result.append((j_index, stop_index))
-
-                    # left, right = j_index - 100, stop_index + 100
-                    # if left > 0:
-                    #     plt.subplot(2, 1, 1)
-                    #     plt.axvline(x=100, color='red')
-                    #     plt.axvline(x=right - left - 100, color='red')
-                    #     plt.plot(np.arange(right - left), shock_value[left:right])
-                    #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), shock_mean_value[mean_index:mean_index + i + 1], color='yellow')
-                    #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), mean_limit_value_list, color='green')
-                    #
-                    #     plt.subplot(2, 1, 2)
-                    #     plt.plot(np.arange(right * race_util.shock_step - left * race_util.shock_step), origin_value[left * race_util.shock_step:right * race_util.shock_step])
-                    #     plt.show()
-
-                break
+        result.append((left, right))
 
     if len(result) > 0:
         np.save('./data/range/' + unit, result)
 
-    print('[COST]', unit, time.time() - start_time)
+    print('[COST]', unit, len(result), time.time() - start_time)
 
 
 def main():
