@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/final/build_result_range.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/build_model_1.py" afterPath="$PROJECT_DIR$/race_1/final/build_model_1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race_1/final/data/tmp.txt" afterPath="$PROJECT_DIR$/race_1/final/data/tmp.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build_model_1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="build_model_1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="82" column="35" lean-forward="false" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
+            <state relative-caret-position="137">
+              <caret line="73" column="41" lean-forward="false" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -32,36 +30,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tmp.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tmp.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/race_1/final/data/tmp.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="24" />
+            <state relative-caret-position="136">
+              <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_result_range.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race_1/final/build_result_range.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="12" column="27" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_range.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="47" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="47" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -529,13 +503,6 @@
       <option name="presentableId" value="Default" />
       <updated>1497666091081</updated>
     </task>
-    <task id="LOCAL-00005" summary="修改">
-      <created>1498125398703</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1498125398703</updated>
-    </task>
     <task id="LOCAL-00006" summary="修改">
       <created>1498295831335</created>
       <option name="number" value="00006" />
@@ -872,7 +839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504350744511</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="效果还可以的范围线保存起来。">
+      <created>1504360318594</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1504360318594</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -964,7 +938,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="复赛相关修改" />
     <MESSAGE value="正式开始复赛" />
     <MESSAGE value="暴力排除" />
     <MESSAGE value="优化" />
@@ -989,7 +962,8 @@
     <MESSAGE value="不想活了。。。。CNN完全用不好啊。" />
     <MESSAGE value="再次尝试Kmeans" />
     <MESSAGE value="增加过滤条件。" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加过滤条件。" />
+    <MESSAGE value="效果还可以的范围线保存起来。" />
+    <option name="LAST_COMMIT_MESSAGE" value="效果还可以的范围线保存起来。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1277,16 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="47" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/race_1/final/build_result_range.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1297,10 +1261,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
+    <entry file="file://$PROJECT_DIR$/race_1/final/build_range.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="82" column="35" lean-forward="false" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
+        <state relative-caret-position="527">
+          <caret line="31" column="47" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="47" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -1309,9 +1273,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/race_1/final/data/tmp.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="24" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="24" />
+        <state relative-caret-position="136">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race_1/final/build_model_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="73" column="41" lean-forward="false" selection-start-line="73" selection-start-column="41" selection-end-line="73" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

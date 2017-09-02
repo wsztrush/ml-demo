@@ -80,7 +80,7 @@ def view():
 
                 feature = build_feature(shock_value, left, right)
                 predict_ret = kmeans.predict([feature])[0]
-                if predict_ret == 3:
+                if predict_ret == 7:
                     yield shock_value[before_left:right], origin_value[before_left * race_util.shock_step:right * race_util.shock_step]
 
     def refresh(value):
@@ -95,7 +95,7 @@ def view():
 
         return line1, line2
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=300, repeat=False)
     plt.show()
 
 
