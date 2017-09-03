@@ -5,11 +5,13 @@ import multiprocessing
 import race_util
 import build_model_1
 import build_model_4
+import build_model_5
 
 from sklearn.externals import joblib
 
 model_1 = joblib.load('./data/model_1')
 model_4 = joblib.load('./data/model_4')
+model_5 = joblib.load('./data/model_5')
 
 
 def get_result_range(unit):
@@ -41,6 +43,13 @@ def process(unit):
             feature_4 = [build_model_4.build_feature(shock_value, left, right)]
             predict_4 = model_4.predict(feature_4)[0]
             if predict_4 == 9:
+                result.append([left, right])
+                continue
+
+            # 第四个模型
+            feature_5 = [build_model_5.build_feature(shock_value, left, right)]
+            predict_5 = model_5.predict(feature_5)[0]
+            if predict_5 in [5]:
                 result.append([left, right])
                 continue
 

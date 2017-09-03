@@ -6,6 +6,7 @@ import race_util
 import build_model_1
 import build_model_2
 import build_model_3
+import build_model_5
 import build_result_range
 
 from sklearn.externals import joblib
@@ -15,6 +16,7 @@ from matplotlib import pyplot as plt
 model_1 = joblib.load('./data/model_1')
 model_2 = joblib.load('./data/model_2')
 model_3 = joblib.load('./data/model_3')
+model_5 = joblib.load('./data/model_5')
 
 
 def process(unit):
@@ -40,6 +42,12 @@ def process(unit):
         feature_3 = build_model_3.build_feature(shock_value, left, right)
         predict_3 = model_3.predict([feature_3])[0]
         if predict_3 in [1, 2, 4, 5, 6, 7, 8]:
+            continue
+
+        # 第五个模型过滤
+        feature_5 = build_model_5.build_feature(shock_value, left, right)
+        predict_5 = model_5.predict([feature_5])[0]
+        if predict_5 in [1, 2, 4, 6, 7, 8]:
             continue
 
         result.append([left, right])
