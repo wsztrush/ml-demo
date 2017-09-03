@@ -5,6 +5,7 @@ import multiprocessing
 import race_util
 import build_model_1
 import build_model_2
+import build_model_3
 import build_result_range
 
 from sklearn.externals import joblib
@@ -13,6 +14,7 @@ from matplotlib import pyplot as plt
 
 model_1 = joblib.load('./data/model_1')
 model_2 = joblib.load('./data/model_2')
+model_3 = joblib.load('./data/model_3')
 
 
 def process(unit):
@@ -30,8 +32,14 @@ def process(unit):
 
         # 第二个模型的过滤
         feature_2 = build_model_2.build_feature(shock_value, left, right)
-        predict_2 = model_2.predict([feature_2])
+        predict_2 = model_2.predict([feature_2])[0]
         if predict_2 in [2, 15, 17]:
+            continue
+
+        # 第三个模型过滤
+        feature_3 = build_model_3.build_feature(shock_value, left, right)
+        predict_3 = model_3.predict([feature_3])[0]
+        if predict_3 in [1, 2, 4, 5, 6, 7, 8]:
             continue
 
         result.append([left, right])
