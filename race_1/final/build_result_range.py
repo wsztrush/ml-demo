@@ -4,10 +4,12 @@ import time
 import multiprocessing
 import race_util
 import build_model_1
+import build_model_4
 
 from sklearn.externals import joblib
 
 model_1 = joblib.load('./data/model_1')
+model_4 = joblib.load('./data/model_4')
 
 
 def get_result_range(unit):
@@ -28,11 +30,19 @@ def process(unit):
         if [left, right] in result:
             continue
         else:
-            feature = [build_model_1.build_feature(shock_value, left, right)]
-            predict_ret = model_1.predict(feature)[0]
-
-            if predict_ret == 0:
+            # 第一个模型
+            feature_1 = [build_model_1.build_feature(shock_value, left, right)]
+            predict_1 = model_1.predict(feature_1)[0]
+            if predict_1 == 0:
                 result.append([left, right])
+                continue
+
+            # 第四个模型
+            feature_4 = [build_model_4.build_feature(shock_value, left, right)]
+            predict_4 = model_4.predict(feature_4)[0]
+            if predict_4 == 9:
+                result.append([left, right])
+                continue
 
     if len(result) > 0:
         np.save('./data/result_range/' + unit, result)
@@ -41,9 +51,16 @@ def process(unit):
 
 
 def main():
-    # pool = multiprocessing.Pool(processes=4)
-    # pool.map(process, os.listdir('./data/all_range/'))
-    process('GS.WDT.2008183000000.npy')
+    pool = multiprocessing.Pool(processes=4)
+    pool.map(process, os.listdir('./data/all_range/'))
+    # process('GS.WDT.2008183000000.npy')
+
+    total = 0
+    for unit in os.listdir('./data/result_range/'):
+        tmp = np.load('./data/result_range/' + unit)
+        total += len(tmp)
+
+    print('[TOTAL]', total)
 
 
 if __name__ == '__main__':

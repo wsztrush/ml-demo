@@ -26,7 +26,7 @@ def process(unit):
 
     result = []
     for left, right in all_range_value:
-        # 第一个模型的过滤
+        # 结果过滤
         if [left, right] in result_range:
             continue
 
