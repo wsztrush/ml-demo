@@ -9,14 +9,12 @@ from matplotlib import pyplot as plt
 
 
 def get_before_ratio(shock_value, left, right):
-    before_left = max(int(left - (right - left) / 9), 0)
-    right -= (right - before_left) % 10
+    before_left = max(int(left - (right - left) * 0.1), 0)
 
-    tmp = shock_value[before_left:right]
-    tmp = np.mean(tmp.reshape(10, -1), axis=1)
-    tmp_max = np.max(tmp) + 1.0
+    if left == before_left:
+        return 0
 
-    return tmp[0] / tmp_max
+    return np.mean(shock_value[before_left:left]) / (np.max(shock_value[left:right]) + 1.0)
 
 
 # 处理逻辑
@@ -34,7 +32,6 @@ def process(unit):
     jump_index = np.load('./data/jump/' + unit)
     shock_value = np.load('./data/shock/' + unit)
     shock_mean_value = np.mean(shock_value.reshape(-1, 10), axis=1)
-    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
     result = []
     for j_index in jump_index:
@@ -52,20 +49,6 @@ def process(unit):
 
                 if i > 5 and np.max(shock_value[j_index:stop_index]) > 800 and get_before_ratio(shock_value, j_index, stop_index) < 0.3:
                     result.append((j_index, stop_index))
-
-                    # left, right = j_index - 100, stop_index + 100
-                    # if left > 0:
-                    #     plt.subplot(2, 1, 1)
-                    #     plt.axvline(x=100, color='red')
-                    #     plt.axvline(x=right - left - 100, color='red')
-                    #     plt.plot(np.arange(right - left), shock_value[left:right])
-                    #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), shock_mean_value[mean_index:mean_index + i + 1], color='yellow')
-                    #     plt.plot(np.arange(100, 100 + len(mean_limit_value_list) * 10, 10), mean_limit_value_list, color='green')
-                    #
-                    #     plt.subplot(2, 1, 2)
-                    #     plt.plot(np.arange(right * race_util.shock_step - left * race_util.shock_step), origin_value[left * race_util.shock_step:right * race_util.shock_step])
-                    #     plt.show()
-
                 break
 
     if len(result) > 0:
@@ -78,7 +61,6 @@ def main():
     # 生成所有可能的区间
     pool = multiprocessing.Pool(processes=4)
     pool.map(process, os.listdir('./data/jump/'))
-    # process('XX.YZP.2008202000000.npy')
 
     # 统计区间个数
     total = 0
