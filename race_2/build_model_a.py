@@ -63,6 +63,10 @@ def view():
     # 加载模型
     kmeans = joblib.load('./data/model_a')
 
+    print(np.bincount(kmeans.labels_))
+    tmp = kmeans.cluster_centers_
+    print(tmp)
+
     fig = plt.figure()
 
     ax1 = fig.add_subplot(211)
@@ -106,7 +110,7 @@ def view():
 
         return line1, line2
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=300, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=100, repeat=False)
     plt.show()
 
 

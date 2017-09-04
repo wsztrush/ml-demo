@@ -23,9 +23,9 @@ def main():
     line2, = ax2.plot([], [])
 
     def next_value():
-        for unit in os.listdir('./data/result_range/'):
+        for unit in os.listdir('./data/range/'):
             shock_value = np.load('./data/shock/' + unit)
-            range_list = np.load('./data/result_range/' + unit)
+            range_list = np.load('./data/range/' + unit)
             origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
             print(unit, len(range_list))
