@@ -30,7 +30,7 @@ def process(unit):
 
     # 读取数据
     shock_value = np.load('./data/shock/' + unit)
-    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHZ')[0].data
+    origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHZ')[0].data
     range_value = np.load('./data/range/' + unit)
 
     result = []
@@ -54,7 +54,7 @@ def process(unit):
         if right_end == 0:
             continue
 
-        a = max(np.min(np.mean(tmp_shock[:a_right].reshape(-1, 5), axis=1)) * 2, shock_max * 0.01, np.max(tmp_shock[:right_end]) * 0.1)
+        a = max(np.min(np.mean(tmp_shock[:a_right].reshape(5, -1), axis=1)) * 2, shock_max * 0.01, np.max(tmp_shock[:right_end]) * 0.1)
 
         # 计算大概的位置
         ret = right_end
@@ -69,28 +69,30 @@ def process(unit):
             ret += 5
 
         result.append((before_left + ret) * race_util.shock_step)
+
         # 展示结果
-        # plt.subplot(4, 1, 1)
-        # plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
-        # plt.axvline(x=right_end, color='red', linestyle=":")
-        # plt.axvline(x=left - before_left, color='green', linestyle=":")
-        # plt.plot(np.arange(right - before_left), tmp_shock)
-        #
-        # plt.subplot(4, 1, 2)
-        # plt.axhline(y=a, color='red', linestyle=":")
-        # plt.axvline(x=ret, color='green')
-        # plt.plot(np.arange(right_end), tmp_shock[:right_end])
-        #
-        # plt.subplot(4, 1, 3)
-        # plt.axvline(x=ret * race_util.shock_step, color='green')
-        # plt.plot(np.arange((right - before_left) * race_util.shock_step), origin_value[before_left * race_util.shock_step:right * race_util.shock_step])
-        #
-        # plt.subplot(4, 1, 4)
-        # plt.axvline(x=ret * race_util.shock_step, color='green')
-        # plt.axvline(x=ret * race_util.shock_step - 40, color='yellow', linestyle=":")
-        # plt.axvline(x=ret * race_util.shock_step + 40, color='yellow', linestyle=":")
-        # plt.plot(np.arange(right_end * race_util.shock_step), origin_value[before_left * race_util.shock_step:(before_left + right_end) * race_util.shock_step])
-        # plt.show()
+        plt.subplot(4, 1, 1)
+        plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
+        plt.axhline(y=0, color="black")
+        plt.axvline(x=right_end, color='red', linestyle=":")
+        plt.axvline(x=left - before_left, color='green', linestyle=":")
+        plt.plot(np.arange(right - before_left), tmp_shock)
+
+        plt.subplot(4, 1, 2)
+        plt.axhline(y=a, color='red', linestyle=":")
+        plt.axvline(x=ret, color='green')
+        plt.bar(np.arange(right_end), tmp_shock[:right_end])
+
+        plt.subplot(4, 1, 3)
+        plt.axvline(x=ret * race_util.shock_step, color='red')
+        plt.plot(np.arange((right - before_left) * race_util.shock_step), origin_value[before_left * race_util.shock_step:right * race_util.shock_step])
+
+        plt.subplot(4, 1, 4)
+        plt.axvline(x=ret * race_util.shock_step, color='red')
+        plt.axvline(x=ret * race_util.shock_step - 40, color='green', linestyle=":")
+        plt.axvline(x=ret * race_util.shock_step + 40, color='green', linestyle=":")
+        plt.plot(np.arange(right_end * race_util.shock_step), origin_value[before_left * race_util.shock_step:(before_left + right_end) * race_util.shock_step])
+        plt.show()
 
     result = sorted(result)
 
@@ -113,6 +115,7 @@ def main():
     unit_list = os.listdir('./data/range/')
     random.shuffle(unit_list)
     for unit in unit_list:
+        print(unit)
         process(unit)
 
 
