@@ -9,7 +9,6 @@ import build_model_2
 from sklearn.externals import joblib
 
 model_1 = joblib.load('./data/model_1')
-model_2 = [joblib.load('./data/model_2_' + str(i)) for i in np.arange(10)]
 
 
 def process(unit):
@@ -20,16 +19,15 @@ def process(unit):
 
     result = []
     for left, right in range_value:
-        feature_1 = build_model_1.build_feature(shock_value, left, right)
-        feature_2 = build_model_2.build_feature(shock_value, left, right)
+        feature = build_model_1.build_feature(shock_value, left, right)
 
-        if feature_1 is None or feature_2 is None:
+        if feature is None:
             continue
 
-        predict_1 = model_1.predict([feature_1])[0]
-        predict_2 = model_2[predict_1].predict([feature_2])[0]
+        predict = model_1.predict([feature])[0]
+        before_ratio = build_model_1.build_before_ratio(shock_value, left, right)
 
-        if build_model_2.flag[predict_1][predict_2] == 2:
+        if predict not in [5, 8] and before_ratio[0] < 0.113:
             result.append([left, right])
 
     if len(result) > 0:

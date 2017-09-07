@@ -11,26 +11,27 @@ from sklearn.cluster import KMeans
 
 
 def build_feature(shock_value, left, right):
-    before_left = max(left - 10, 0)
-    if before_left == left:
-        return None
-
     right -= (right - left) % 8
     if right - left < 8:
         return None
 
-    a = np.mean(shock_value[before_left:left])
-    b = np.mean(shock_value[left:right].reshape(8, -1), axis=1) + 1
-    b_max = np.max(b)
+    tmp = np.mean(shock_value[left:right].reshape(8, -1), axis=1) + 1
 
-    return [
-        np.mean(b[-3:]) / np.mean(b[:-3])
-    ]
+    return tmp / np.max(tmp)
+
+
+def build_before_ratio(shock_value, left, right):
+    a = max(left - 10, 0)
+    b = int(max((right - left) / 9, 10))
+
+    a = np.mean(shock_value[a:left])
+    b = np.mean(shock_value[left:left + b])
+
+    return a / b, a, b
 
 
 def train():
     x_list = []
-    t = []
     for unit in os.listdir('./data/all_range/'):
         print(unit)
         shock_value = np.load('./data/shock/' + unit)
@@ -40,29 +41,25 @@ def train():
             feature = build_feature(shock_value, left, right)
             if feature is not None:
                 x_list.append(feature)
-                t.append(feature[0])
 
     print('[TOTAL]', len(x_list))
 
-    print(np.histogram(t, bins=10, range=(0, 2)))
-
     # 训练模型
-    # kmeans = KMeans(n_clusters=10).fit(x_list)
+    kmeans = KMeans(n_clusters=10).fit(x_list)
 
     # 查看模型结果
-    # print(np.bincount(kmeans.labels_))
-    # tmp = kmeans.cluster_centers_
-    # print(tmp)
-    #
-    # plt.plot(tmp.T)
-    # plt.show()
-    #
-    # # 保存模型
-    # joblib.dump(kmeans, './data/model_1')
+    print(np.bincount(kmeans.labels_))
+    tmp = kmeans.cluster_centers_
+    print(tmp)
+
+    plt.plot(tmp.T)
+    plt.show()
+
+    # 保存模型
+    joblib.dump(kmeans, './data/model_1')
 
 
 def view():
-    # 加载模型
     kmeans = joblib.load('./data/model_1')
 
     fig = plt.figure()
@@ -93,12 +90,15 @@ def view():
                 before_left = max(int(left - (right - left) / 9), 0)
 
                 feature = build_feature(shock_value, left, right)
+                before_ratio = build_before_ratio(shock_value, left, right)
+
                 if feature is None:
                     continue
                 predict_ret = kmeans.predict([feature])[0]
-                if predict_ret == 2:
+
+                if predict_ret == 9 and 0.5 > before_ratio[0] > 0.4:
                     total += 1
-                    print(total)
+                    print(total, before_ratio[1])
                     yield shock_value[before_left:right], origin_value[before_left * race_util.step:right * race_util.step]
 
     def refresh(value):
@@ -117,20 +117,63 @@ def view():
     plt.show()
 
 
+def check():
+    model_1 = joblib.load('./data/model_1')
+
+    x_dict = dict()
+    for unit in os.listdir('./data/all_range/'):
+        print(unit)
+        shock_value = np.load('./data/shock/' + unit)
+        range_list = np.load('./data/all_range/' + unit)
+
+        for left, right in range_list:
+            feature_1 = build_feature(shock_value, left, right)
+
+            if feature_1 is None:
+                continue
+
+            c = model_1.predict([feature_1])[0]
+            l = x_dict.get(c)
+            if l is None:
+                l = x_dict[c] = []
+
+            a = max(left - 10, 0)
+            b = int(max((right - left) / 9, 10))
+
+            l.append(np.mean(shock_value[a:left]) / np.mean(shock_value[left:left + b]))
+
+    for i in np.arange(10):
+        print(i, np.histogram(x_dict[i], bins=12, range=(0, 0.6)))
+        plt.hist(x_dict[i], bins=12, range=(0, 0.6))
+        plt.show()
+
+
 if __name__ == '__main__':
-    race_util.config()
+    # race_util.config()
 
     train()
     # view()
+    # check()
 
-# [39591 42947 32564 40482 38911 49610 39670 38769 23928 37325]
-# [[ 0.15781823]
-#  [ 0.04225241]
-#  [ 0.24432132]
-#  [ 0.07206038]
-#  [ 0.1855554 ]
-#  [ 0.0131096 ]
-#  [ 0.10141478]
-#  [ 0.12994839]
-#  [ 0.27817741]
-#  [ 0.214152  ]]
+# [TOTAL] 203421
+# [29724 19024 14871 25068 13667 24776 21253 15160 19610 20268]
+# [[ 0.79329404  0.95820825  0.75206183  0.5484478   0.44273829  0.38159168
+#    0.33827761  0.27828292]
+#  [ 0.9599896   0.83516149  0.45048293  0.3019599   0.23237167  0.1972996
+#    0.17459106  0.14552954]
+#  [ 0.43878149  0.36137895  0.46121559  0.99407123  0.59194551  0.36137432
+#    0.26542609  0.20100425]
+#  [ 0.48998824  0.99946804  0.51070729  0.30603341  0.22643527  0.18443684
+#    0.15637567  0.12707162]
+#  [ 0.51813366  0.41651169  0.37276548  0.4784575   0.87297991  0.70210198
+#    0.4473571   0.29138023]
+#  [ 0.82292401  0.71482907  0.70835893  0.72791213  0.77414962  0.8022267
+#    0.78354168  0.59354106]
+#  [ 0.43986391  0.50176105  0.99814058  0.56286403  0.33852921  0.24703118
+#    0.19850576  0.15792184]
+#  [ 0.99920339  0.38684621  0.20030548  0.14573146  0.12022549  0.10360725
+#    0.08855713  0.06967785]
+#  [ 0.7404439   0.71092135  0.86486155  0.86000059  0.67306016  0.51495862
+#    0.42334112  0.33126559]
+#  [ 0.9777741   0.66013775  0.4944737   0.48430825  0.48486116  0.48847504
+#    0.47620684  0.34715095]]

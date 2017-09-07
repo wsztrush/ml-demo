@@ -20,7 +20,7 @@ def judge_range(before_value, shock_range_value):
         return False
 
     after_left = int(max(10, len(shock_range_value) * 0.1))
-    if before_value / np.mean(shock_range_value[:after_left]) > 0.6:
+    if before_value / np.mean(shock_range_value[:after_left]) > 0.45:
         return False
 
     return True

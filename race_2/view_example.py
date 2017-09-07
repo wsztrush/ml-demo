@@ -9,7 +9,8 @@ files = os.listdir(dir)
 
 for file in files:
     content = read(dir + file)
-    print(content[0].stats)
+    # print(content[0].stats)
+    print(file)
 
     b = content[0].meta.sac['b']
     s = (content[0].meta.sac['t0'] - b) * 100
@@ -25,13 +26,12 @@ for file in files:
     step = int(l / interval)
 
     x1 = np.arange(5, l, interval)
-    print(len(x1))
     y1 = np.zeros(l)
 
-    for i in np.arange(l):
-        y1[i] = np.std(y[i:i + interval])  # np.max(y[i:i + interval]) - np.min(y[i:i + interval])
-
-    plt.plot(x, y1, '#FF00FF')
+    # for i in np.arange(l):
+    #     y1[i] = np.std(y[i:i + interval])  # np.max(y[i:i + interval]) - np.min(y[i:i + interval])
+    #
+    # plt.plot(x, y1, '#FF00FF')
 
     if p > 0:
         plt.plot(p, 0, 'ro')

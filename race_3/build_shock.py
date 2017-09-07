@@ -6,24 +6,20 @@ import multiprocessing
 import race_util
 
 
+def read_content(file_name):
+    file_content = read(file_name)
+    file_data = file_content[0].data
+
+    tmp = file_data.reshape(-1, race_util.step)
+    return np.std(tmp, axis=1)
+
+
 def process(unit):
     start_time = time.time()
-    file_names = [race_util.origin_dir_path + unit + ".BHE", race_util.origin_dir_path + unit + ".BHN", race_util.origin_dir_path + unit + ".BHZ"]
-    file_contents = [read(i) for i in file_names]
-    file_datas = [i[0].data for i in file_contents]
 
-    ret = []
-    for file_data in file_datas:
-        tmp = file_data.reshape(-1, race_util.step)
-
-        ret.append(np.max(tmp, axis=1) - np.min(tmp, axis=1))
-
-    if len(ret) != 3 or len(ret[0]) != 864000 or len(ret[1]) != 864000 or len(ret[2]) != 864000:
-        print('[BAD CASE]', unit)
-        return
-
-    ret = np.sqrt(np.square(ret[0]) + np.square(ret[1]) + np.square(ret[2]))
-    np.save('./data/shock/' + unit, ret)
+    a = read_content(race_util.origin_dir_path + unit + ".BHE")
+    b = read_content(race_util.origin_dir_path + unit + ".BHN")
+    np.save('./data/shock/' + unit, np.sqrt(np.square(a) + np.square(b)))
 
     print('[COST]', unit, time.time() - start_time)
 
