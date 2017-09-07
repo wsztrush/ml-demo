@@ -9,18 +9,18 @@ step = 10
 
 
 def judge_range(before_value, shock_range_value):
-    if len(shock_range_value) < 80:
+    if len(shock_range_value) < 50:
         return False
 
     tmp_max = np.max(shock_range_value)
-    if tmp_max < 800:
+    if tmp_max < 500:
         return False
 
     if before_value / tmp_max > 0.2:
         return False
 
-    after_left = int(max(10, len(shock_range_value) * 0.1))
-    if before_value / np.mean(shock_range_value[:after_left]) > 0.45:
+    after_left = int(max(30, len(shock_range_value) * 0.1))
+    if before_value / np.mean(shock_range_value[:after_left]) > 0.4:
         return False
 
     return True

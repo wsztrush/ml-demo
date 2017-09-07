@@ -25,10 +25,11 @@ def process(unit):
             continue
 
         predict = model_1.predict([feature])[0]
-        before_ratio = build_model_1.build_before_ratio(shock_value, left, right)
 
-        if predict not in [5, 8] and before_ratio[0] < 0.113:
-            result.append([left, right])
+        if predict == 3:
+            continue
+
+        result.append([left, right])
 
     if len(result) > 0:
         np.save('./data/range/' + unit, result)

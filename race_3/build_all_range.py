@@ -15,7 +15,7 @@ def process(unit):
     jump_index = np.load('./data/jump/' + unit)
     shock_value = np.load('./data/shock/' + unit)
     shock_mean_value_list = [np.mean(shock_value[i:i - 10].reshape(-1, 10), axis=1) for i in np.arange(10)]
-    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
     ret = []
     for index in jump_index:
@@ -76,7 +76,7 @@ def main():
 
         total += len(range_list)
 
-    print('[TOTAL RANGE]', total)  # 224366
+    print('[TOTAL RANGE]', total)
 
 
 def check_1():
@@ -94,7 +94,10 @@ def check_1():
 
             v.append(before_value / np.max(shock_value[left:right]))
 
-    print(np.histogram(v, range=(0, 0.2), bins=10))
+    print(np.histogram(v, range=(0, 1), bins=10))
+
+    plt.hist(v, range=(0, 1), bins=10)
+    plt.show()
 
 
 def check_2():
@@ -107,10 +110,30 @@ def check_2():
 
         for left, right in range_list:
             before_value = np.mean(shock_value[left - 10:left])
-            x = int((right - left) * 0.1)
+            x = int(max(10, (right - left) * 0.1))
             v.append(before_value / np.mean(shock_value[left:left + x]))
 
     print(np.histogram(v, range=(0, 1), bins=10))
+
+    plt.hist(v, range=(0, 1), bins=10)
+    plt.show()
+
+
+def check_3():
+    v = []
+
+    for unit in os.listdir('./data/all_range/'):
+        print(unit)
+        range_list = np.load('./data/all_range/' + unit)
+        shock_value = np.load('./data/shock/' + unit)
+
+        for left, right in range_list:
+            v.append(right - left)
+
+    # print(np.histogram(v, range=(500, 2500), bins=20))
+
+    plt.hist(v, range=(50, 250), bins=20)
+    plt.show()
 
 
 if __name__ == '__main__':
@@ -119,5 +142,4 @@ if __name__ == '__main__':
     main()
     # check_1()
     # check_2()
-
-    # (array([34795, 36352, 48205, 57618, 40335, 6397, 693, 153, 62, 47]), array([0., 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.]))
+    # check_3()

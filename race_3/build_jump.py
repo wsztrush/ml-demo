@@ -97,5 +97,5 @@ def main():
 if __name__ == '__main__':
     race_util.config()
 
-    main()
-    # view('XX.YZP.2008213000000.npy')
+    # main()
+    view('XX.YZP.2008213000000.npy')
