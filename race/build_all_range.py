@@ -76,7 +76,7 @@ def main():
 
         total += len(range_list)
 
-    print('total = ', total)  # 229026
+    print('total = ', total)  # 238791
 
 
 if __name__ == '__main__':

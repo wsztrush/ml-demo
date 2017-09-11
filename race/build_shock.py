@@ -11,7 +11,7 @@ def read_content(file_name):
     file_data = file_content[0].data
 
     tmp = file_data.reshape(-1, race_util.step)
-    # return np.max(tmp, axis=1) - np.min(tmp, axis=1)
+
     return np.std(tmp, axis=1)
 
 
@@ -20,7 +20,6 @@ def process(unit):
 
     a = read_content(race_util.origin_dir_path + unit + ".BHE")
     b = read_content(race_util.origin_dir_path + unit + ".BHN")
-    # c = read_content(race_util.origin_dir_path + unit + ".BHZ")
 
     np.save('./data/shock/' + unit, np.sqrt(np.square(a) + np.square(b)))
 

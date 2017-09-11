@@ -172,8 +172,8 @@ def check_extra_feature():
 
 
 if __name__ == '__main__':
-    # train()
-    view()
+    train()
+    # view()
     # check_extra_feature()
 
 # [TOTAL] 238791
