@@ -20,14 +20,40 @@ def build_feature(shock_value, left, right):
     return tmp / np.max(tmp)
 
 
-def build_before_ratio(shock_value, left, right):
+def build_extra_before_ratio(shock_value, left, right):
     a = max(left - 10, 0)
-    b = int(max((right - left) / 9, 10))
-
+    b = int(max((right - left) / 8, 10))
     a = np.mean(shock_value[a:left])
     b = np.mean(shock_value[left:left + b])
+    return [a / b, a, b]
 
-    return a / b, a, b
+
+def build_extra_max_index(shock_value, left, right):
+    a = shock_value[left:right]
+    b = np.where(a == np.max(a))[0][0]
+    return [b, b / (right - left)]
+
+
+def build_extra_jump_index(jump_index, shock_value, left, right):
+    a = shock_value[left:right]
+    b = np.where(a == np.max(a))[0][0]
+
+    before_jump_index = np.where((jump_index > left) & (jump_index < left + b))[0]
+    all_jump_index = np.where((jump_index > left) & (jump_index < right))[0]
+
+    return [len(before_jump_index), len(all_jump_index), before_jump_index, all_jump_index]
+
+
+def build_extra_feature(jump_index, shock_value, left, right):
+    before_ratio = build_extra_before_ratio(shock_value, left, right)
+    max_index = build_extra_max_index(shock_value, left, right)
+    jump_index = build_extra_jump_index(jump_index, shock_value, left, right)
+
+    return [
+        before_ratio,
+        max_index,
+        jump_index
+    ]
 
 
 def train():
@@ -45,7 +71,7 @@ def train():
     print('[TOTAL]', len(x_list))
 
     # 训练模型
-    kmeans = KMeans(n_clusters=10).fit(x_list)
+    kmeans = KMeans(n_clusters=7).fit(x_list)
 
     # 查看模型结果
     print(np.bincount(kmeans.labels_))
@@ -84,27 +110,19 @@ def view():
             print(unit)
             shock_value = np.load('./data/shock/' + unit)
             range_list = np.load('./data/all_range/' + unit)
-            jump_index = np.load('./data/jump/' + unit)
             origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
             for left, right in range_list:
                 before_left = max(int(left - (right - left) / 9), 0)
 
-                tmp = shock_value[left:right]
-                max_index = np.where(tmp == np.max(tmp))
-
-                inner_jump_index = np.where((jump_index > left) & (jump_index < right))[0]
-
                 feature = build_feature(shock_value, left, right)
-                # before_ratio = build_before_ratio(shock_value, left, right)
-
                 if feature is None:
                     continue
                 predict_ret = kmeans.predict([feature])[0]
 
-                if predict_ret == 0:
+                if predict_ret == 4 and race_util.filter_4(shock_value, left, right):
                     total += 1
-                    print(total, max_index - left, inner_jump_index)
+                    print(total)
                     yield shock_value[before_left:right], origin_value[before_left * race_util.step:right * race_util.step]
 
     def refresh(value):
@@ -119,67 +137,58 @@ def view():
 
         return line1, line2
 
-    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=500, repeat=False)
+    ani = animation.FuncAnimation(fig, refresh, next_value, blit=False, interval=200, repeat=False)
     plt.show()
 
 
-def check():
+def check_extra_feature():
     model_1 = joblib.load('./data/model_1')
 
-    x_dict = dict()
+    x_list = dict()
     for unit in os.listdir('./data/all_range/'):
         print(unit)
         shock_value = np.load('./data/shock/' + unit)
         range_list = np.load('./data/all_range/' + unit)
+        jump_index = np.load('./data/jump/' + unit)
 
         for left, right in range_list:
-            feature_1 = build_feature(shock_value, left, right)
+            feature = build_feature(shock_value, left, right)
+            extra_feature = build_extra_feature(jump_index, shock_value, left, right)
 
-            if feature_1 is None:
+            if feature is None:
                 continue
 
-            c = model_1.predict([feature_1])[0]
-            l = x_dict.get(c)
+            c = model_1.predict([feature])[0]
+            l = x_list.get(c)
             if l is None:
-                l = x_dict[c] = []
+                l = x_list[c] = []
 
-            a = max(left - 10, 0)
-            b = int(max((right - left) / 9, 10))
+            l.append(right - left)
 
-            l.append(np.mean(shock_value[a:left]) / np.mean(shock_value[left:left + b]))
-
-    for i in np.arange(10):
-        print(i, np.histogram(x_dict[i], bins=12, range=(0, 0.6)))
-        plt.hist(x_dict[i], bins=12, range=(0, 0.6))
+    for i in np.arange(7):
+        print(i, np.histogram(x_list[i], bins=5, range=(50, 100)))
+        plt.hist(x_list[i], bins=5, range=(50, 100))
         plt.show()
 
 
 if __name__ == '__main__':
     # train()
     view()
-    # check()
+    # check_extra_feature()
 
-
-    # [TOTAL] 204098
-    # [22693 19247 14650 20245 25476 19699 13982 11062 26090 30954]
-    # [[ 0.77179115  0.83912615  0.87572828  0.78475361  0.62575825  0.49493578
-    #    0.40337117  0.31142242] - 0
-    #  [ 0.4019137   0.45556173  0.99887221  0.5524088   0.32652006  0.23626844
-    #    0.18746132  0.14689778] - 1
-    #  [ 0.99897634  0.39136644  0.20522641  0.15254674  0.1274821   0.1107679
-    #    0.09544468  0.07383921] - 2 【前面有最大值，下降很快】
-    #  [ 0.82052546  0.71635254  0.69974519  0.71888237  0.75515737  0.78529059
-    #    0.76873116  0.57049291] - 3 【不靠谱的节点】
-    #  [ 0.41240933  0.99977357  0.45104685  0.2712625   0.20620832  0.17134652
-    #    0.14637     0.11799013] - 4
-    #  [ 0.95672441  0.82332095  0.45326183  0.30691824  0.23984868  0.20524504
-    #    0.18227777  0.1506807 ] - 5
-    #  [ 0.43272446  0.37297696  0.49680569  0.99401494  0.57928403  0.35182082
-    #    0.25582217  0.19145805] - 6
-    #  [ 0.5245439   0.43181387  0.37530369  0.47298749  0.85961657  0.68740155
-    #    0.43101763  0.27060816] - 7
-    #  [ 0.57567491  0.979649    0.75387853  0.48917593  0.37174906  0.30782975
-    #    0.26305608  0.21024995] - 8
-    #  [ 0.96541874  0.8033538   0.57998867  0.50351136  0.45987328  0.42646528
-    #    0.39547216  0.30984713] - 9
-    # ]
+# [TOTAL] 238791
+# [62605 29529 43856 15696 29034 19073 38998]
+# [[ 0.89584541  0.8632947   0.65477086  0.54048548  0.46510977  0.41252181
+#    0.37396528  0.29628282]
+#  [ 0.40115803  0.52178753  0.99634265  0.58134721  0.35303778  0.25555288
+#    0.20256838  0.15740007]
+#  [ 0.47318028  0.9994939   0.50854158  0.31621624  0.24099865  0.20070666
+#    0.17272105  0.13823306]
+#  [ 0.51037815  0.41744849  0.36313959  0.44250483  0.8161885   0.69664994
+#    0.46010648  0.279985  ]
+#  [ 0.99679585  0.53858942  0.29303432  0.21432466  0.17796501  0.15647025
+#    0.13920035  0.11001444]
+#  [ 0.42249139  0.3696907   0.49128329  0.98991289  0.59376699  0.36129939
+#    0.26574394  0.19934205]
+#  [ 0.81594729  0.72135365  0.72121604  0.73750304  0.74312264  0.74017835
+#    0.71262448  0.53367587]]

@@ -37,7 +37,7 @@ def process(unit):
         a[np.where(r[step] == r_min)] = step
     b = np.arange(0, 10 * len(a), 10, dtype=int)
 
-    ret = (a + b)[np.where(r_min < 0.5)] + 10
+    ret = (a + b)[np.where(r_min < 2 / 3)] + 10
 
     if len(ret) > 0:
         np.save('./data/jump/' + unit, ret)
@@ -91,11 +91,11 @@ def main():
 
         total += len(range_list)
 
-    print('total = ', total) # 399172
+    print('total = ', total)  # 483912
 
 
 if __name__ == '__main__':
     race_util.config()
 
-    # main()
-    view('XX.YZP.2008213000000.npy')
+    main()
+    # view('XX.YZP.2008213000000.npy')

@@ -15,7 +15,7 @@ def process(unit):
     jump_index = np.load('./data/jump/' + unit)
     shock_value = np.load('./data/shock/' + unit)
     shock_mean_value_list = [np.mean(shock_value[i:i - 10].reshape(-1, 10), axis=1) for i in np.arange(10)]
-    origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    # origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
     ret = []
     for index in jump_index:
@@ -55,8 +55,6 @@ def process(unit):
                     # plt.show()
                 break
 
-    pass
-
     if len(ret) > 0:
         np.save('./data/all_range/' + unit, ret)
 
@@ -64,7 +62,9 @@ def process(unit):
 
 
 def main():
-    # for unit in os.listdir('./data/jump/'):
+    # unit_list = os.listdir('./data/jump/')
+    # random.shuffle(unit_list)
+    # for unit in unit_list:
     #     process(unit)
 
     pool = multiprocessing.Pool(processes=4)
@@ -76,70 +76,8 @@ def main():
 
         total += len(range_list)
 
-    print('[TOTAL RANGE]', total)
-
-
-def check_1():
-    v = []
-
-    for unit in os.listdir('./data/all_range/'):
-        print(unit)
-        range_list = np.load('./data/all_range/' + unit)
-        shock_value = np.load('./data/shock/' + unit)
-
-        for left, right in range_list:
-            before_value = np.mean(shock_value[left - 10:left])
-            if len(np.where(shock_value[left - 10:left] == 0)[0]) > 0:
-                print(shock_value[left - 10:left])
-
-            v.append(before_value / np.max(shock_value[left:right]))
-
-    print(np.histogram(v, range=(0, 1), bins=10))
-
-    plt.hist(v, range=(0, 1), bins=10)
-    plt.show()
-
-
-def check_2():
-    v = []
-
-    for unit in os.listdir('./data/all_range/'):
-        print(unit)
-        range_list = np.load('./data/all_range/' + unit)
-        shock_value = np.load('./data/shock/' + unit)
-
-        for left, right in range_list:
-            before_value = np.mean(shock_value[left - 10:left])
-            x = int(max(10, (right - left) * 0.1))
-            v.append(before_value / np.mean(shock_value[left:left + x]))
-
-    print(np.histogram(v, range=(0, 1), bins=10))
-
-    plt.hist(v, range=(0, 1), bins=10)
-    plt.show()
-
-
-def check_3():
-    v = []
-
-    for unit in os.listdir('./data/all_range/'):
-        print(unit)
-        range_list = np.load('./data/all_range/' + unit)
-        shock_value = np.load('./data/shock/' + unit)
-
-        for left, right in range_list:
-            v.append(right - left)
-
-    # print(np.histogram(v, range=(500, 2500), bins=20))
-
-    plt.hist(v, range=(50, 250), bins=20)
-    plt.show()
+    print('total = ', total)  # 229026
 
 
 if __name__ == '__main__':
-    race_util.config()
-
     main()
-    # check_1()
-    # check_2()
-    # check_3()

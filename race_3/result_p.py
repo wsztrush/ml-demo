@@ -71,28 +71,28 @@ def process(unit):
         result.append((before_left + ret) * race_util.step)
 
         # 展示结果
-        plt.subplot(4, 1, 1)
-        plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
-        plt.axhline(y=0, color="black")
-        plt.axvline(x=right_end, color='red',      linestyle=":")
-        plt.axvline(x=left - before_left, color='green', linestyle=":")
-        plt.plot(np.arange(right - before_left), tmp_shock)
-
-        plt.subplot(4, 1, 2)
-        plt.axhline(y=a, color='red', linestyle=":")
-        plt.axvline(x=ret, color='green')
-        plt.plot(np.arange(right_end), tmp_shock[:right_end])
-
-        plt.subplot(4, 1, 3)
-        plt.axvline(x=ret * race_util.step, color='red')
-        plt.plot(np.arange((right - before_left) * race_util.step), origin_value[before_left * race_util.step:right * race_util.step])
-
-        plt.subplot(4, 1, 4)
-        plt.axvline(x=ret * race_util.step, color='red')
-        plt.axvline(x=ret * race_util.step - 40, color='green', linestyle=":")
-        plt.axvline(x=ret * race_util.step + 40, color='green', linestyle=":")
-        plt.plot(np.arange(right_end * race_util.step), origin_value[before_left * race_util.step:(before_left + right_end) * race_util.step])
-        plt.show()
+        # plt.subplot(4, 1, 1)
+        # plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
+        # plt.axhline(y=0, color="black")
+        # plt.axvline(x=right_end, color='red',      linestyle=":")
+        # plt.axvline(x=left - before_left, color='green', linestyle=":")
+        # plt.plot(np.arange(right - before_left), tmp_shock)
+        #
+        # plt.subplot(4, 1, 2)
+        # plt.axhline(y=a, color='red', linestyle=":")
+        # plt.axvline(x=ret, color='green')
+        # plt.plot(np.arange(right_end), tmp_shock[:right_end])
+        #
+        # plt.subplot(4, 1, 3)
+        # plt.axvline(x=ret * race_util.step, color='red')
+        # plt.plot(np.arange((right - before_left) * race_util.step), origin_value[before_left * race_util.step:right * race_util.step])
+        #
+        # plt.subplot(4, 1, 4)
+        # plt.axvline(x=ret * race_util.step, color='red')
+        # plt.axvline(x=ret * race_util.step - 40, color='green', linestyle=":")
+        # plt.axvline(x=ret * race_util.step + 40, color='green', linestyle=":")
+        # plt.plot(np.arange(right_end * race_util.step), origin_value[before_left * race_util.step:(before_left + right_end) * race_util.step])
+        # plt.show()
 
     result = sorted(result)
 
