@@ -1,53 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="继续冲击40%">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race/race_util.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/build_clf.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_1.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_3.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_4.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_5.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_model_6.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_result_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_sample_tool.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/build_shock.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/data/tmp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/final/result_s.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/build_cnn.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/build_model_1.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/build_p_ret.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/build_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/data/tmp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_1/round_4/view_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_all_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_jump.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_model_1.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_model_2.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_model_a.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_model_b.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/build_shock.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/data/tmp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/race_util.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/result_p.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_2/view_result_range.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_3/data/tmp.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_3/race_util.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race_3/result_p.py" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_1/final/result_s.py" afterPath="$PROJECT_DIR$/race/data/tmp.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_2/result_p.py" afterPath="$PROJECT_DIR$/race/result_p.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_2/view_example.py" afterPath="$PROJECT_DIR$/race/view_example.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_2/view_obspy.py" afterPath="$PROJECT_DIR$/race/view_obspy.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_all_range.py" afterPath="$PROJECT_DIR$/race/build_all_range.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_jump.py" afterPath="$PROJECT_DIR$/race/build_jump.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_model_1.py" afterPath="$PROJECT_DIR$/race/build_model_1.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_model_2.py" afterPath="$PROJECT_DIR$/race/build_model_2.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_range.py" afterPath="$PROJECT_DIR$/race/build_range.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/race_3/build_shock.py" afterPath="$PROJECT_DIR$/race/build_shock.py" />
+    <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race/build_shock_z.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race/build_model_1.py" afterPath="$PROJECT_DIR$/race/build_model_1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race/build_range.py" afterPath="$PROJECT_DIR$/race/build_range.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race/data/tmp.txt" afterPath="$PROJECT_DIR$/race/data/tmp.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race/race_util.py" afterPath="$PROJECT_DIR$/race/race_util.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/race/result_p.py" afterPath="$PROJECT_DIR$/race/result_p.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -65,9 +26,53 @@
       <file leaf-file-name="build_model_1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/race/build_model_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+            <state relative-caret-position="659">
+              <caret line="170" column="18" lean-forward="false" selection-start-line="168" selection-start-column="7" selection-end-line="170" selection-end-column="18" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build_range.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race/build_range.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="56" column="4" lean-forward="false" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="race_util.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race/race_util.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="result_p.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race/result_p.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="100" column="20" lean-forward="true" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build_shock_z.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/race/build_shock_z.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -75,28 +80,20 @@
       <file leaf-file-name="build_shock.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/race/build_shock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="180">
+              <caret line="9" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build_jump.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/race/build_jump.py">
+      <file leaf-file-name="tmp.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/race/data/tmp.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="77" column="22" lean-forward="false" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build_all_range.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/race/build_all_range.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+            <state relative-caret-position="60">
+              <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -113,7 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>XX.MXI.2008188000000.npy</find>
       <find>XX.QCH.2008189000000.npy</find>
       <find>XX.YZP.2008212000000.npy</find>
       <find>XX.YZP.2008191000000.npy</find>
@@ -143,6 +139,7 @@
       <find>build_feature</find>
       <find>step</find>
       <find>.25</find>
+      <find>shock_value</find>
     </findStrings>
     <replaceStrings>
       <replace>step</replace>
@@ -154,11 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/race_1/round_4/view_range.py" />
-        <option value="$PROJECT_DIR$/race_1/round_4/build_jump.py" />
-        <option value="$PROJECT_DIR$/race_1/round_4/build_kmeans.py" />
-        <option value="$PROJECT_DIR$/race_1/final/race_util.py" />
-        <option value="$PROJECT_DIR$/race_1/final/build_shock.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_jump.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_all_range.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_model_1.py" />
@@ -205,6 +197,11 @@
         <option value="$PROJECT_DIR$/race_3/build_all_range.py" />
         <option value="$PROJECT_DIR$/race_3/build_shock.py" />
         <option value="$PROJECT_DIR$/race/build_model_1.py" />
+        <option value="$PROJECT_DIR$/race/data/tmp.txt" />
+        <option value="$PROJECT_DIR$/race/race_util.py" />
+        <option value="$PROJECT_DIR$/race/build_shock_z.py" />
+        <option value="$PROJECT_DIR$/race/build_range.py" />
+        <option value="$PROJECT_DIR$/race/result_p.py" />
       </list>
     </option>
   </component>
@@ -340,7 +337,79 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.result_p">
+    <configuration default="false" name="build_model_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/build_model_1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="build_range" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/build_range.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="result_p" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/result_p.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="build_shock_z" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/build_shock_z.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="" />
       <working_directory value="$PROJECT_DIR$" />
@@ -425,6 +494,20 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Python.build_model_1" />
+      <item index="1" class="java.lang.String" itemvalue="Python.build_range" />
+      <item index="2" class="java.lang.String" itemvalue="Python.result_p" />
+      <item index="3" class="java.lang.String" itemvalue="Python.build_shock_z" />
+    </list>
+    <recent_temporary>
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.result_p" />
+        <item index="1" class="java.lang.String" itemvalue="Python.build_range" />
+        <item index="2" class="java.lang.String" itemvalue="Python.build_shock_z" />
+        <item index="3" class="java.lang.String" itemvalue="Python.build_model_1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -439,13 +522,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497666091081</updated>
-    </task>
-    <task id="LOCAL-00020" summary="添加注释">
-      <created>1501552027705</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1501552027705</updated>
     </task>
     <task id="LOCAL-00021" summary="修改文件">
       <created>1501558905262</created>
@@ -783,7 +859,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505091058486</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="要不放弃？">
+      <created>1505142195910</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1505142195911</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -834,7 +917,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5129412" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5764706" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -859,11 +942,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5129412" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5764706" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29305556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29305556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32588235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -877,7 +960,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="分类器还是放一起吧" />
     <MESSAGE value="最后一轮优化开始" />
     <MESSAGE value="第一个分割点的位置判断" />
     <MESSAGE value="第一个分割点貌似OK了" />
@@ -902,7 +984,8 @@
     <MESSAGE value="冲击40%：BHZ的文件看起来不靠谱" />
     <MESSAGE value="冲击40%：使用第一个位置做过滤" />
     <MESSAGE value="继续冲击40%" />
-    <option name="LAST_COMMIT_MESSAGE" value="继续冲击40%" />
+    <MESSAGE value="要不放弃？" />
+    <option name="LAST_COMMIT_MESSAGE" value="要不放弃？" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,7 +1052,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/race_1/round_4/build_init_range.py" />
     <entry file="file://$PROJECT_DIR$/race_1/round_4/build_rbm.py" />
     <entry file="file://$PROJECT_DIR$/race_1/round_4/build_sample_range.py" />
     <entry file="file://$PROJECT_DIR$/race_1/round_4/data/tmp.txt">
@@ -1251,52 +1333,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race/data/tmp.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race/build_range.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="20" column="59" lean-forward="false" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race/result_p.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="70" column="55" lean-forward="false" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race/data/1.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/race/view_obspy.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="14" column="34" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race/race_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="138" column="26" lean-forward="false" selection-start-line="138" selection-start-column="26" selection-end-line="138" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -1309,27 +1349,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race/build_model_1.py">
+    <entry file="file://$PROJECT_DIR$/race/build_all_range.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state relative-caret-position="58">
+          <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/data/1.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="9697" column="22" lean-forward="true" selection-start-line="9697" selection-start-column="22" selection-end-line="9697" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/data/tmp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/race/build_shock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="9" column="23" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/race_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/race/build_all_range.py">
+    <entry file="file://$PROJECT_DIR$/race/build_range.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="49" column="21" lean-forward="true" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+        <state relative-caret-position="103">
+          <caret line="56" column="4" lean-forward="false" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/build_model_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="659">
+          <caret line="170" column="18" lean-forward="false" selection-start-line="168" selection-start-column="7" selection-end-line="170" selection-end-column="18" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/result_p.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="100" column="20" lean-forward="true" selection-start-line="100" selection-start-column="20" selection-end-line="100" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/race/build_shock_z.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

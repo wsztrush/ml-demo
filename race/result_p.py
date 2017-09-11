@@ -30,14 +30,16 @@ def process(unit):
 
     # 读取数据
     shock_value = np.load('./data/shock/' + unit)
-    origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    shock_z_value = np.load('./data/shock_z/' + unit)
+    origin_value_n = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    origin_value_z = read(race_util.origin_dir_path + unit[:-4] + '.BHZ')[0].data
     range_value = np.load('./data/range/' + unit)
 
     result = []
     for left, right in range_value:
         before_left = max(int(left - (right - left) / 9), 0)
 
-        tmp_shock = shock_value[before_left:right]
+        tmp_shock = shock_z_value[before_left:right]
         shock_max = np.max(tmp_shock)
         shock_right_limt = shock_max * 0.2
 
@@ -71,34 +73,38 @@ def process(unit):
         result.append((before_left + ret) * race_util.step)
 
         # 展示结果
-        plt.subplot(4, 1, 1)
-        plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
-        plt.axhline(y=0, color="black")
-        plt.axvline(x=right_end, color='red',      linestyle=":")
-        plt.axvline(x=left - before_left, color='green', linestyle=":")
-        plt.plot(np.arange(right - before_left), tmp_shock)
-
-        plt.subplot(4, 1, 2)
-        plt.axhline(y=a, color='red', linestyle=":")
-        plt.axvline(x=ret, color='green')
-        plt.plot(np.arange(right_end), tmp_shock[:right_end])
-
-        plt.subplot(4, 1, 3)
-        plt.axvline(x=ret * race_util.step, color='red')
-        plt.plot(np.arange((right - before_left) * race_util.step), origin_value[before_left * race_util.step:right * race_util.step])
-
-        plt.subplot(4, 1, 4)
-        plt.axvline(x=ret * race_util.step, color='red')
-        plt.axvline(x=ret * race_util.step - 40, color='green', linestyle=":")
-        plt.axvline(x=ret * race_util.step + 40, color='green', linestyle=":")
-        plt.plot(np.arange(right_end * race_util.step), origin_value[before_left * race_util.step:(before_left + right_end) * race_util.step])
-        plt.show()
+        # plt.subplot(5, 1, 1)
+        # plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
+        # plt.axhline(y=0, color="black")
+        # plt.axvline(x=right_end, color='red',      linestyle=":")
+        # plt.axvline(x=left - before_left, color='green', linestyle=":")
+        # plt.plot(np.arange(right - before_left), tmp_shock)
+        #
+        # plt.subplot(5, 1, 2)
+        # plt.axhline(y=a, color='red', linestyle=":")
+        # plt.axvline(x=ret, color='green')
+        # plt.plot(np.arange(right_end), tmp_shock[:right_end])
+        #
+        # plt.subplot(5, 1, 3)
+        # plt.axvline(x=ret * race_util.step, color='red')
+        # plt.plot(np.arange((right - before_left) * race_util.step), origin_value_n[before_left * race_util.step:right * race_util.step])
+        #
+        # plt.subplot(5, 1, 4)
+        # plt.axvline(x=ret * race_util.step, color='red')
+        # plt.plot(np.arange((right - before_left) * race_util.step), origin_value_z[before_left * race_util.step:right * race_util.step])
+        #
+        # plt.subplot(5, 1, 5)
+        # plt.axvline(x=ret * race_util.step, color='red')
+        # plt.axvline(x=ret * race_util.step - 40, color='green', linestyle=":")
+        # plt.axvline(x=ret * race_util.step + 40, color='green', linestyle=":")
+        # plt.plot(np.arange(right_end * race_util.step), origin_value_z[before_left * race_util.step:(before_left + right_end) * race_util.step])
+        # plt.show()
 
     result = sorted(result)
 
     tmp = []
     for i in result:
-        if len(tmp) > 0 and i - tmp[-1] < 40:
+        if len(tmp) > 0 and i - tmp[-1] < 10:
             tmp[-1] = (i + tmp[-1]) / 2
         else:
             tmp.append(i)
@@ -117,6 +123,8 @@ def main():
     for unit in unit_list:
         print(unit)
         process(unit)
+
+    # process('XX.MXI.2008201000000.npy')
 
 
 if __name__ == '__main__':

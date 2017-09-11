@@ -42,8 +42,8 @@ def range_filter(shock_value, left, right):
 
     # 根据不同的类型分别进行处理
     predict_ret = model_1.predict([feature])[0]
-    if predict_ret == 4:
-        return filter_4(shock_value, left, right)
+    if predict_ret == 5:
+        return filter_5(shock_value, left, right)
     else:
         return [False]
 
@@ -53,7 +53,7 @@ def config():
     p["figure.figsize"] = (15, 7)
 
 
-def filter_4(shock_value, left, right):
+def filter_5(shock_value, left, right):
     # 过滤掉非常不靠谱的点
     tmp = shock_value[left:right]
     tmp_max = np.max(tmp)
@@ -83,7 +83,12 @@ def filter_4(shock_value, left, right):
     if b < 30:
         return [False]
 
-    # 根据跳跃点进行过滤
+    # 第一种跳跃点过滤
+    first_jump = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
+    if first_jump > 0.5:
+        return [False]
+
+    # 第二种跳跃点进行过滤
     jump_5 = find_second_jump_point(shock_value, left, right, before_mean, 5)
     jump_10 = find_second_jump_point(shock_value, left, right, before_mean, 10)
     jump_point = jump_5.tolist() + jump_10.tolist()
@@ -91,37 +96,6 @@ def filter_4(shock_value, left, right):
         return [False, jump_point]
     else:
         return [True, jump_point]
-
-
-# def filter_1(shock_value, left, right):
-#     # 过滤明显不正确的点
-#     before_mean = np.mean(shock_value[left - 10:left])
-#     if before_mean > 2000 and left > 100 and shock_value[left - 100] > 50000:
-#         return False
-#
-#     # 在最高点附近找区间，根据长度过滤
-#     tmp = shock_value[left:right]
-#     tmp_max = np.max(tmp)
-#     tmp_max_index = np.where(tmp == tmp_max)[0][0]
-#
-#     a = np.where(tmp[:tmp_max_index] < before_mean)[0]
-#     b = tmp_max_index
-#     if len(a) > 0:
-#         b -= a[-1]
-#     a = np.where(tmp[tmp_max_index:] < before_mean)[0]
-#     if len(a) > 0:
-#         b += a[0]
-#     else:
-#         b += len(tmp) - tmp_max_index
-#     if b < 20:
-#         return False
-#
-#     # 根据刚开始的高度过滤
-#     a = np.mean(tmp[:int(len(tmp) / 10)])
-#     if a / tmp_max < 0.01:
-#         return False
-#
-#     return True  # TODO
 
 
 # 计算跳跃程度
