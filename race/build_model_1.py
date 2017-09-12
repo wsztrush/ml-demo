@@ -109,18 +109,14 @@ def view():
         for unit in unit_list:
             print(unit)
             shock_value = np.load('./data/shock/' + unit)
+            shock_z_value = np.load('./data/shock_z/' + unit)
             range_list = np.load('./data/all_range/' + unit)
             origin_value = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
 
             for left, right in range_list:
                 before_left = max(int(left - (right - left) / 9), 0)
 
-                feature = build_feature(shock_value, left, right)
-                if feature is None:
-                    continue
-                predict_ret = kmeans.predict([feature])[0]
-
-                if predict_ret == 5 and race_util.filter_5(shock_value, left, right)[0]:
+                if race_util.range_filter(shock_value, shock_z_value, left, right):
                     total += 1
                     print(total)
                     yield shock_value[before_left:right], origin_value[before_left * race_util.step:right * race_util.step]

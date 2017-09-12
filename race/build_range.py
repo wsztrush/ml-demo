@@ -16,41 +16,36 @@ def process(unit):
     shock_z_value = np.load('./data/shock_z/' + unit)
     range_value = np.load('./data/all_range/' + unit)
     origin_value_n = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
-    origin_value_e = read(race_util.origin_dir_path + unit[:-4] + '.BHE')[0].data
     origin_value_z = read(race_util.origin_dir_path + unit[:-4] + '.BHZ')[0].data
 
     result = []
     for left, right in range_value:
-        filter_ret = race_util.range_filter(shock_value, shock_z_value, left, right)
-
-        if filter_ret[0]:
+        if race_util.range_filter(shock_value, shock_z_value, left, right):
             result.append([left, right])
 
-            # before_left = max(int(left - 100), 0)
-            #
-            # plt.subplot(3, 1, 1)
-            # plt.axhline(y=np.mean(shock_value[left - 10:left]), linestyle='-.')
-            # plt.axhline(y=0, color='black', linestyle='-.')
-            # plt.axvline(x=left - before_left, linestyle='-.')
-            # plt.axvline(x=left - before_left + 20, linestyle='-.')
-            # plt.axvline(x=left - before_left - 20, linestyle='-.')
-            #
-            # if len(filter_ret) > 1:
-            #     for i in filter_ret[1]:
-            #         plt.axvline(x=left - before_left + i, color='red', linestyle='-.')
-            # plt.plot(np.arange(right - before_left), shock_value[before_left:right])
-            #
-            # plt.subplot(3, 1, 2)
-            # origin_left, origin_right = before_left * race_util.step, right * race_util.step
-            # plt.axvline(x=(left - before_left) * race_util.step, linestyle='-.')
-            # plt.plot(np.arange(origin_right - origin_left), origin_value_n[origin_left:origin_right])
-            #
-            # plt.subplot(3, 1, 3)
-            # origin_left, origin_right = before_left * race_util.step, right * race_util.step
-            # plt.axvline(x=(left - before_left) * race_util.step, linestyle='-.')
-            # plt.plot(np.arange(origin_right - origin_left), origin_value_z[origin_left:origin_right])
-            #
-            # plt.show()
+            def show():
+                before_left = max(int(left - 100), 0)
+
+                plt.subplot(3, 1, 1)
+                plt.axhline(y=np.mean(shock_value[left - 10:left]), linestyle='-.')
+                plt.axhline(y=0, color='black', linestyle='-.')
+                for i in np.arange(8):
+                    plt.axvline(x=left - before_left + (right - left) * (i / 8), linestyle='-.')
+                plt.plot(np.arange(right - before_left), shock_value[before_left:right])
+
+                plt.subplot(3, 1, 2)
+                origin_left, origin_right = before_left * race_util.step, right * race_util.step
+                plt.axvline(x=(left - before_left) * race_util.step, linestyle='-.')
+                plt.plot(np.arange(origin_right - origin_left), origin_value_n[origin_left:origin_right])
+
+                plt.subplot(3, 1, 3)
+                origin_left, origin_right = before_left * race_util.step, right * race_util.step
+                plt.axvline(x=(left - before_left) * race_util.step, linestyle='-.')
+                plt.plot(np.arange(origin_right - origin_left), origin_value_z[origin_left:origin_right])
+
+                plt.show()
+
+            # show()
 
     if len(result) > 0:
         np.save('./data/range/' + unit, result)
@@ -96,9 +91,10 @@ def check():
         for left, right in range_value:
             filter_ret = race_util.range_filter(shock_value, shock_z_value, left, right)
 
-            if filter_ret[0]:
-                a.append(np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1))
-                b.append(np.mean(shock_z_value[left - 20:left]) / (np.mean(shock_z_value[left:left + 20]) + 1))
+            if filter_ret:
+                x, y = race_util.calc_begin_jump_degree(shock_value, shock_z_value, left)
+                a.append(x)
+                b.append(y)
 
     print(np.histogram(a, bins=10, range=(0, 1)))
     plt.hist(a, bins=10, range=(0, 1))
@@ -110,10 +106,7 @@ def check():
 
 
 if __name__ == '__main__':
-    # race_util.config()
+    race_util.config()
 
     main()
     # check()
-
-    # (array([7001, 7860, 4838, 2565, 1428, 1132,  873,  351,   94,   27]), array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ]))
-    # (array([11156,  7475,  2894,  1230,   719,   696,   724,   541,   345,   206]), array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ]))
