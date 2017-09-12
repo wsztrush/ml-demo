@@ -5,15 +5,8 @@ import build_model_1
 from sklearn.externals import joblib
 
 origin_dir_path = "/Users/tianchi.gzt/Downloads/race_1/after/"
-shock_path = "./data/shock/"
-range_path = "./data/range/"
-
 model_1 = joblib.load('./data/model_1')
-
 step = 10  # 生成初始数据的步长
-
-
-# filter_jump_step = 5  # 在过滤的时候，跳跃的步长
 
 
 def judge_range(before_value, shock_range_value):
@@ -34,7 +27,7 @@ def judge_range(before_value, shock_range_value):
     return True
 
 
-def range_filter(shock_value, left, right):
+def range_filter(shock_value, shock_z_value, left, right):
     # 根据形状进行分类
     feature = build_model_1.build_feature(shock_value, left, right)
     if feature is None:
@@ -42,8 +35,21 @@ def range_filter(shock_value, left, right):
 
     # 根据不同的类型分别进行处理
     predict_ret = model_1.predict([feature])[0]
-    if predict_ret == 5:
-        return filter_5(shock_value, left, right)
+    if predict_ret == 0:
+        return filter_0(shock_value, shock_z_value, left, right)
+    elif predict_ret == 1:
+        return filter_1(shock_value, left, right)
+    elif predict_ret == 2:
+        return filter_2(shock_value, shock_z_value, left, right)
+    elif predict_ret == 3:
+        return filter_3(shock_value, left, right)
+    elif predict_ret == 4:
+        return filter_4(shock_value, left, right)
+    elif predict_ret == 5:
+        # return filter_5(shock_value, left, right)
+        return [False]
+    elif predict_ret == 6:
+        return filter_6(shock_value, left, right)
     else:
         return [False]
 
@@ -51,6 +57,60 @@ def range_filter(shock_value, left, right):
 def config():
     p = matplotlib.rcParams
     p["figure.figsize"] = (15, 7)
+
+
+def filter_0(shock_value, shock_z_value, left, right):
+    # before_mean = np.mean(shock_value[left - 10:left])
+    #
+    # jump_5 = find_second_jump_point(shock_value, left, right, before_mean, 5)
+    # jump_10 = find_second_jump_point(shock_value, left, right, before_mean, 10)
+    # jump_point = jump_5.tolist() + jump_10.tolist()
+    #
+    # if len(jump_point) == 0:
+    #     return [False, jump_point]
+    # else:
+    #     return [True]
+
+    # 根据刚开是的比例进行过滤
+    # a = np.mean(shock_z_value[left - 20:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
+    # if a > 0.2:
+    #     return [True]
+    # else:
+    #     return [False]
+    return [False]
+
+
+def filter_1(shock_value, left, right):
+    # 该形状的波形可能性比较小，最后考虑。
+    return [False]
+
+
+def filter_2(shock_value, shock_z_value, left, right):
+    before_mean = np.mean(shock_value[left - 10:left])
+
+    # 根据跳跃点进行过滤
+    jump_5 = find_second_jump_point(shock_value, left, right, before_mean, 5)
+    jump_10 = find_second_jump_point(shock_value, left, right, before_mean, 10)
+    jump_point = jump_5.tolist() + jump_10.tolist()
+    if len(jump_point) == 0:
+        return [False, jump_point]
+
+    # 根据开始位置的跳跃情况进行过滤
+    a = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
+    b = np.mean(shock_z_value[left - 20:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
+
+    if a > 0.3 and b > 0.3:
+        return [False]
+
+    return [True]
+
+
+def filter_3(shock_value, left, right):
+    return [False]
+
+
+def filter_4(shock_value, left, right):
+    return [False]
 
 
 def filter_5(shock_value, left, right):
@@ -90,12 +150,20 @@ def filter_5(shock_value, left, right):
 
     # 第二种跳跃点进行过滤
     jump_5 = find_second_jump_point(shock_value, left, right, before_mean, 5)
+    jump_5 = jump_5[np.where(jump_5 < len(tmp) * (3 / 8))[0]]
+
     jump_10 = find_second_jump_point(shock_value, left, right, before_mean, 10)
+    jump_10 = jump_5[np.where(jump_10 < len(tmp) * (3 / 8))[0]]
+
     jump_point = jump_5.tolist() + jump_10.tolist()
     if len(jump_point) == 0:
         return [False, jump_point]
     else:
         return [True, jump_point]
+
+
+def filter_6(shock_value, left, right):
+    return [False]
 
 
 # 计算跳跃程度
@@ -130,6 +198,4 @@ def find_second_jump_point(shock_value, left, right, before_mean, filter_jump_st
     # 计算真实的位置（只保留前半部分）
     ret = a + b
     ret = ret[np.where(a >= 0)[0]]
-    ret = ret[np.where(ret < len(tmp) * (3 / 8))[0]]
-
     return ret
