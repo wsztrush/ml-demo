@@ -40,21 +40,22 @@ def range_filter(shock_value, shock_z_value, left, right):
         # return filter_0(shock_value, shock_z_value, left, right)
     elif predict_ret == 1:
         return False
-        # return filter_1(shock_value, left, right)
+        # return filter_1(shock_value, shock_z_value,left, right)
     elif predict_ret == 2:
-        # return filter_2(shock_value, shock_z_value, left, right)
-        return False
+        return filter_2(shock_value, shock_z_value, left, right)
+        # return False  # TODO
     elif predict_ret == 3:
-        # return filter_3(shock_value, shock_z_value, left, right)
-        return False
+        return filter_3(shock_value, shock_z_value, left, right)
+        # return False # TODO
     elif predict_ret == 4:
-        # return filter_4(shock_value, left, right)
-        return False
+        return filter_4(shock_value, shock_z_value, left, right)
+        # return False  # TODO
     elif predict_ret == 5:
-        # return filter_5(shock_value, left, right)
-        return False
+        return filter_5(shock_value, shock_z_value, left, right)
+        # return False  # TODO
     elif predict_ret == 6:
         return filter_6(shock_value, shock_z_value, left, right)
+        # return False  # TODO
     else:
         return False
 
@@ -64,99 +65,160 @@ def config():
     p["figure.figsize"] = (15, 7)
 
 
+#
 def filter_0(shock_value, shock_z_value, left, right):
-    return [False]
+    return False
 
 
-def filter_1(shock_value, left, right):
-    # 该形状的波形可能性比较小，最后考虑。
-    return [False]
+#
+def filter_1(shock_value, shock_z_value, left, right):
+    return False
 
 
+# 26153
 def filter_2(shock_value, shock_z_value, left, right):
     before_mean = np.mean(shock_value[left - 10:left])
 
-    # 根据跳跃点进行过滤
-    jump_5 = find_jump_point(shock_value, left, right, before_mean, 5)
-    jump_10 = find_jump_point(shock_value, left, right, before_mean, 10)
-    jump_point = jump_5.tolist() + jump_10.tolist()
-    if len(jump_point) == 0:
-        return [False, jump_point]
-
-    # 根据开始位置的跳跃情况进行过滤
-    a = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
-    b = np.mean(shock_z_value[left - 20:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
-
+    # 根据开始的跳跃程度进行过滤
+    a, b = calc_begin_jump_degree(shock_value, shock_z_value, left)
     if a > 0.3 and b > 0.3:
-        return [False]
+        return False
 
-    return [True]
+    # 根据最大值过滤
+    a = np.max(shock_value[left:right])
+    if a < 600:
+        return False
+
+    # 根据最大值所在位置的区间宽度进行过滤
+    max_index = np.argmax(shock_value[left:right])
+    a = calc_max_length(before_mean, shock_value, left, right, max_index)
+    if a < 30:
+        return False
+
+    # 根据跳跃点进行过滤
+    j_5 = find_jump_point(shock_value, left, right, before_mean, 5, jump_degree_limit=0.5)
+    j_10 = find_jump_point(shock_value, left, right, before_mean, 10, jump_degree_limit=0.5)
+    j_5 = j_5[np.where(j_5 < (right - left) * (3 / 8))[0]]
+    j_10 = j_10[np.where(j_10 < (right - left) * (3 / 8))[0]]
+    if len(j_5) == 0 and len(j_10) == 0:
+        return False
+
+    return True
 
 
+# 6320
 def filter_3(shock_value, shock_z_value, left, right):
     before_mean = np.mean(shock_value[left - 10:left])
 
-    # 根据开始位置的跳跃情况进行过滤
-    a = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
-    b = np.mean(shock_z_value[left - 20:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
-
+    # 根据开始的跳跃程度进行过滤
+    a, b = calc_begin_jump_degree(shock_value, shock_z_value, left)
     if a > 0.3 and b > 0.3:
-        return [False]
+        return False
 
-    return [True]
+    # 根据最大值过滤
+    a = np.max(shock_value[left:right])
+    if a < 600:
+        return False
+
+    # 根据最大值所在位置的区间宽度进行过滤
+    max_index = np.argmax(shock_value[left:right])
+    a = calc_max_length(before_mean, shock_value, left, right, max_index)
+    if a < 30:
+        return False
+
+    # 根据跳跃点进行过滤
+    # j_5 = find_jump_point(shock_value, left, right, before_mean, 5, jump_degree_limit=0.5)
+    # j_10 = find_jump_point(shock_value, left, right, before_mean, 10, jump_degree_limit=0.5)
+    # j_5 = j_5[np.where(j_5 > (right - left) * (2 / 8))[0]]
+    # j_10 = j_10[np.where(j_10 > (right - left) * (2 / 8))[0]]
+    # if len(j_5) == 0 and len(j_10) == 0:
+    #     return False
+
+    return True
 
 
-def filter_4(shock_value, left, right):
-    return [True]
+# 14789
+def filter_4(shock_value, shock_z_value, left, right):
+    before_mean = np.mean(shock_value[left - 10:left])
+
+    # 根据开始的跳跃程度进行过滤
+    a, b = calc_begin_jump_degree(shock_value, shock_z_value, left)
+    if a > 0.3 and b > 0.3:
+        return False
+
+    # 根据最大值过滤
+    a = np.max(shock_value[left:right])
+    if a < 600:
+        return False
+
+    # 根据最大值所在位置的区间宽度进行过滤
+    max_index = np.argmax(shock_value[left:right])
+    a = calc_max_length(before_mean, shock_value, left, right, max_index)
+    if a < 30:
+        return False
+
+    # 根据跳跃点进行过滤
+    j_5 = find_jump_point(shock_value, left, right, before_mean, 5, jump_degree_limit=0.4)
+    j_10 = find_jump_point(shock_value, left, right, before_mean, 10, jump_degree_limit=0.4)
+    j_5 = j_5[np.where(j_5 < (right - left) * (4 / 8))[0]]
+    j_10 = j_10[np.where(j_10 < (right - left) * (4 / 8))[0]]
+    if len(j_5) == 0 and len(j_10) == 0:
+        return False
+
+    return True
 
 
-def filter_5(shock_value, left, right):
-    # 过滤掉非常不靠谱的点
+# 16977
+def filter_5(shock_value, shock_z_value, left, right):
     tmp = shock_value[left:right]
+    before_mean = np.mean(shock_value[left - 10:left])
+
+    # 过滤掉非常不靠谱的点
     tmp_max = np.max(tmp)
-    tmp_max_index = np.where(tmp == tmp_max)[0][0]
+    tmp_max_index = np.argmax(tmp)
     tmp_min = np.min(tmp[tmp_max_index:tmp_max_index + 10])
     if tmp_max_index <= 2 and (tmp_min / tmp_max > 0.5 or tmp_min / tmp_max < 0.01):
-        return [False]
+        return False
     tmp_index_1 = np.where(tmp > tmp_max * 0.1)[0]
     if len(tmp_index_1) <= 2:
-        return [False]
+        return False
 
-    # 根据峰值过滤
+    # 根据最大值过滤
     if tmp_max < 600:
-        return [False]
+        return False
 
     # 根据最高点附近的区间长度过滤
-    before_mean = np.mean(shock_value[left - 10:left])
-    a = np.where(tmp[:tmp_max_index] < before_mean)[0]
-    b = tmp_max_index
-    if len(a) > 0:
-        b -= a[-1]
-    a = np.where(tmp[tmp_max_index:] < before_mean)[0]
-    if len(a) > 0:
-        b += a[0]
-    else:
-        b += len(tmp) - tmp_max_index
-    if b < 30:
-        return [False]
+    a = calc_max_length(before_mean, shock_value, left, right, tmp_max_index)
+    if a < 30:
+        return False
+    # a = np.where(tmp[:tmp_max_index] < before_mean)[0]
+    # b = tmp_max_index
+    # if len(a) > 0:
+    #     b -= a[-1]
+    # a = np.where(tmp[tmp_max_index:] < before_mean)[0]
+    # if len(a) > 0:
+    #     b += a[0]
+    # else:
+    #     b += len(tmp) - tmp_max_index
+    # if b < 30:
+    #     return [False]
 
-    # 第一种跳跃点过滤
-    first_jump = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
-    if first_jump > 0.5:
-        return [False]
+    # 根据刚开始跳跃的位置进行过滤
+    a = np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1)
+    if a > 0.5:
+        return False
 
-    # 第二种跳跃点进行过滤
-    jump_5 = find_jump_point(shock_value, left, right, before_mean, 5)
+    # 根据跳跃点进行过滤
+    jump_5 = find_jump_point(shock_value, left, right, max(before_mean * 3, 100), 5)
+    jump_10 = find_jump_point(shock_value, left, right, max(before_mean * 3, 100), 10)
+
     jump_5 = jump_5[np.where(jump_5 < len(tmp) * (3 / 8))[0]]
-
-    jump_10 = find_jump_point(shock_value, left, right, before_mean, 10)
     jump_10 = jump_10[np.where(jump_10 < len(tmp) * (3 / 8))[0]]
 
-    jump_point = jump_5.tolist() + jump_10.tolist()
-    if len(jump_point) == 0:
-        return [False, jump_point]
+    if len(jump_5) == 0 and len(jump_10) == 0:
+        return False
     else:
-        return [True, jump_point]
+        return True
 
 
 # 5322

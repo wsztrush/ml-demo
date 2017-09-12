@@ -8,9 +8,9 @@ import random
 from matplotlib import pyplot as plt
 from obspy import read
 
-if os.path.exists("./data/1.csv"):
-    os.remove("./data/1.csv")
-result_file = open("./data/1.csv", "w")
+if os.path.exists("./data/2.csv"):
+    os.remove("./data/2.csv")
+result_file = open("./data/2.csv", "w")
 
 
 def format_time(t):
