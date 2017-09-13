@@ -32,6 +32,7 @@ def process(unit):
     shock_value = np.load('./data/shock/' + unit)
     shock_z_value = np.load('./data/shock_z/' + unit)
     origin_value_n = read(race_util.origin_dir_path + unit[:-4] + '.BHN')[0].data
+    origin_value_e = read(race_util.origin_dir_path + unit[:-4] + '.BHE')[0].data
     origin_value_z = read(race_util.origin_dir_path + unit[:-4] + '.BHZ')[0].data
     range_value = np.load('./data/range/' + unit)
 
@@ -74,27 +75,31 @@ def process(unit):
 
         # 展示结果
         def show():
-            plt.subplot(5, 1, 1)
+            plt.subplot(6, 1, 1)
             plt.axhline(y=shock_max * 0.1, color='red', linestyle=":")
             plt.axhline(y=0, color="black")
             plt.axvline(x=right_end, color='red',      linestyle=":")
             plt.axvline(x=left - before_left, color='green', linestyle=":")
-            plt.plot(np.arange(right - before_left), tmp_shock)
+            plt.plot(np.arange(right - before_left), shock_value[before_left:right])
 
-            plt.subplot(5, 1, 2)
+            plt.subplot(6, 1, 2)
             plt.axhline(y=a, color='red', linestyle=":")
             plt.axvline(x=ret, color='green')
             plt.plot(np.arange(right_end), tmp_shock[:right_end])
 
-            plt.subplot(5, 1, 3)
+            plt.subplot(6, 1, 3)
             plt.axvline(x=ret * race_util.step, color='red')
             plt.plot(np.arange((right - before_left) * race_util.step), origin_value_n[before_left * race_util.step:right * race_util.step])
 
-            plt.subplot(5, 1, 4)
+            plt.subplot(6, 1, 4)
+            plt.axvline(x=ret * race_util.step, color='red')
+            plt.plot(np.arange((right - before_left) * race_util.step), origin_value_e[before_left * race_util.step:right * race_util.step])
+
+            plt.subplot(6, 1, 5)
             plt.axvline(x=ret * race_util.step, color='red')
             plt.plot(np.arange((right - before_left) * race_util.step), origin_value_z[before_left * race_util.step:right * race_util.step])
 
-            plt.subplot(5, 1, 5)
+            plt.subplot(6, 1, 6)
             plt.axvline(x=ret * race_util.step, color='red')
             plt.axvline(x=ret * race_util.step - 40, color='green', linestyle=":")
             plt.axvline(x=ret * race_util.step + 40, color='green', linestyle=":")

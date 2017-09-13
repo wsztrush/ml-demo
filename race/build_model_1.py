@@ -137,36 +137,6 @@ def view():
     plt.show()
 
 
-def check_extra_feature():
-    model_1 = joblib.load('./data/model_1')
-
-    x_list = dict()
-    for unit in os.listdir('./data/all_range/'):
-        print(unit)
-        shock_value = np.load('./data/shock/' + unit)
-        range_list = np.load('./data/all_range/' + unit)
-        jump_index = np.load('./data/jump/' + unit)
-
-        for left, right in range_list:
-            feature = build_feature(shock_value, left, right)
-            extra_feature = build_extra_feature(jump_index, shock_value, left, right)
-
-            if feature is None:
-                continue
-
-            c = model_1.predict([feature])[0]
-            l = x_list.get(c)
-            if l is None:
-                l = x_list[c] = []
-
-            l.append(right - left)
-
-    for i in np.arange(7):
-        print(i, np.histogram(x_list[i], bins=5, range=(50, 100)))
-        plt.hist(x_list[i], bins=5, range=(50, 100))
-        plt.show()
-
-
 if __name__ == '__main__':
     # train()
     view()
