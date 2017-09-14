@@ -40,7 +40,7 @@ def range_filter(shock_value, shock_z_value, left, right):
     tmp = shock_value[left:right]
     # 开始点的跳跃程度过滤
     a, b = calc_begin_jump_degree(shock_value, shock_z_value, left)
-    if a > 0.3 and b > 0.3:
+    if b > 0.3 and a > 0.3:
         return False
 
     # 最大值过滤
@@ -63,14 +63,14 @@ def range_filter(shock_value, shock_z_value, left, right):
 
     # 个性化过滤
     if predict_ret == 2:
-        return filter_2(shock_value, shock_z_value, left, right)
-        # return False
+        # return filter_2(shock_value, shock_z_value, left, right)
+        return False
     elif predict_ret == 4:
-        return filter_4(shock_value, shock_z_value, left, right)
-        # return False
+        # return filter_4(shock_value, shock_z_value, left, right)
+        return False
     elif predict_ret == 5:
-        return filter_5(shock_value, shock_z_value, left, right)
-        # return False
+        # return filter_5(shock_value, shock_z_value, left, right)
+        return False
     elif predict_ret == 6:
         return filter_6(shock_value, shock_z_value, left, right)
         # return False
@@ -202,11 +202,11 @@ def filter_6(shock_value, shock_z_value, left, right):
     # 根据跳跃点进行过滤
     filter_jump_step = int((right - left) * (1 / 12))
     a = find_jump_point(shock_value, left, right, filter_jump_step, jump_degree_limit=0.3)
-    a = a[np.where(((right - left) * (1 / 8) < a) & (a < (right - left) * (5 / 8)))[0]]
+    a = a[np.where((a < (right - left) * (5 / 8)))[0]]  # ((right - left) * (1 / 8) < a) &
     global debug_jump_point
     debug_jump_point = a
-    if len(a) == 0:
-        return False
+    # if len(a) == 0:
+    #     return False
 
     return True
 
@@ -248,7 +248,7 @@ def find_jump_point(shock_value, left, right, filter_jump_step, jump_degree_limi
 
 # 计算刚开始的跳跃点
 def calc_begin_jump_degree(shock_value, shock_z_value, left):
-    return np.mean(shock_value[left - 10:left]) / (np.mean(shock_value[left:left + 20]) + 1), np.mean(shock_z_value[left - 10:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
+    return np.mean(shock_value[left - 20:left]) / (np.mean(shock_value[left:left + 20]) + 1), np.mean(shock_z_value[left - 10:left]) / (np.mean(shock_z_value[left:left + 20]) + 1)
 
 
 # 计算最高点附近的长度
@@ -306,8 +306,3 @@ def calc_shock_min(shock_value, left, right):
     tmp = np.min(tmp, axis=1)
 
     return tmp
-
-
-# 计算标准差和均值的最小比例
-def calc_std_than_mean(shock_value, left, right, step):
-    pass
