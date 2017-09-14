@@ -106,7 +106,7 @@ def process(unit):
             plt.plot(np.arange(right_end * race_util.step), origin_value_z[before_left * race_util.step:(before_left + right_end) * race_util.step])
             plt.show()
 
-        # show()
+        show()
 
     result = sorted(result)
 

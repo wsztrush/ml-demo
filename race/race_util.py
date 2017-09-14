@@ -179,66 +179,78 @@ def filter_5(shock_value, shock_z_value, left, right):
     return True
 
 
-# 5840：还需要进一步优化
 def filter_6(shock_value, shock_z_value, left, right):
     s_max = np.max(shock_value[left:right])
+    s_before_mean = np.mean(shock_value[left - 10:left])
 
-    # 中间比较低的地方就不要了
-    s_z_mean = calc_shock_mean(shock_z_value, left, right)
-    s_z_before_mean = np.mean(shock_z_value[left - 20:left])
-    if s_z_before_mean / s_z_mean[1] > 0.5 or s_z_before_mean / s_z_mean[2] > 0.5:
+    # 找到第二个跳跃点。
+    jump_step = max(min(int((right - left) / 24), 20), 5)
+    a = find_jump_point(shock_value, left, right, jump_step, degree_limit=1 / 3.5)
+    b = a[np.where((a > (right - left) * (1 / 8)) & (a < (right - left) * (5 / 8)))[0]]
+
+    # 第二个跳跃点应该离最高点比较近，如果比较远的话忽略
+    c = []
+    for i in b:
+        i_max = np.argmax(shock_value[left + i:right])
+        if i_max <= 2.5 * jump_step:
+            c.append(i)
+    if len(c) == 0:
         return False
 
-    # 第一二段应该至少有一个是比较平静的，如果波动比较大，那么可能不大正常。
-    s_mean = calc_shock_mean(shock_value, left, right)
-    s_std = calc_shock_std(shock_value, left, right)
-    if min(s_std[1] / s_mean[1], s_std[2] / s_mean[2]) > 0.5:
-        return False
-
-    # 前面小的太过分了，也是不正常的。
-    if s_mean[1] / s_max <= 0.02 or s_mean[2] / s_max <= 0.02:
-        return False
-
-    # 根据跳跃点进行过滤
-    filter_jump_step = int((right - left) * (1 / 12))
-    a = find_jump_point(shock_value, left, right, filter_jump_step, jump_degree_limit=0.3)
-    a = a[np.where((a < (right - left) * (5 / 8)))[0]]  # ((right - left) * (1 / 8) < a) &
+    # 打印调试信息
     global debug_jump_point
-    debug_jump_point = a
-    # if len(a) == 0:
-    #     return False
+    debug_jump_point = b
+
+    # 最后一个跳跃点之前，如果还有多个跳跃点，说明有点不正常。
+    c_max = np.max(c)
+    d = b[np.where(b < c_max - jump_step * 2)[0]]
+    if len(d) > 0:
+        return False
+
+    # 中间如果有地方特别小，这种也是不大正常的点。
+    a = int((right - left) / 16)
+    if c_max < a * 3:
+        return False
+    b = calc_shock_mean_min(shock_value, left + a, left + c_max + jump_step, split_size=10)
+    if b / s_max < 0.02:
+        return False
+    if s_before_mean / b > 0.7:
+        return False
+
+    # 加强开头的过滤
+    a = np.mean(shock_z_value[left - 20:left]) / np.mean(shock_z_value[left:left + 20])
+    if a > 0.3:
+        return False
 
     return True
 
 
 # 计算跳跃程度
-def calc_jump_degree(tmp, s, filter_jump_step, min_limit=0, jump_degree_limit=0.5):
+def calc_jump_degree(tmp, s, filter_jump_step, mean_limit=0, min_limit=0, degree_limit=0.5):
     s_value = tmp[s:s - filter_jump_step]
     s_mean = np.mean(s_value.reshape(-1, filter_jump_step), axis=1) + 1
     s_min = np.min(s_value.reshape(-1, filter_jump_step), axis=1) + 1
 
-    a = (s_mean[:-1] / s_mean[1:])[:-1]
-    b = (s_mean[:-2] / s_mean[2:])
+    ret = s_mean[:-1] / s_mean[1:]
 
-    ret = np.min((a, b), axis=0)
-
-    ret[np.where(s_min[:-2] <= min_limit)[0]] = -1
-    ret[np.where(ret > jump_degree_limit)[0]] = -1
+    ret[np.where(s_min[:-1] <= min_limit)[0]] = -1
+    ret[np.where(s_mean[:-1] <= mean_limit)[0]] = -1
+    ret[np.where(ret > degree_limit)[0]] = -1
 
     return ret
 
 
 # 找到全部的跳跃点
-def find_jump_point(shock_value, left, right, filter_jump_step, jump_degree_limit=0.5, min_limit=0):
-    right -= (right - left) % filter_jump_step
+def find_jump_point(shock_value, left, right, jump_step, degree_limit=0.5, min_limit=0):
+    right -= (right - left) % jump_step
     tmp = shock_value[left:right]
 
     # 找到最后一个满足条件的点（应该这个位置最能反应特征）
-    a = np.zeros(int((right - left) / filter_jump_step) + 1) - 1
-    for s in np.arange(filter_jump_step):
-        b = calc_jump_degree(tmp, s, filter_jump_step, min_limit=min_limit, jump_degree_limit=jump_degree_limit)
+    a = np.zeros(int((right - left) / jump_step) + 1, dtype=int) - 1
+    for s in np.arange(jump_step):
+        b = calc_jump_degree(tmp, s, jump_step, min_limit=min_limit, degree_limit=degree_limit)
         a[np.where(b != -1)] = s
-    b = np.arange(0, len(a) * filter_jump_step, filter_jump_step)
+    b = np.arange(0, len(a) * jump_step, jump_step)
 
     # 计算真实的位置
     ret = a + b
@@ -306,3 +318,14 @@ def calc_shock_min(shock_value, left, right):
     tmp = np.min(tmp, axis=1)
 
     return tmp
+
+
+# 将区间分割，求其中平均值的最小的一个。
+def calc_shock_mean_min(shock_value, left, right, split_size=5):
+    right -= (right - left) % split_size
+
+    tmp = shock_value[left:right]
+    tmp = tmp.reshape(-1, split_size)
+    tmp = np.mean(tmp, axis=1)
+
+    return np.min(tmp)

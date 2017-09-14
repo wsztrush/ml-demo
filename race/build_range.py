@@ -79,8 +79,8 @@ def order_process():
 
 
 def check():
-    a = []
-    b = []
+    r_1 = []
+    r_2 = []
 
     for unit in os.listdir('./data/all_range/'):
         print(unit)
@@ -92,13 +92,10 @@ def check():
             filter_ret = race_util.range_filter(shock_value, shock_z_value, left, right)
 
             if filter_ret:
-                f = race_util.calc_shock_mean(shock_value, left, right)
+                r_1.append(np.mean(shock_z_value[left - 20:left]) / np.mean(shock_z_value[left:left + 20]))
 
-                a.append(f[1] / f[0])
-                # b.append(f[1])
-
-    print(np.histogram(a, bins=10, range=(0, 3)))
-    plt.hist(a, bins=10, range=(0, 10))
+    print(np.histogram(r_1, bins=10, range=(0, 1)))
+    plt.hist(r_1, bins=10, range=(0, 1))
     plt.show()
 
     # print(np.histogram(b, bins=10, range=(0, 0.1)))
@@ -107,9 +104,10 @@ def check():
 
 
 if __name__ == '__main__':
-    race_util.config()
-
-    # mult_process()
-    order_process()
-    # process('GS.WDT.2008187000000.npy', True)
+    # race_util.config()
+    mult_process()
+    # order_process()
+    # process('XX.YZP.2008195000000.npy', True)
     # check()
+
+# (array([ 418, 1286,  812,  204,   64,   15,    7,    2,    1,    0]), array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ]))
