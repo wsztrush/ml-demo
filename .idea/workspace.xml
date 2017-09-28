@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5d88b6-8e6a-475b-8659-cff587dd4a29" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pandas/process_vehicle_pic.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/a.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/race_1/build.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/race/data/tmp.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/OpenCV/process_vehicle.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/work/process_driving_license_pic.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pandas/process_vehicle_pic.py" afterPath="$PROJECT_DIR$/pandas/process_vehicle_pic.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="process_vehicle_pic.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pandas/process_vehicle_pic.py">
+      <file leaf-file-name="process_driving_license_pic.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/work/process_driving_license_pic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="620">
-              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+            <state relative-caret-position="599">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -85,8 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/race_1/build_model_4.py" />
-        <option value="$PROJECT_DIR$/race_1/final/build_model_4.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_model_5.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_result_range.py" />
         <option value="$PROJECT_DIR$/race_1/final/build_range.py" />
@@ -135,7 +132,9 @@
         <option value="$PROJECT_DIR$/race_1/code/build.py" />
         <option value="$PROJECT_DIR$/race_1/a.py" />
         <option value="$PROJECT_DIR$/race_1/build.py" />
+        <option value="$PROJECT_DIR$/OpenCV/process_vehicle.py" />
         <option value="$PROJECT_DIR$/pandas/process_vehicle_pic.py" />
+        <option value="$PROJECT_DIR$/work/process_driving_license_pic.py" />
       </list>
     </option>
   </component>
@@ -240,79 +239,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.process_vehicle_pic">
-    <configuration default="false" name="build_model_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/build_model_1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="build_range" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/build_range.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="result_p" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race/result_p.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="build" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/race_1" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="ml-demo" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/race_1/build.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.process_driving_license_pic">
     <configuration default="false" name="process_vehicle_pic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -326,6 +253,72 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="ml-demo" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pandas/process_vehicle_pic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test1.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OpenCV" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/OpenCV/test1.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OpenCV" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/OpenCV/test.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="process_vehicle" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OpenCV" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OpenCV/process_vehicle.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="process_driving_license_pic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/work" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="ml-demo" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/work/process_driving_license_pic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -416,19 +409,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.build_model_1" />
-      <item index="1" class="java.lang.String" itemvalue="Python.build_range" />
-      <item index="2" class="java.lang.String" itemvalue="Python.result_p" />
-      <item index="3" class="java.lang.String" itemvalue="Python.build" />
-      <item index="4" class="java.lang.String" itemvalue="Python.process_vehicle_pic" />
+      <item index="0" class="java.lang.String" itemvalue="Python.process_vehicle_pic" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in test1.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python.process_vehicle" />
+      <item index="4" class="java.lang.String" itemvalue="Python.process_driving_license_pic" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.process_vehicle_pic" />
-        <item index="1" class="java.lang.String" itemvalue="Python.build" />
-        <item index="2" class="java.lang.String" itemvalue="Python.result_p" />
-        <item index="3" class="java.lang.String" itemvalue="Python.build_range" />
-        <item index="4" class="java.lang.String" itemvalue="Python.build_model_1" />
+        <item index="0" class="java.lang.String" itemvalue="Python.process_driving_license_pic" />
+        <item index="1" class="java.lang.String" itemvalue="Python.process_vehicle" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in test.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in test1.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python.process_vehicle_pic" />
       </list>
     </recent_temporary>
   </component>
@@ -445,13 +438,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1497666091081</updated>
-    </task>
-    <task id="LOCAL-00028" summary="优化">
-      <created>1503130627310</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1503130627310</updated>
     </task>
     <task id="LOCAL-00029" summary="FINISH">
       <created>1503132945834</created>
@@ -789,18 +775,22 @@
       <option name="project" value="LOCAL" />
       <updated>1505397214911</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="使用tesseract并没有还算可以的结果，找别的方法。">
+      <created>1506581323349</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1506581323349</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_build_clf_py - 2017.08.21 at 21h 08m 07s.xml">
-      <configuration name="Unittests in build_clf.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test1_py - 2017.09.28 at 14h 55m 38s.xml">
+      <configuration name="Unittests in test1.py" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_build_clf_py - 2017.08.21 at 21h 09m 03s.xml">
-      <configuration name="Unittests in build_clf.py" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_build_p_ret_py - 2017.08.23 at 07h 31m 04s.xml">
-      <configuration name="Unittests in build_p_ret.py" configurationId="tests" />
+    <history-entry file="Unittests_in_test1_py - 2017.09.28 at 14h 55m 42s.xml">
+      <configuration name="Unittests in test1.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_1_py - 2017.08.30 at 07h 56m 50s.xml">
       <configuration name="Unittests in test_1.py" configurationId="tests" />
@@ -816,6 +806,9 @@
     </history-entry>
     <history-entry file="Unittests_in_test_2_py - 2017.08.17 at 11h 39m 22s.xml">
       <configuration name="Unittests in test_2.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_py - 2017.09.28 at 14h 59m 35s.xml">
+      <configuration name="Unittests in test.py" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_test_sac_py - 2017.07.03 at 07h 07m 06s.xml">
       <configuration name="Unittests in test_sac.py" configurationId="tests" />
@@ -840,7 +833,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37378642" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4669903" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -865,7 +858,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37378642" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37378642" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -874,7 +867,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32588235" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18055555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4592233" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4592233" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6979167" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
@@ -883,7 +876,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="位置文件60万左右" />
     <MESSAGE value="16万左右个范围数据，接下来需要缩小区间大小。" />
     <MESSAGE value="不想活了。。。。CNN完全用不好啊。" />
     <MESSAGE value="再次尝试Kmeans" />
@@ -908,7 +900,8 @@
     <MESSAGE value="把数据控制到4万以内。&#10;感觉时间有点不够了。" />
     <MESSAGE value="将结果压缩在2W以内了。" />
     <MESSAGE value="搞不出好成绩了，准备回去了。" />
-    <option name="LAST_COMMIT_MESSAGE" value="搞不出好成绩了，准备回去了。" />
+    <MESSAGE value="使用tesseract并没有还算可以的结果，找别的方法。" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用tesseract并没有还算可以的结果，找别的方法。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -971,7 +964,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="249" />
+      <option name="time" value="251" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -980,16 +973,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/race_1/round_4/build_model_1.py" />
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_sample_tool.py" />
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2017.1/python_stubs/-1665691696/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="4402" column="8" lean-forward="false" selection-start-line="4402" selection-start-column="8" selection-end-line="4402" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/race_1/final/build_result_range.py" />
     <entry file="file://$PROJECT_DIR$/race_1/final/data/tmp.txt" />
     <entry file="file://$PROJECT_DIR$/race_1/final/result_s.py" />
     <entry file="file:///usr/local/lib/python3.6/site-packages/matplotlib/pyplot.py">
@@ -1145,10 +1128,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/OpenCV/test1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OpenCV/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OpenCV/process_vehicle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pandas/process_vehicle_pic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        <state relative-caret-position="480">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/work/process_driving_license_pic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
